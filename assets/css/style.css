@@ -1,665 +1,121 @@
-</> CSS
-/* =========================================
-   ABAYA MAJESTY
-   LUXURY NOIR & CHAMPAGNE THEME
-========================================= */
-
-:root {
-    --black: #171717;
-    --gold: #C6A879;
-    --ivory: #F3EEE5;
-    --beige: #E6DFD3;
-    --sand: #D6C9B7;
-    --charcoal: #252525;
-    --white: #FFFFFF;
-
-    --heading: Georgia, serif;
-    --body: Arial, sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: var(--ivory);
-    color: var(--charcoal);
-    font-family: var(--body);
-    line-height: 1.7;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-.container {
-    width: 90%;
-    max-width: 1400px;
-    margin: auto;
-}
-
-.gold-text {
-    color: var(--gold);
-}
-
-/* ANNOUNCEMENT */
-
-.announcement-bar {
-    background: var(--black);
-    color: var(--gold);
-    text-align: center;
-    padding: 9px;
-    font-size: 10px;
-    letter-spacing: 3px;
-}
-
-/* HEADER */
-
-.site-header {
-    background: var(--ivory);
-    border-bottom: 1px solid var(--beige);
-    position: relative;
-    z-index: 100;
-}
-
-.header-container {
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-}
-
-.brand-logo {
-    font-family: var(--heading);
-    font-size: 25px;
-    letter-spacing: 2px;
-    line-height: 1.2;
-    white-space: nowrap;
-}
-
-.brand-logo small {
-    display: block;
-    text-align: center;
-    font-family: var(--body);
-    font-size: 8px;
-    letter-spacing: 3px;
-    margin-top: 7px;
-}
-
-.main-navigation {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-.main-navigation a {
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    transition: 0.3s;
-}
-
-.main-navigation a:hover {
-    color: var(--gold);
-}
-
-.header-whatsapp {
-    background: var(--black);
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    padding: 12px 20px;
-    font-size: 10px;
-    letter-spacing: 1px;
-}
-
-.menu-toggle {
-    display: none;
-    background: transparent;
-    border: none;
-    font-size: 26px;
-    color: var(--black);
-}
-
-/* HERO BANNER */
-
-.hero-section {
-    min-height: 620px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0,0,0,0.78),
-            rgba(0,0,0,0.35),
-            rgba(0,0,0,0.05)
-        ),
-        url("https://raw.githubusercontent.com/ameerpotrik/abaya-majesty/main/images/bridalfashionwear.jpeg")
-        center 35% / cover no-repeat;
-
-    color: white;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding-top: 70px;
-    padding-bottom: 70px;
-}
-
-.hero-subtitle {
-    color: var(--gold);
-    font-size: 11px;
-    letter-spacing: 4px;
-    margin-bottom: 25px;
-}
-
-.hero-content h1 {
-    font-family: var(--heading);
-    font-size: clamp(48px, 7vw, 82px);
-    font-weight: 400;
-    line-height: 1.12;
-    margin-bottom: 25px;
-}
-
-.hero-description {
-    max-width: 450px;
-    font-size: 14px;
-    color: #e8e4df;
-    margin-bottom: 35px;
-}
-
-.luxury-button {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--black);
-    padding: 15px 30px;
-    border: 1px solid var(--gold);
-    font-size: 10px;
-    letter-spacing: 2px;
-    transition: 0.3s;
-}
-
-.luxury-button:hover {
-    background: transparent;
-    color: var(--gold);
-}
-
-.hero-bottom-label {
-    position: absolute;
-    bottom: 22px;
-    right: 5%;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--gold);
-}
-
-/* SECTION COMMON */
-
-section {
-    overflow: hidden;
-}
-
-.section-label {
-    color: #9b7b4e;
-    font-size: 10px;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-}
-
-.section-heading {
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.section-heading h2 {
-    font-family: var(--heading);
-    font-size: 42px;
-    font-weight: 400;
-}
-
-.section-heading p:last-child {
-    color: #777;
-    font-size: 13px;
-    margin-top: 8px;
-}
-
-/* BRAND INTRODUCTION */
-
-.brand-introduction {
-    padding: 100px 0;
-    text-align: center;
-    background: var(--ivory);
-}
-
-.brand-introduction h2 {
-    font-family: var(--heading);
-    font-size: 43px;
-    font-weight: 400;
-    margin-bottom: 20px;
-}
-
-.brand-introduction .container > p:last-child {
-    max-width: 650px;
-    margin: auto;
-    font-size: 14px;
-    color: #777;
-}
-
-/* COLLECTIONS */
-
-.collections-section {
-    padding: 90px 0;
-    background: var(--beige);
-}
-
-.collection-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-}
-
-.collection-card {
-    text-align: center;
-}
-
-.collection-image {
-    height: 370px;
-    position: relative;
-    background-color: var(--sand);
-    background-position: center;
-    background-size: cover;
-    transition: 0.4s;
-}
-
-.collection-card:hover .collection-image {
-    transform: translateY(-5px);
-}
-
-.collection-image span {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    color: white;
-    font-size: 11px;
-    letter-spacing: 2px;
-}
-
-.bridal-image {
-    background-image: linear-gradient(
-        135deg, #d9c9b6, #897b6b
-    );
-}
-
-.casual-image {
-    background-image: linear-gradient(
-        135deg, #d7cfc3, #8b8175
-    );
-}
-
-.premium-image {
-    background-image: linear-gradient(
-        135deg, #b6a38d, #51453b
-    );
-}
-
-.party-image {
-    background-image: linear-gradient(
-        135deg, #8a7969, #252525
-    );
-}
-
-.collection-card h3 {
-    font-family: var(--heading);
-    font-size: 20px;
-    font-weight: 400;
-    margin-top: 18px;
-}
-
-.collection-card p {
-    color: #777;
-    font-size: 11px;
-    margin-top: 5px;
-}
-
-/* NEW ARRIVALS */
-
-.new-arrivals-section {
-    padding: 100px 0;
-    background: var(--ivory);
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-}
-
-.product-card {
-    text-align: center;
-}
-
-.product-image {
-    height: 390px;
-    position: relative;
-    background: var(--sand);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 15px;
-}
-
-.product-image span {
-    background: var(--black);
-    color: var(--gold);
-    padding: 7px 12px;
-    font-size: 9px;
-    letter-spacing: 1px;
-}
-
-.product-placeholder-1 {
-    background: linear-gradient(
-        135deg, #ded3c4, #897967
-    );
-}
-
-.product-placeholder-2 {
-    background: linear-gradient(
-        135deg, #b9ada0, #302c29
-    );
-}
-
-.product-placeholder-3 {
-    background: linear-gradient(
-        135deg, #e6d7c6, #8f7c66
-    );
-}
-
-.product-placeholder-4 {
-    background: linear-gradient(
-        135deg, #8a7867, #282421
-    );
-}
-
-.product-card h3 {
-    font-family: var(--heading);
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 18px;
-}
-
-.product-card > p {
-    color: #888;
-    font-size: 11px;
-    margin: 5px 0 15px;
-}
-
-.product-button {
-    display: block;
-    background: var(--black);
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    padding: 13px 8px;
-    font-size: 9px;
-    letter-spacing: 1px;
-    transition: 0.3s;
-}
-
-.product-button:hover {
-    background: var(--gold);
-    color: var(--black);
-}
-
-/* BRAND STATEMENT */
-
-.brand-statement {
-    padding: 110px 0;
-    text-align: center;
-    background: var(--black);
-    color: var(--ivory);
-}
-
-.brand-statement h2 {
-    font-family: var(--heading);
-    font-size: 42px;
-    font-weight: 400;
-    margin-bottom: 20px;
-}
-
-.brand-statement p:last-child {
-    font-size: 13px;
-    color: #bbb;
-}
-
-/* CONTACT */
-
-.contact-section {
-    padding: 100px 0;
-    text-align: center;
-    background: var(--beige);
-}
-
-.contact-section h2 {
-    font-family: var(--heading);
-    font-size: 42px;
-    font-weight: 400;
-    margin-bottom: 18px;
-}
-
-.contact-section p:not(.section-label) {
-    max-width: 550px;
-    margin: 0 auto 30px;
-    color: #777;
-    font-size: 13px;
-}
-
-/* FOOTER */
-
-.site-footer {
-    background: var(--black);
-    color: var(--ivory);
-    text-align: center;
-    padding: 65px 0 25px;
-}
-
-.footer-logo {
-    font-family: var(--heading);
-    font-size: 29px;
-    letter-spacing: 3px;
-}
-
-.site-footer > .container > p {
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: var(--gold);
-    margin-top: 10px;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin: 35px 0;
-}
-
-.footer-links a {
-    font-size: 11px;
-    color: #ddd;
-}
-
-.footer-links a:hover {
-    color: var(--gold);
-}
-
-.footer-bottom {
-    border-top: 1px solid #393939;
-    padding-top: 20px;
-    color: #999;
-    font-size: 10px;
-}
-
-/* MOBILE RESPONSIVE */
-
-@media (max-width: 1000px) {
-
-    .main-navigation {
-        gap: 15px;
-    }
-
-    .collection-grid,
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .collection-image,
-    .product-image {
-        height: 340px;
-    }
-
-}
-
-@media (max-width: 768px) {
-
-    .header-container {
-        min-height: 80px;
-    }
-
-    .brand-logo {
-        font-size: 20px;
-    }
-
-    .main-navigation {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--ivory);
-        flex-direction: column;
-        align-items: stretch;
-        padding: 20px 5%;
-        border-top: 1px solid var(--beige);
-        gap: 0;
-    }
-
-    .main-navigation.active {
-        display: flex;
-    }
-
-    .main-navigation a {
-        padding: 13px 0;
-        border-bottom: 1px solid var(--beige);
-    }
-
-    .header-whatsapp {
-        margin-left: auto;
-        padding: 10px;
-        font-size: 9px;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .hero-section {
-        min-height: 540px;
-        background-position: 60% center;
-    }
-
-    .hero-content h1 {
-        font-size: 53px;
-    }
-
-    .brand-introduction,
-    .collections-section,
-    .new-arrivals-section,
-    .contact-section {
-        padding: 70px 0;
-    }
-
-    .brand-introduction h2,
-    .section-heading h2,
-    .brand-statement h2,
-    .contact-section h2 {
-        font-size: 33px;
-    }
-
-    .collection-image,
-    .product-image {
-        height: 290px;
-    }
-
-    .collection-grid,
-    .product-grid {
-        gap: 14px;
-    }
-
-}
-
-@media (max-width: 480px) {
-
-    .announcement-bar {
-        font-size: 8px;
-        letter-spacing: 1px;
-    }
-
-    .brand-logo {
-        font-size: 17px;
-    }
-
-    .brand-logo small {
-        font-size: 6px;
-        letter-spacing: 2px;
-    }
-
-    .header-whatsapp {
-        font-size: 8px;
-        padding: 8px;
-    }
-
-    .hero-section {
-        min-height: 500px;
-    }
-
-    .hero-content h1 {
-        font-size: 44px;
-    }
-
-    .hero-description {
-        font-size: 12px;
-    }
-
-    .collection-image,
-    .product-image {
-        height: 240px;
-    }
-
-    .collection-card h3,
-    .product-card h3 {
-        font-size: 15px;
-    }
-
-    .product-button {
-        font-size: 8px;
-    }
-
-    .footer-links {
-        gap: 15px;
-    }
-
+.hero h1,.intro h2,.section-heading h2,.contact-section h2,.quote-panel h2,.legal-wrap h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;letter-spacing:-.035em}
+.hero h1{font-size:clamp(60px,8vw,112px);line-height:.98;margin:0 0 26px}
+.hero h1 em,.intro h2 em,.section-heading h2 em,.contact-section h2 em,.quote-panel h2 em{font-weight:400;color:#c6a879}
+.hero-copy{font-family:"Playfair Display",Georgia,serif;font-size:17px;line-height:1.7;max-width:410px;color:#f1eee7;margin:0 0 30px}
+.button{display:inline-flex;align-items:center;gap:32px;padding:16px 21px;font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+.button-gold{background:#c6a879;color:#211f1b}
+.button-gold span{font-size:17px}
+.hero-caption{position:absolute;right:5%;bottom:27px;color:#eee4d2;font-size:8px;letter-spacing:.25em}
+
+.section-pad{padding:105px 8%}
+.intro{text-align:center;max-width:850px;margin:auto}
+.intro h2{font-size:clamp(40px,5vw,64px);line-height:1.13;margin:0 0 24px}
+.intro>p:last-child{max-width:580px;margin:0 auto;color:#716c64;font-size:13px;line-height:1.9}
+.collection-band{background:#efede6;padding:85px 8% 100px}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:35px}
+.section-heading h2{font-size:clamp(36px,4vw,54px);margin:0}
+.section-heading>p{font-size:12px;color:#777168;max-width:270px;line-height:1.8;margin:0}
+.collection-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.collection-card{position:relative;height:440px;overflow:hidden;background:#ddd;display:block}
+.collection-card:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.58));pointer-events:none}
+.collection-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.collection-card:hover img{transform:scale(1.04)}
+.collection-card span,.collection-card b{position:absolute;z-index:1;left:22px;color:#fff}
+.collection-card span{bottom:58px;font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.collection-card b{bottom:26px;font-size:11px;font-weight:500}
+
+.arrivals{background:#f7f5ef}
+.filter-row{display:flex;gap:10px;margin:0 0 28px;flex-wrap:wrap}
+.filter{border:1px solid #d7d1c5;background:transparent;padding:10px 17px;font-size:10px;color:#625d54;cursor:pointer;transition:background .2s,color .2s}
+.filter.active,.filter:hover{background:#24221f;color:#fff;border-color:#24221f}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 18px}
+.product-card{min-width:0}
+.product-photo{height:390px;display:block;position:relative;overflow:hidden;background:#e8e4dc}
+.product-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.product-photo:hover img{transform:scale(1.035)}
+.look-number{position:absolute;top:13px;left:13px;background:rgba(248,246,240,.9);padding:7px 9px;font-size:8px;letter-spacing:.17em}
+.product-info{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding-top:14px}
+.product-info h3{font-family:"Playfair Display",Georgia,serif;font-size:16px;font-weight:400;margin:0 0 6px}
+.product-info p{font-size:9px;color:#817b71;margin:0;line-height:1.5}
+.enquire-link{white-space:nowrap;font-size:9px;letter-spacing:.08em;border-bottom:1px solid #b69a6b;padding:4px 0}
+.availability-note{font-size:10px;color:#817b71;margin-top:30px;line-height:1.7}
+
+.quote-panel{min-height:410px;background:#24221f;color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px}
+.quote-panel h2{font-size:clamp(48px,6vw,76px);line-height:1.08;margin:0 0 25px}
+.text-link{font-size:10px;letter-spacing:.17em;text-transform:uppercase;border-bottom:1px solid #c6a879;padding-bottom:9px}
+.light-link{color:#eee}
+.contact-section{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.contact-section h2{font-size:clamp(42px,5vw,65px);line-height:1.08;margin:0 0 20px}
+.contact-section>div:first-child>p:last-child{font-size:12px;color:#777168;line-height:1.8;max-width:330px}
+.contact-details{border-top:1px solid #d9d3c8}
+.contact-details a{display:flex;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid #d9d3c8;font-family:"Playfair Display",Georgia,serif;font-size:17px}
+.contact-details span{font-family:"DM Sans",Arial,sans-serif;font-size:10px;color:#746d62}
+
+.site-footer{background:#1d1c1a;color:#eee9df;padding:35px 8%;display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}
+.footer-brand img{width:52px;height:52px;object-fit:contain;background:#f7f5ef;border-radius:50%}
+.footer-brand span{font-size:13px}
+.footer-brand small{font-size:7px}
+.footer-links{display:flex;gap:22px;flex-wrap:wrap}
+.footer-links a,.site-footer>p{font-size:9px;color:#c4beb2}
+.site-footer>p{margin:0}
+.whatsapp-float{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;background:#253f32;color:#fff;display:grid;place-items:center;font-size:11px;letter-spacing:.05em;box-shadow:0 5px 18px #0002;z-index:10}
+
+.legal-page{min-height:100vh}
+.legal-head{height:90px;padding:0 8%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e0dbd1}
+.wordmark{font-family:"Playfair Display",Georgia,serif;letter-spacing:.18em}
+.back-link{font-size:11px}
+.legal-wrap{max-width:850px;margin:70px auto;padding:0 24px 90px}
+.legal-wrap h1{font-size:54px;margin:0 0 35px}
+.legal-copy h2{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:500;margin:32px 0 12px}
+.legal-copy p{font-size:13px;line-height:1.9;color:#625d55;margin:0 0 15px}
+.legal-page .site-footer{padding-left:8%;padding-right:8%}
+
+@media(max-width:1050px){
+  .nav-links{gap:16px}
+  .nav-links a,.header-cta{font-size:9px}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .product-photo{height:470px}
+}
+@media(max-width:700px){
+  .announcement{font-size:7px;letter-spacing:.17em}
+  .main-header{min-height:82px;padding:8px 5%;gap:10px}
+  .brand img{width:48px;height:48px}
+  .brand strong{font-size:13px}
+  .brand small{font-size:6px}
+  .menu-toggle{display:block;order:3}
+  .header-cta{margin-left:auto;margin-right:8px;font-size:8px}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#f7f5ef;padding:20px 7%;flex-direction:column;align-items:flex-start;gap:18px;border-top:1px solid #e6e0d6;box-shadow:0 12px 15px #0001}
+  .nav-links.open{display:flex}
+  .hero{min-height:620px;height:78vh}
+  .hero-image{object-position:56% center}
+  .hero-shade{background:linear-gradient(90deg,rgba(17,16,15,.7),rgba(17,16,15,.22))}
+  .hero-content{margin-left:7%;margin-right:7%}
+  .hero h1{font-size:clamp(56px,14vw,82px)}
+  .hero-copy{font-size:15px}
+  .section-pad{padding:75px 6%}
+  .intro h2{font-size:43px}
+  .collection-band{padding:70px 6%}
+  .section-heading{display:block}
+  .section-heading>p{margin-top:14px}
+  .collection-cards{grid-template-columns:1fr;gap:14px}
+  .collection-card{height:430px}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 12px}
+  .product-photo{height:clamp(240px,76vw,420px)}
+  .product-info{display:block}
+  .product-info h3{font-size:15px;min-height:36px}
+  .enquire-link{display:inline-block;margin-top:10px}
+  .contact-section{grid-template-columns:1fr;gap:35px}
+  .contact-details a{font-size:16px}
+  .contact-details span{font-size:9px}
+  .site-footer{padding:32px 6%;display:grid;grid-template-columns:1fr}
+  .footer-links{gap:15px}
+  .legal-wrap{margin:45px auto}
+  .legal-wrap h1{font-size:42px}
+}
+@media(max-width:380px){
+  .brand{gap:7px}
+  .brand strong{font-size:11px}
+  .brand small{font-size:5px}
+  .header-cta{letter-spacing:.06em}
+  .product-info h3{font-size:14px}
 }
-```
-</> CSS
