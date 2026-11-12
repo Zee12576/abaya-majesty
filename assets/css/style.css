@@ -1,18 +1,23 @@
-/* =================================
+?variant="standard" id="73519"}
+**CSS file:** `assets/css/style.css`
+
+```css
+/* =========================================
    ABAYA MAJESTY
-   NOIR & CHAMPAGNE DESIGN SYSTEM
-================================= */
+   LUXURY NOIR & CHAMPAGNE THEME
+========================================= */
 
 :root {
-    --luxury-black: #171717;
-    --champagne-gold: #C6A879;
-    --warm-ivory: #F3EEE5;
-    --soft-beige: #E6DFD3;
+    --black: #171717;
+    --gold: #C6A879;
+    --ivory: #F3EEE5;
+    --beige: #E6DFD3;
     --sand: #D6C9B7;
     --charcoal: #252525;
+    --white: #FFFFFF;
 
-    --heading-font: Georgia, serif;
-    --body-font: Arial, sans-serif;
+    --heading: Georgia, serif;
+    --body: Arial, sans-serif;
 }
 
 * {
@@ -26,25 +31,15 @@ html {
 }
 
 body {
-    background: var(--warm-ivory);
+    background: var(--ivory);
     color: var(--charcoal);
-    font-family: var(--body-font);
-    line-height: 1.6;
-}
-
-h1, h2, h3 {
-    font-family: var(--heading-font);
-    font-weight: 400;
+    font-family: var(--body);
+    line-height: 1.7;
 }
 
 a {
     text-decoration: none;
     color: inherit;
-}
-
-button {
-    cursor: pointer;
-    font-family: inherit;
 }
 
 img {
@@ -59,27 +54,614 @@ img {
 }
 
 .gold-text {
-    color: var(--champagne-gold);
+    color: var(--gold);
+}
+
+/* ANNOUNCEMENT */
+
+.announcement-bar {
+    background: var(--black);
+    color: var(--gold);
+    text-align: center;
+    padding: 9px;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+/* HEADER */
+
+.site-header {
+    background: var(--ivory);
+    border-bottom: 1px solid var(--beige);
+    position: relative;
+    z-index: 100;
+}
+
+.header-container {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand-logo {
+    font-family: var(--heading);
+    font-size: 25px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.brand-logo small {
+    display: block;
+    text-align: center;
+    font-family: var(--body);
+    font-size: 8px;
+    letter-spacing: 3px;
+    margin-top: 7px;
+}
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.main-navigation a {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+
+.main-navigation a:hover {
+    color: var(--gold);
+}
+
+.header-whatsapp {
+    background: var(--black);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 12px 20px;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 26px;
+    color: var(--black);
+}
+
+/* HERO BANNER */
+
+.hero-section {
+    min-height: 620px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.78),
+            rgba(0,0,0,0.35),
+            rgba(0,0,0,0.05)
+        ),
+        url("https://raw.githubusercontent.com/ameerpotrik/abaya-majesty/main/images/bridalfashionwear.jpeg")
+        center 35% / cover no-repeat;
+
+    color: white;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.hero-subtitle {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+.hero-content h1 {
+    font-family: var(--heading);
+    font-size: clamp(48px, 7vw, 82px);
+    font-weight: 400;
+    line-height: 1.12;
+    margin-bottom: 25px;
+}
+
+.hero-description {
+    max-width: 450px;
+    font-size: 14px;
+    color: #e8e4df;
+    margin-bottom: 35px;
 }
 
 .luxury-button {
     display: inline-block;
-    background: var(--luxury-black);
-    color: var(--warm-ivory);
-    padding: 14px 28px;
-    border: 1px solid var(--champagne-gold);
+    background: var(--gold);
+    color: var(--black);
+    padding: 15px 30px;
+    border: 1px solid var(--gold);
+    font-size: 10px;
     letter-spacing: 2px;
-    font-size: 12px;
     transition: 0.3s;
 }
 
 .luxury-button:hover {
-    background: var(--champagne-gold);
-    color: var(--luxury-black);
+    background: transparent;
+    color: var(--gold);
+}
+
+.hero-bottom-label {
+    position: absolute;
+    bottom: 22px;
+    right: 5%;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold);
+}
+
+/* SECTION COMMON */
+
+section {
+    overflow: hidden;
+}
+
+.section-label {
+    color: #9b7b4e;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.section-heading h2 {
+    font-family: var(--heading);
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.section-heading p:last-child {
+    color: #777;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* BRAND INTRODUCTION */
+
+.brand-introduction {
+    padding: 100px 0;
+    text-align: center;
+    background: var(--ivory);
+}
+
+.brand-introduction h2 {
+    font-family: var(--heading);
+    font-size: 43px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.brand-introduction .container > p:last-child {
+    max-width: 650px;
+    margin: auto;
+    font-size: 14px;
+    color: #777;
+}
+
+/* COLLECTIONS */
+
+.collections-section {
+    padding: 90px 0;
+    background: var(--beige);
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.collection-card {
+    text-align: center;
+}
+
+.collection-image {
+    height: 370px;
+    position: relative;
+    background-color: var(--sand);
+    background-position: center;
+    background-size: cover;
+    transition: 0.4s;
+}
+
+.collection-card:hover .collection-image {
+    transform: translateY(-5px);
+}
+
+.collection-image span {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: white;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.bridal-image {
+    background-image: linear-gradient(
+        135deg, #d9c9b6, #897b6b
+    );
+}
+
+.casual-image {
+    background-image: linear-gradient(
+        135deg, #d7cfc3, #8b8175
+    );
+}
+
+.premium-image {
+    background-image: linear-gradient(
+        135deg, #b6a38d, #51453b
+    );
+}
+
+.party-image {
+    background-image: linear-gradient(
+        135deg, #8a7969, #252525
+    );
+}
+
+.collection-card h3 {
+    font-family: var(--heading);
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 18px;
+}
+
+.collection-card p {
+    color: #777;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* NEW ARRIVALS */
+
+.new-arrivals-section {
+    padding: 100px 0;
+    background: var(--ivory);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.product-card {
+    text-align: center;
+}
+
+.product-image {
+    height: 390px;
+    position: relative;
+    background: var(--sand);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+.product-image span {
+    background: var(--black);
+    color: var(--gold);
+    padding: 7px 12px;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.product-placeholder-1 {
+    background: linear-gradient(
+        135deg, #ded3c4, #897967
+    );
+}
+
+.product-placeholder-2 {
+    background: linear-gradient(
+        135deg, #b9ada0, #302c29
+    );
+}
+
+.product-placeholder-3 {
+    background: linear-gradient(
+        135deg, #e6d7c6, #8f7c66
+    );
+}
+
+.product-placeholder-4 {
+    background: linear-gradient(
+        135deg, #8a7867, #282421
+    );
+}
+
+.product-card h3 {
+    font-family: var(--heading);
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 18px;
+}
+
+.product-card > p {
+    color: #888;
+    font-size: 11px;
+    margin: 5px 0 15px;
+}
+
+.product-button {
+    display: block;
+    background: var(--black);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 13px 8px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.product-button:hover {
+    background: var(--gold);
+    color: var(--black);
+}
+
+/* BRAND STATEMENT */
+
+.brand-statement {
+    padding: 110px 0;
+    text-align: center;
+    background: var(--black);
+    color: var(--ivory);
+}
+
+.brand-statement h2 {
+    font-family: var(--heading);
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.brand-statement p:last-child {
+    font-size: 13px;
+    color: #bbb;
+}
+
+/* CONTACT */
+
+.contact-section {
+    padding: 100px 0;
+    text-align: center;
+    background: var(--beige);
+}
+
+.contact-section h2 {
+    font-family: var(--heading);
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 18px;
+}
+
+.contact-section p:not(.section-label) {
+    max-width: 550px;
+    margin: 0 auto 30px;
+    color: #777;
+    font-size: 13px;
+}
+
+/* FOOTER */
+
+.site-footer {
+    background: var(--black);
+    color: var(--ivory);
+    text-align: center;
+    padding: 65px 0 25px;
+}
+
+.footer-logo {
+    font-family: var(--heading);
+    font-size: 29px;
+    letter-spacing: 3px;
+}
+
+.site-footer > .container > p {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-top: 10px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 35px 0;
+}
+
+.footer-links a {
+    font-size: 11px;
+    color: #ddd;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid #393939;
+    padding-top: 20px;
+    color: #999;
+    font-size: 10px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+    .main-navigation {
+        gap: 15px;
+    }
+
+    .collection-grid,
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .collection-image,
+    .product-image {
+        height: 340px;
+    }
+
 }
 
 @media (max-width: 768px) {
-    .container {
-        width: 92%;
+
+    .header-container {
+        min-height: 80px;
     }
+
+    .brand-logo {
+        font-size: 20px;
+    }
+
+    .main-navigation {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--ivory);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px 5%;
+        border-top: 1px solid var(--beige);
+        gap: 0;
+    }
+
+    .main-navigation.active {
+        display: flex;
+    }
+
+    .main-navigation a {
+        padding: 13px 0;
+        border-bottom: 1px solid var(--beige);
+    }
+
+    .header-whatsapp {
+        margin-left: auto;
+        padding: 10px;
+        font-size: 9px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-section {
+        min-height: 540px;
+        background-position: 60% center;
+    }
+
+    .hero-content h1 {
+        font-size: 53px;
+    }
+
+    .brand-introduction,
+    .collections-section,
+    .new-arrivals-section,
+    .contact-section {
+        padding: 70px 0;
+    }
+
+    .brand-introduction h2,
+    .section-heading h2,
+    .brand-statement h2,
+    .contact-section h2 {
+        font-size: 33px;
+    }
+
+    .collection-image,
+    .product-image {
+        height: 290px;
+    }
+
+    .collection-grid,
+    .product-grid {
+        gap: 14px;
+    }
+
 }
+
+@media (max-width: 480px) {
+
+    .announcement-bar {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .brand-logo {
+        font-size: 17px;
+    }
+
+    .brand-logo small {
+        font-size: 6px;
+        letter-spacing: 2px;
+    }
+
+    .header-whatsapp {
+        font-size: 8px;
+        padding: 8px;
+    }
+
+    .hero-section {
+        min-height: 500px;
+    }
+
+    .hero-content h1 {
+        font-size: 44px;
+    }
+
+    .hero-description {
+        font-size: 12px;
+    }
+
+    .collection-image,
+    .product-image {
+        height: 240px;
+    }
+
+    .collection-card h3,
+    .product-card h3 {
+        font-size: 15px;
+    }
+
+    .product-button {
+        font-size: 8px;
+    }
+
+    .footer-links {
+        gap: 15px;
+    }
+
+}
+```
