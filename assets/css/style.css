@@ -1,0 +1,85 @@
+/* =================================
+   ABAYA MAJESTY
+   NOIR & CHAMPAGNE DESIGN SYSTEM
+================================= */
+
+:root {
+    --luxury-black: #171717;
+    --champagne-gold: #C6A879;
+    --warm-ivory: #F3EEE5;
+    --soft-beige: #E6DFD3;
+    --sand: #D6C9B7;
+    --charcoal: #252525;
+
+    --heading-font: Georgia, serif;
+    --body-font: Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--warm-ivory);
+    color: var(--charcoal);
+    font-family: var(--body-font);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--heading-font);
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.gold-text {
+    color: var(--champagne-gold);
+}
+
+.luxury-button {
+    display: inline-block;
+    background: var(--luxury-black);
+    color: var(--warm-ivory);
+    padding: 14px 28px;
+    border: 1px solid var(--champagne-gold);
+    letter-spacing: 2px;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.luxury-button:hover {
+    background: var(--champagne-gold);
+    color: var(--luxury-black);
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 92%;
+    }
+}
