@@ -304,3 +304,156 @@ a {
   .header-cta{letter-spacing:.06em}
   .product-info h3{font-size:14px}
 }
+/* =========================================
+   ABAYA MAJESTY — PREMIUM POLISH V1
+   ========================================= */
+
+/* Smooth overall experience */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Product gallery */
+.product-grid {
+  gap: 30px 20px;
+}
+
+.product-card {
+  transition: transform 0.35s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Product photography */
+.product-photo {
+  overflow: hidden;
+  background: #eeeae2;
+}
+
+.product-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s ease;
+}
+
+.product-card:hover .product-photo img {
+  transform: scale(1.045);
+}
+
+/* Product information */
+.product-info {
+  padding-top: 15px;
+}
+
+.product-info h3 {
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #252525;
+}
+
+.product-info p {
+  color: #81776c;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Enquiry links */
+.enquire-link {
+  color: #252525;
+  text-decoration: none;
+  border-bottom: 1px solid #c6a879;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.enquire-link:hover {
+  color: #c6a879;
+}
+
+/* Buttons */
+.button {
+  transition: all 0.3s ease;
+}
+
+.button-gold:hover {
+  background: #252525;
+  color: #ffffff;
+}
+
+/* Collection filters */
+.filter {
+  transition: all 0.3s ease;
+}
+
+.filter:hover {
+  border-color: #c6a879;
+  color: #c6a879;
+}
+
+/* Contact section */
+.contact-section {
+  padding-top: 85px;
+  padding-bottom: 85px;
+}
+
+/* Footer refinement */
+.site-footer {
+  border-top: 1px solid #e5dfd4;
+  background: #eeeae2;
+}
+
+.footer-links a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #c6a879;
+}
+
+/* Mobile refinement */
+@media (max-width: 700px) {
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 12px;
+  }
+
+  .product-info {
+    padding-top: 10px;
+  }
+
+  .product-info h3 {
+    font-size: 15px;
+  }
+
+  .product-info p {
+    font-size: 11px;
+  }
+
+  .contact-section {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 380px) {
+
+  .product-grid {
+    gap: 20px 9px;
+  }
+
+  .product-info h3 {
+    font-size: 13px;
+  }
+}
