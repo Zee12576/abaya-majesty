@@ -160,3 +160,98 @@ img{max-width:100%}
 }
 @media(max-width:380px){.brand small{display:none}.header-cta{max-width:76px;white-space:normal;text-align:center}.product-info h3{font-size:14px}.product-photo{height:220px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* =====================================
+   ABAYA MAJESTY - PRODUCT POPUP FIX
+   ===================================== */
+
+/* Desktop popup layout */
+.product-modal-content {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas: "image info" !important;
+    align-items: stretch !important;
+    width: min(1100px, 100%) !important;
+    margin: 25px auto !important;
+}
+
+/* Product image */
+.modal-product-image {
+    grid-area: image !important;
+    min-width: 0 !important;
+    min-height: 620px !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.modal-product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 620px !important;
+    max-height: 850px !important;
+    object-fit: contain !important;
+}
+
+/* Product details */
+.modal-product-info {
+    grid-area: info !important;
+    min-width: 0 !important;
+    padding: 75px 45px 45px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+/* Close button - removed from grid flow */
+.modal-close {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    z-index: 10 !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    margin: 0 !important;
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+
+    .product-modal {
+        padding: 10px !important;
+        align-items: flex-start !important;
+    }
+
+    .product-modal-content {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+            "image"
+            "info" !important;
+        margin: 0 auto !important;
+    }
+
+    .modal-product-image {
+        min-height: 0 !important;
+        height: 45vh !important;
+        max-height: 420px !important;
+    }
+
+    .modal-product-image img {
+        min-height: 0 !important;
+        height: 100% !important;
+        max-height: 420px !important;
+        object-fit: contain !important;
+    }
+
+    .modal-product-info {
+        padding: 35px 23px 30px !important;
+    }
+
+    .modal-close {
+        top: 10px !important;
+        right: 10px !important;
+    }
+}
