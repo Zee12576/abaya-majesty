@@ -202,3 +202,72 @@ img { max-width: 100%; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+
+/* ABAYA MAJESTY — minimal luxury refinement */
+:root { --gold: #c5a675; --paper: #f0ede6; --line: #ded7ca; }
+.main-header { box-shadow: 0 1px 0 rgba(50,42,32,.045); }
+.hero { isolation: isolate; }
+.hero-image { transform: scale(1.005); }
+.button-gold { border-radius: 3px; transition: transform .25s ease, background .25s ease, box-shadow .25s ease; }
+.button-gold:hover { background: #d4b98c; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,.16); }
+.signature-section { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(35px,7vw,100px); align-items: center; background: #fbfaf6; }
+.signature-heading h2 { margin: 0 0 20px; font: 400 clamp(38px,4.5vw,58px)/1.12 "Playfair Display", Georgia, serif; letter-spacing: -.035em; }
+.signature-heading h2 em { color: var(--gold); font-weight: 400; }
+.signature-heading > p:last-child { max-width: 390px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+.signature-points { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.signature-points article { min-height: 190px; padding: 22px 18px; border: 1px solid #e4ded3; border-radius: 14px; background: #fffefa; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.signature-points article:hover { transform: translateY(-4px); border-color: #cdb58f; box-shadow: 0 12px 30px rgba(45,36,24,.07); }
+.signature-points article > span { color: #a98a5e; font-size: 9px; letter-spacing: .18em; }
+.signature-points h3 { margin: 26px 0 9px; font: 400 18px/1.25 "Playfair Display", Georgia, serif; }
+.signature-points p { margin: 0; color: #81796d; font-size: 10px; line-height: 1.75; }
+.collection-card { border-radius: 20px; box-shadow: 0 12px 32px rgba(38,31,22,.07); }
+.collection-card img { transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.collection-card:hover img { transform: scale(1.055); }
+.product-grid { gap: 38px 20px; }
+.product-card { padding: 0 0 14px; border-radius: 18px; background: #fffefa; overflow: hidden; box-shadow: 0 2px 12px rgba(37,31,24,.035); transition: transform .28s ease, box-shadow .28s ease; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(37,31,24,.09); }
+.product-photo { height: 390px; border-radius: 18px 18px 0 0; background: #eeeae2; }
+.product-photo img { transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.product-photo:hover img { transform: scale(1.045); }
+.look-number { top: 14px; left: 14px; border-radius: 30px; padding: 8px 11px; backdrop-filter: blur(8px); }
+.product-info { padding: 15px 16px 2px; min-height: 76px; }
+.product-info h3 { font-size: 17px; line-height: 1.25; }
+.product-info p { font-size: 10px; }
+.enquire-link { color: #6e5838; font-size: 9px; padding: 5px 0; }
+.filter { border-radius: 30px; padding: 11px 18px; }
+.filter.active, .filter:hover { background: #29251f; border-color: #29251f; }
+.search-wrap input { border-radius: 30px; padding-left: 18px; }
+.contact-details a { transition: padding .2s ease, color .2s ease; }
+.contact-details a:hover { padding-left: 8px; color: #9b7b4e; }
+.whatsapp-float { width: auto; min-width: 190px; height: 54px; padding: 0 18px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid rgba(225,207,173,.55); border-radius: 40px; background: #29251f; color: #f8f4eb; box-shadow: 0 9px 28px rgba(25,21,16,.22); font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; transition: transform .25s ease, background .25s ease, box-shadow .25s ease; }
+.whatsapp-float svg { width: 20px; height: 20px; fill: #d8bd91; flex: 0 0 auto; }
+.whatsapp-float b { color: #d8bd91; font-size: 14px; font-weight: 400; margin-left: 2px; }
+.whatsapp-float:hover { transform: translateY(-3px); background: #3b342a; box-shadow: 0 13px 34px rgba(25,21,16,.28); }
+.product-modal-content { border-radius: 18px; overflow: hidden; }
+.modal-close { border-radius: 50%; }
+:focus-visible { outline: 2px solid #b99a69; outline-offset: 3px; }
+@media (max-width: 1050px) {
+  .signature-section { grid-template-columns: 1fr; gap: 24px; }
+  .signature-points { max-width: 850px; }
+}
+@media (max-width: 700px) {
+  .signature-section { padding: 68px 6%; }
+  .signature-points { grid-template-columns: 1fr; gap: 10px; }
+  .signature-points article { min-height: 0; padding: 19px; }
+  .signature-points h3 { margin: 12px 0 7px; }
+  .collection-card { border-radius: 17px; }
+  .product-grid { gap: 22px 11px; }
+  .product-card { border-radius: 13px; padding-bottom: 10px; }
+  .product-photo { border-radius: 13px 13px 0 0; height: clamp(235px, 72vw, 390px); }
+  .product-info { padding: 12px 11px 0; }
+  .product-info h3 { font-size: 14px; }
+  .product-info p { font-size: 9px; }
+  .whatsapp-float { min-width: 0; width: 54px; height: 54px; padding: 0; right: 15px; bottom: 15px; border-radius: 50%; }
+  .whatsapp-float span, .whatsapp-float b { display: none; }
+  .whatsapp-float svg { width: 23px; height: 23px; }
+  .product-modal-content { border-radius: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
