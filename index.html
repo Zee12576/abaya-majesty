@@ -378,6 +378,47 @@
         z-index: 10005;
     }
 }
+   /* =====================================
+   FINAL DESKTOP POPUP SCROLL FIX
+===================================== */
+
+@media (min-width: 701px) {
+
+    .product-modal {
+        overflow-y: auto;
+        align-items: center;
+    }
+
+    .product-modal-content {
+        height: 92vh;
+        max-height: 92vh;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .modal-product-image {
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .modal-product-image img {
+        height: 100%;
+        min-height: 0;
+        object-fit: contain;
+    }
+
+    .modal-product-info {
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        padding-bottom: 45px;
+        scrollbar-width: thin;
+    }
+
+}
 </style>
 </head>
 
