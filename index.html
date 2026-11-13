@@ -8,8 +8,8 @@
   <title>Abaya Majesty | Modesty · Elegance · Grace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <div class="announcement">DISCOVER ELEGANCE <span>✦</span> WORLDWIDE ENQUIRIES AVAILABLE</div>
@@ -19,16 +19,16 @@
       <img src="assets/abaya-majesty-logo.png" alt="Abaya Majesty monogram">
       <span><strong>ABAYA MAJESTY</strong><small>MODESTY · ELEGANCE · GRACE</small></span>
     </a>
-    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-    <nav class="nav-links" aria-label="Main navigation">
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+    <nav class="nav-links" id="mainNav" aria-label="Main navigation">
       <a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#about">Our story</a><a href="#contact">Contact</a>
     </nav>
-    <a class="header-cta" href="https://wa.me/971505540491">Enquire now <span>↗</span></a>
+    <a class="header-cta" href="https://wa.me/971505540491" target="_blank" rel="noopener">Enquire now <span>↗</span></a>
   </header>
 
   <main>
     <section class="hero" id="home">
-      <img class="hero-image" src="assets/look-21-white-bridal-cape.jpg" alt="White bridal cape abaya">
+      <img class="hero-image" src="assets/look-21-white-bridal-cape.jpg" alt="White bridal cape abaya" fetchpriority="high">
       <div class="hero-shade"></div>
       <div class="hero-content">
         <p class="eyebrow light">THE ART OF MODEST ELEGANCE</p>
@@ -52,15 +52,15 @@
       </div>
       <div class="collection-cards">
         <a href="#new-arrivals" class="collection-card" data-jump-filter="bridal">
-          <img src="assets/look-21-white-bridal-cape.jpg" alt="Bridal collection">
+          <img src="assets/look-31-ivory-bridal-rose.jpg" alt="Ivory bridal abaya with bouquet" loading="lazy">
           <span>01 / Bridal & occasion</span><b>View the edit ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card" data-jump-filter="neutral">
-          <img src="assets/look-01-taupe-ruffle.jpg" alt="Statement silhouettes">
+          <img src="assets/look-26-taupe-crystal-kaftan.jpg" alt="Taupe embellished kaftan" loading="lazy">
           <span>02 / Statement silhouettes</span><b>View the edit ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card" data-jump-filter="ivory">
-          <img src="assets/look-19-ivory-embellished.jpg" alt="Ivory and soft neutral collection">
+          <img src="assets/look-27-ivory-blush-embellished-cape.jpg" alt="Ivory and blush embellished cape" loading="lazy">
           <span>03 / Soft neutrals</span><b>View the edit ↗</b>
         </a>
       </div>
@@ -69,17 +69,28 @@
     <section class="arrivals section-pad" id="new-arrivals">
       <div class="section-heading">
         <div><p class="eyebrow">THE LATEST SELECTION</p><h2>New <em>arrivals</em></h2></div>
-        <p>Explore all 25 looks. Select a design to view its details and request your size.</p>
+        <p>Explore all 34 looks. Select a design to view details and request your preferred size.</p>
       </div>
-      <div class="filter-row" role="group" aria-label="Filter looks">
-        <button class="filter active" type="button" data-filter="all">All looks</button>
-        <button class="filter" type="button" data-filter="bridal">Bridal edit</button>
-        <button class="filter" type="button" data-filter="ivory">Ivory edit</button>
-        <button class="filter" type="button" data-filter="neutral">Neutral edit</button>
-        <button class="filter" type="button" data-filter="occasion">Occasion edit</button>
+
+      <div class="catalog-tools">
+        <label class="search-wrap">
+          <span class="sr-only">Search designs</span>
+          <input id="productSearch" type="search" placeholder="Search designs or colours…" autocomplete="off">
+          <span aria-hidden="true">⌕</span>
+        </label>
+        <div class="filter-row" role="group" aria-label="Filter looks">
+          <button class="filter active" type="button" data-filter="all" aria-pressed="true">All looks</button>
+          <button class="filter" type="button" data-filter="bridal" aria-pressed="false">Bridal edit</button>
+          <button class="filter" type="button" data-filter="ivory" aria-pressed="false">Ivory edit</button>
+          <button class="filter" type="button" data-filter="neutral" aria-pressed="false">Neutral edit</button>
+          <button class="filter" type="button" data-filter="occasion" aria-pressed="false">Occasion edit</button>
+        </div>
       </div>
+
+      <p class="results-count" id="resultsCount" aria-live="polite">Showing 34 designs</p>
       <div class="product-grid" id="productGrid" aria-live="polite"></div>
-      <p class="availability-note">Sizes shown are enquiry options, not live stock confirmation. Please contact us to confirm availability, measurements, pricing and delivery.</p>
+      <p class="empty-results" id="emptyResults" hidden>No designs match your search. Try another name or choose “All looks”.</p>
+      <p class="availability-note">Sizes are enquiry options, not live stock confirmation. Please contact us to confirm availability, measurements, pricing and delivery.</p>
     </section>
 
     <section class="quote-panel">
@@ -92,10 +103,10 @@
       <div>
         <p class="eyebrow">LET'S CONNECT</p>
         <h2>Your next favourite<br><em>look awaits.</em></h2>
-        <p>For product enquiries, sizing assistance and availability, reach out to our team.</p>
+        <p>For product enquiries, sizing assistance and availability, reach out to our team. We will help you choose the right fit.</p>
       </div>
       <div class="contact-details">
-        <a href="https://wa.me/971505540491">WhatsApp <span>+971 50 420 2725 ↗</span></a>
+        <a href="https://wa.me/971505540491" target="_blank" rel="noopener">WhatsApp <span>+971 50 554 0491 ↗</span></a>
         <a href="mailto:abayamajesty0312@gmail.com">Email <span>abayamajesty0312@gmail.com ↗</span></a>
         <a href="https://www.instagram.com/abaya_majesty0312/" target="_blank" rel="noopener">Instagram <span>@abaya_majesty0312 ↗</span></a>
       </div>
@@ -108,12 +119,11 @@
     <p>© <span data-year></span> Abaya Majesty. All rights reserved.</p>
   </footer>
 
-  <a class="whatsapp-float" href="https://wa.me/971505540491?text=Hello%20Abaya%20Majesty" aria-label="Chat with Abaya Majesty on WhatsApp">WA</a>
+  <a class="whatsapp-float" href="https://wa.me/971505540491?text=Hello%20Abaya%20Majesty" target="_blank" rel="noopener" aria-label="Chat with Abaya Majesty on WhatsApp">WA</a>
 
-  <!-- Product detail popup: the entire popup scrolls, so details and size choices remain reachable on mobile and desktop. -->
   <div class="product-modal" id="productModal" aria-hidden="true">
     <div class="product-modal-overlay" data-close-modal></div>
-    <section class="product-modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <section class="product-modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
       <button class="modal-close" type="button" aria-label="Close product details" data-close-modal>&times;</button>
       <div class="modal-product-image"><img id="modalImage" src="" alt=""></div>
       <div class="modal-product-info">
@@ -133,20 +143,56 @@
           </fieldset>
           <div class="custom-size-wrap" id="customSizeWrap" hidden>
             <label class="modal-label" for="customSize">CUSTOM SIZE / MEASUREMENTS</label>
-            <textarea id="customSize" rows="3" placeholder="Enter your measurements or preferred fit (e.g. bust, waist, hips, shoulder and length)."></textarea>
+            <textarea id="customSize" rows="4" placeholder="Please share your measurements (bust, waist, hips, shoulder, sleeve and desired length), height and preferred fit."></textarea>
+            <small>Include your measurement unit (cm or inches).</small>
           </div>
-          <p class="size-help">Choose S, M or L, or select Custom and enter your measurements. Our team will confirm fit and availability.</p>
+          <p class="size-help">Choose S, M or L, or select Custom and share your measurements. Our team will confirm fit and availability.</p>
           <button class="modal-whatsapp" id="modalWhatsApp" type="submit">Continue on WhatsApp ↗</button>
-          <p class="size-error" id="sizeError" role="alert" hidden>Please select a size before continuing.</p>
+          <p class="size-error" id="sizeError" role="alert" hidden></p>
         </form>
       </div>
     </section>
   </div>
 
   <script>
+    "use strict";
     const WHATSAPP_NUMBER = "971505540491";
-
-    const products = [{"name": "Taupe Ruffle Statement", "img": "look-01-taupe-ruffle.jpg", "description": "A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing.", "tags": "neutral occasion", "short": "A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing"}, {"name": "Ivory Embellished Silhouette", "img": "look-02-ivory-satin.jpg", "description": "An elegant ivory design with a soft satin-inspired finish and delicate embellishment.", "tags": "ivory occasion", "short": "An elegant ivory design with a soft satin-inspired finish and delicate embellishment"}, {"name": "Pearl Sleeve Elegance", "img": "look-03-pearl-sleeve.jpg", "description": "A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing.", "tags": "ivory occasion bridal", "short": "A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing"}, {"name": "Blush Cape Grace", "img": "look-04-blush-cape.jpg", "description": "A soft blush-toned design with an elegant cape overlay and graceful movement.", "tags": "neutral occasion", "short": "A soft blush-toned design with an elegant cape overlay and graceful movement"}, {"name": "Ivory Cape Silhouette", "img": "look-05-ivory-cape.jpg", "description": "A timeless ivory design featuring clean lines and beautifully flowing cape sleeves.", "tags": "ivory neutral", "short": "A timeless ivory design featuring clean lines and beautifully flowing cape sleeves"}, {"name": "Mocha Draped Evening", "img": "look-06-mocha-drape.jpg", "description": "A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves.", "tags": "neutral occasion", "short": "A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves"}, {"name": "Pearl Bridal Edit", "img": "look-07-pearl-bridal.jpg", "description": "An elegant bridal-inspired ivory look with delicate pearl-inspired details.", "tags": "ivory bridal occasion", "short": "An elegant bridal-inspired ivory look with delicate pearl-inspired details"}, {"name": "Ivory Bloom", "img": "look-08-ivory-bloom.jpg", "description": "A minimal ivory silhouette with soft draping and understated elegance.", "tags": "ivory neutral", "short": "A minimal ivory silhouette with soft draping and understated elegance"}, {"name": "Bridal White Grace", "img": "look-09-bridal-white.jpg", "description": "A flowing white bridal silhouette with a refined, softly draped finish.", "tags": "ivory bridal occasion", "short": "A flowing white bridal silhouette with a refined, softly draped finish"}, {"name": "Ivory Satin Detail", "img": "look-10-ivory-satin-detail.jpg", "description": "A luminous ivory occasion silhouette with a fitted satin-inspired finish.", "tags": "ivory bridal occasion", "short": "A luminous ivory occasion silhouette with a fitted satin-inspired finish"}, {"name": "Champagne Cape Elegance", "img": "look-11-champagne-cape.jpg", "description": "A soft champagne-toned design with a graceful cape overlay.", "tags": "neutral occasion", "short": "A soft champagne-toned design with a graceful cape overlay"}, {"name": "Navy Cape Abaya", "img": "look-12-navy-cape.jpg", "description": "A deep navy cape-style abaya with a relaxed, elegant silhouette.", "tags": "occasion", "short": "A deep navy cape-style abaya with a relaxed, elegant silhouette"}, {"name": "Powder Blue Flow", "img": "look-13-powder-blue.jpg", "description": "A soft powder-blue flowing design for an understated occasion look.", "tags": "neutral occasion", "short": "A soft powder-blue flowing design for an understated occasion look"}, {"name": "Caramel Drape", "img": "look-14-caramel-drape.jpg", "description": "A warm caramel-toned draped silhouette with a fluid finish.", "tags": "neutral occasion", "short": "A warm caramel-toned draped silhouette with a fluid finish"}, {"name": "Berry Evening Edit", "img": "look-15-berry-evening.jpg", "description": "A rich berry-coloured evening design with a graceful draped shape.", "tags": "occasion", "short": "A rich berry-coloured evening design with a graceful draped shape"}, {"name": "Lilac Bridal Cape", "img": "look-16-lilac-bridal.jpg", "description": "A soft lilac bridal-inspired look with a flowing cape effect.", "tags": "bridal occasion", "short": "A soft lilac bridal-inspired look with a flowing cape effect"}, {"name": "Stone Grey Abaya", "img": "look-17-stone-grey.jpg", "description": "A muted stone-grey design with a simple, flowing silhouette.", "tags": "neutral", "short": "A muted stone-grey design with a simple, flowing silhouette"}, {"name": "Chocolate Embellished", "img": "look-18-chocolate-embellished.jpg", "description": "A deep chocolate occasion design with embellished detailing.", "tags": "neutral occasion", "short": "A deep chocolate occasion design with embellished detailing"}, {"name": "Ivory Embellished Cape", "img": "look-19-ivory-embellished.jpg", "description": "An ivory cape-style design finished with delicate embellishment.", "tags": "ivory bridal occasion", "short": "An ivory cape-style design finished with delicate embellishment"}, {"name": "Ivory Drape Elegance", "img": "look-20-ivory-drape.jpg", "description": "A soft ivory draped design with a graceful, fluid silhouette.", "tags": "ivory neutral", "short": "A soft ivory draped design with a graceful, fluid silhouette"}, {"name": "White Bridal Cape", "img": "look-21-white-bridal-cape.jpg", "description": "A white bridal cape silhouette with a long, flowing finish.", "tags": "ivory bridal occasion", "short": "A white bridal cape silhouette with a long, flowing finish"}, {"name": "Ivory Bridal Embroidery", "img": "look-22-ivory-bridal-embroidery.jpg", "description": "An ivory bridal-inspired abaya with delicate embroidered detailing.", "tags": "ivory bridal occasion", "short": "An ivory bridal-inspired abaya with delicate embroidered detailing"}, {"name": "Silver Crystal Kaftan", "img": "look-23-silver-crystal-kaftan.jpg", "description": "A statement silver-toned kaftan with crystal-inspired embellishment.", "tags": "occasion", "short": "A statement silver-toned kaftan with crystal-inspired embellishment"}, {"name": "Navy Embroidered Abaya", "img": "look-24-navy-embroidered.jpg", "description": "A deep navy abaya with ornate embroidered detailing.", "tags": "occasion", "short": "A deep navy abaya with ornate embroidered detailing"}, {"name": "Blush Embellished Abaya", "img": "look-25-blush-embellished.jpg", "description": "A blush-toned occasion abaya with scattered embellished details.", "tags": "neutral occasion", "short": "A blush-toned occasion abaya with scattered embellished details"}];
+    const products = [
+      {name:"Taupe Ruffle Statement",img:"look-01-taupe-ruffle.jpg",description:"A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing.",tags:"neutral occasion",short:"Flowing pleats with dramatic ruffle sleeves."},
+      {name:"Ivory Embellished Silhouette",img:"look-02-ivory-satin.jpg",description:"An elegant ivory design with a soft satin-inspired finish and delicate embellishment.",tags:"ivory occasion",short:"Soft satin-inspired ivory with delicate detail."},
+      {name:"Pearl Sleeve Elegance",img:"look-03-pearl-sleeve.jpg",description:"A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing.",tags:"ivory occasion bridal",short:"High neckline with pearl-inspired sleeves."},
+      {name:"Blush Cape Grace",img:"look-04-blush-cape.jpg",description:"A soft blush-toned design with an elegant cape overlay and graceful movement.",tags:"neutral occasion",short:"Soft blush with a graceful cape overlay."},
+      {name:"Ivory Cape Silhouette",img:"look-05-ivory-cape.jpg",description:"A timeless ivory design featuring clean lines and beautifully flowing cape sleeves.",tags:"ivory neutral",short:"Timeless ivory with flowing cape sleeves."},
+      {name:"Mocha Draped Evening",img:"look-06-mocha-drape.jpg",description:"A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves.",tags:"neutral occasion",short:"Sculptural draping in a rich mocha tone."},
+      {name:"Pearl Bridal Edit",img:"look-07-pearl-bridal.jpg",description:"An elegant bridal-inspired ivory look with delicate pearl-inspired details.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with pearl details."},
+      {name:"Ivory Bloom",img:"look-08-ivory-bloom.jpg",description:"A minimal ivory silhouette with soft draping and understated elegance.",tags:"ivory neutral",short:"Minimal ivory with soft, fluid draping."},
+      {name:"Bridal White Grace",img:"look-09-bridal-white.jpg",description:"A flowing white bridal silhouette with a refined, softly draped finish.",tags:"ivory bridal occasion",short:"A softly draped bridal-white silhouette."},
+      {name:"Ivory Satin Detail",img:"look-10-ivory-satin-detail.jpg",description:"A luminous ivory occasion silhouette with a fitted satin-inspired finish.",tags:"ivory bridal occasion",short:"Luminous ivory with a satin-inspired finish."},
+      {name:"Champagne Cape Elegance",img:"look-11-champagne-cape.jpg",description:"A soft champagne-toned design with a graceful cape overlay.",tags:"neutral occasion",short:"Champagne tone with a flowing cape overlay."},
+      {name:"Navy Cape Abaya",img:"look-12-navy-cape.jpg",description:"A deep navy cape-style abaya with a relaxed, elegant silhouette.",tags:"occasion",short:"A relaxed, elegant navy cape silhouette."},
+      {name:"Powder Blue Flow",img:"look-13-powder-blue.jpg",description:"A soft powder-blue flowing design for an understated occasion look.",tags:"neutral occasion",short:"Soft powder blue with fluid movement."},
+      {name:"Caramel Drape",img:"look-14-caramel-drape.jpg",description:"A warm caramel-toned draped silhouette with a fluid finish.",tags:"neutral occasion",short:"Warm caramel tone with fluid draping."},
+      {name:"Berry Evening Edit",img:"look-15-berry-evening.jpg",description:"A rich berry-coloured evening design with a graceful draped shape.",tags:"occasion",short:"A rich berry tone for evening occasions."},
+      {name:"Lilac Bridal Cape",img:"look-16-lilac-bridal.jpg",description:"A soft lilac bridal-inspired look with a flowing cape effect.",tags:"bridal occasion",short:"Soft lilac with a flowing cape effect."},
+      {name:"Stone Grey Abaya",img:"look-17-stone-grey.jpg",description:"A muted stone-grey design with a simple, flowing silhouette.",tags:"neutral",short:"Muted stone grey in a simple silhouette."},
+      {name:"Chocolate Embellished",img:"look-18-chocolate-embellished.jpg",description:"A deep chocolate occasion design with embellished detailing.",tags:"neutral occasion",short:"Deep chocolate with refined embellishment."},
+      {name:"Ivory Embellished Cape",img:"look-19-ivory-embellished.jpg",description:"An ivory cape-style design finished with delicate embellishment.",tags:"ivory bridal occasion",short:"An embellished ivory cape-style design."},
+      {name:"Ivory Drape Elegance",img:"look-20-ivory-drape.jpg",description:"A soft ivory draped design with a graceful, fluid silhouette.",tags:"ivory neutral",short:"Soft ivory with a graceful draped silhouette."},
+      {name:"White Bridal Cape",img:"look-21-white-bridal-cape.jpg",description:"A white bridal cape silhouette with a long, flowing finish.",tags:"ivory bridal occasion",short:"A long, flowing white bridal cape."},
+      {name:"Ivory Bridal Embroidery",img:"look-22-ivory-bridal-embroidery.jpg",description:"An ivory bridal-inspired abaya with delicate embroidered detailing.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with embroidered detail."},
+      {name:"Silver Crystal Kaftan",img:"look-23-silver-crystal-kaftan.jpg",description:"A statement silver-toned kaftan with crystal-inspired embellishment.",tags:"occasion",short:"A statement kaftan with crystal-inspired detail."},
+      {name:"Navy Embroidered Abaya",img:"look-24-navy-embroidered.jpg",description:"A deep navy abaya with ornate embroidered detailing.",tags:"occasion",short:"Deep navy with ornate embroidery."},
+      {name:"Blush Embellished Abaya",img:"look-25-blush-embellished.jpg",description:"A blush-toned occasion abaya with scattered embellished details.",tags:"neutral occasion",short:"Blush occasionwear with scattered embellishment."},
+      {name:"Taupe Crystal Kaftan",img:"look-26-taupe-crystal-kaftan.jpg",description:"A flowing taupe kaftan finished with a statement crystal neckline and wide, graceful sleeves.",tags:"neutral occasion",short:"Taupe kaftan with a crystal-embellished neckline."},
+      {name:"Ivory Blush Embellished Cape",img:"look-27-ivory-blush-embellished-cape.jpg",description:"A soft blush satin-inspired dress layered with an ivory embellished cape and delicate crystal motifs.",tags:"ivory bridal occasion",short:"Blush satin-inspired dress with ivory embellished cape."},
+      {name:"Chocolate Pearl Cape",img:"look-28-chocolate-pearl-cape.jpg",description:"A rich chocolate cape with intricate pearl-like embroidery over a softly contrasting ivory base.",tags:"neutral occasion",short:"Chocolate cape with ornate pearl-inspired embroidery."},
+      {name:"Aqua Jewel Cape",img:"look-29-aqua-jewel-cape.jpg",description:"A refreshing aqua cape adorned with jewel-like embellishments, styled over a soft ivory inner layer.",tags:"occasion",short:"Aqua cape with jewel-like embellishments."},
+      {name:"Blush Ombre Fringe",img:"look-30-blush-ombre-fringe.jpg",description:"A romantic blush-to-rose ombre kaftan with flowing panels and statement fringe detailing.",tags:"neutral occasion",short:"Blush ombre with flowing fringe panels."},
+      {name:"Ivory Bridal Rose",img:"look-31-ivory-bridal-rose.jpg",description:"A graceful ivory bridal silhouette with a soft cape finish and bouquet-ready elegance.",tags:"ivory bridal occasion",short:"Elegant ivory bridal look with a flowing cape."},
+      {name:"Dark Chocolate Drape",img:"look-32-dark-chocolate-drape.jpg",description:"A deep chocolate modest silhouette with a dramatic, flowing drape and understated finish.",tags:"neutral occasion",short:"Deep chocolate with a dramatic flowing drape."},
+      {name:"White Bridal Train",img:"look-33-white-bridal-train.jpg",description:"A statement white bridal design with an extended train and sculptural, flowing layers.",tags:"ivory bridal occasion",short:"White bridal design with an elegant extended train."},
+      {name:"Navy Bridal Cape",img:"look-34-navy-bridal-cape.jpg",description:"A deep navy cape-style occasion look with ornate detailing and a contrasting ivory inner layer.",tags:"occasion bridal",short:"Navy embellished cape with an ivory contrast."}
+    ];
 
     const productGrid = document.getElementById("productGrid");
     const modal = document.getElementById("productModal");
@@ -157,45 +203,92 @@
     const customSizeWrap = document.getElementById("customSizeWrap");
     const customSizeInput = document.getElementById("customSize");
     const sizeError = document.getElementById("sizeError");
+    const searchInput = document.getElementById("productSearch");
+    const resultsCount = document.getElementById("resultsCount");
+    const emptyResults = document.getElementById("emptyResults");
     let selectedProduct = null;
     let previousFocus = null;
+    let activeFilter = "all";
 
     document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 
-    function renderProducts(filter = "all") {
+    function renderProducts() {
+      const query = searchInput.value.trim().toLowerCase();
+      const filtered = products.map((product, index) => ({product, index})).filter(({product}) => {
+        const matchesFilter = activeFilter === "all" || product.tags.split(" ").includes(activeFilter);
+        const searchable = `${product.name} ${product.description} ${product.tags}`.toLowerCase();
+        return matchesFilter && searchable.includes(query);
+      });
+
       productGrid.innerHTML = "";
-      products.forEach((product, index) => {
-        if (filter !== "all" && !product.tags.split(" ").includes(filter)) return;
+      filtered.forEach(({product, index}) => {
         const card = document.createElement("article");
         card.className = "product-card";
-        card.innerHTML = `
-          <button class="product-photo" type="button" data-product-index="${index}" aria-label="View ${product.name}">
-            <img src="assets/${product.img}" alt="${product.name}" loading="lazy">
-            <span class="look-number">LOOK ${String(index + 1).padStart(2, "0")}</span>
-          </button>
-          <div class="product-info">
-            <div><h3>${product.name}</h3><p>${product.short}</p></div>
-            <button class="enquire-link" type="button" data-product-index="${index}">Enquire ↗</button>
-          </div>`;
-        productGrid.appendChild(card);
+        const button = document.createElement("button");
+        button.className = "product-photo";
+        button.type = "button";
+        button.dataset.productIndex = index;
+        button.setAttribute("aria-label", `View ${product.name}`);
+        const image = document.createElement("img");
+        image.src = `assets/${product.img}`;
+        image.alt = product.name;
+        image.loading = "lazy";
+        image.onerror = () => { image.closest(".product-photo").classList.add("image-missing"); image.alt = "Image unavailable"; };
+        const number = document.createElement("span");
+        number.className = "look-number";
+        number.textContent = `LOOK ${String(index + 1).padStart(2, "0")}`;
+        button.append(image, number);
+
+        const info = document.createElement("div");
+        info.className = "product-info";
+        const copy = document.createElement("div");
+        const title = document.createElement("h3");
+        title.textContent = product.name;
+        const short = document.createElement("p");
+        short.textContent = product.short;
+        copy.append(title, short);
+        const enquire = document.createElement("button");
+        enquire.className = "enquire-link";
+        enquire.type = "button";
+        enquire.dataset.productIndex = index;
+        enquire.textContent = "Enquire ↗";
+        info.append(copy, enquire);
+        card.append(button, info);
+        productGrid.append(card);
       });
+      resultsCount.textContent = `Showing ${filtered.length} of ${products.length} designs`;
+      emptyResults.hidden = filtered.length !== 0;
     }
 
     renderProducts();
 
     document.querySelectorAll(".filter").forEach(button => {
       button.addEventListener("click", () => {
-        document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".filter").forEach(item => {
+          item.classList.remove("active");
+          item.setAttribute("aria-pressed", "false");
+        });
         button.classList.add("active");
-        renderProducts(button.dataset.filter);
+        button.setAttribute("aria-pressed", "true");
+        activeFilter = button.dataset.filter;
+        renderProducts();
       });
     });
+    searchInput.addEventListener("input", renderProducts);
 
     document.querySelectorAll("[data-jump-filter]").forEach(card => {
       card.addEventListener("click", () => {
         const filter = card.dataset.jumpFilter;
         const button = document.querySelector(`.filter[data-filter="${filter}"]`);
-        if (button) button.click();
+        if (button) {
+          activeFilter = filter;
+          document.querySelectorAll(".filter").forEach(item => {
+            const active = item === button;
+            item.classList.toggle("active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+          renderProducts();
+        }
       });
     });
 
@@ -204,17 +297,19 @@
     menuToggle.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
     });
     nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
       nav.classList.remove("open");
       menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open menu");
     }));
 
     function openProduct(index, trigger) {
       selectedProduct = products[index];
       if (!selectedProduct) return;
       previousFocus = trigger || document.activeElement;
-      modalImage.src = "assets/" + selectedProduct.img;
+      modalImage.src = `assets/${selectedProduct.img}`;
       modalImage.alt = selectedProduct.name;
       modalTitle.textContent = selectedProduct.name;
       modalDescription.textContent = selectedProduct.description;
@@ -222,6 +317,7 @@
       customSizeWrap.hidden = true;
       customSizeInput.value = "";
       sizeError.hidden = true;
+      sizeError.textContent = "";
       modal.classList.add("active");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
@@ -230,6 +326,7 @@
     }
 
     function closeProduct() {
+      if (!modal.classList.contains("active")) return;
       modal.classList.remove("active");
       modal.setAttribute("aria-hidden", "true");
       document.body.classList.remove("modal-open");
@@ -240,38 +337,55 @@
       const trigger = event.target.closest("[data-product-index]");
       if (trigger) openProduct(Number(trigger.dataset.productIndex), trigger);
     });
-
     modal.querySelectorAll("[data-close-modal]").forEach(el => el.addEventListener("click", closeProduct));
+
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && modal.classList.contains("active")) closeProduct();
+      if (!modal.classList.contains("active")) return;
+      if (event.key === "Escape") closeProduct();
+      if (event.key === "Tab") {
+        const focusable = [...modal.querySelectorAll('button:not([disabled]), input:not([disabled]), textarea:not([disabled]), a[href]')].filter(el => el.offsetParent !== null);
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first.focus();
+        }
+      }
     });
 
     sizeForm.querySelectorAll('input[name="size"]').forEach(input => {
       input.addEventListener("change", () => {
-        customSizeWrap.hidden = input.value !== "Custom";
+        const isCustom = input.value === "Custom" && input.checked;
+        customSizeWrap.hidden = !isCustom;
         sizeError.hidden = true;
-        if (input.value === "Custom") customSizeInput.focus();
+        if (isCustom) customSizeInput.focus();
       });
     });
 
     sizeForm.addEventListener("submit", event => {
       event.preventDefault();
       const chosen = sizeForm.querySelector('input[name="size"]:checked');
+      sizeError.hidden = true;
       if (!chosen) {
+        sizeError.textContent = "Please select S, M, L or Custom before continuing.";
         sizeError.hidden = false;
         return;
       }
       if (chosen.value === "Custom" && !customSizeInput.value.trim()) {
-        sizeError.textContent = "Please enter your custom measurements or fit requirements.";
+        sizeError.textContent = "Please enter your custom measurements before continuing.";
         sizeError.hidden = false;
         customSizeInput.focus();
         return;
       }
       const sizeText = chosen.value === "Custom"
-        ? "Custom size / measurements: " + customSizeInput.value.trim()
-        : "Requested size: " + chosen.value;
-      const message = `Hello Abaya Majesty, I am interested in ${selectedProduct.name} (Look ${String(products.indexOf(selectedProduct) + 1).padStart(2, "0")}). ${sizeText}. Please confirm price, availability, fit and ordering details.`;
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+        ? `Custom size / measurements: ${customSizeInput.value.trim()}`
+        : `Requested size: ${chosen.value}`;
+      const lookNumber = String(products.indexOf(selectedProduct) + 1).padStart(2, "0");
+      const message = `Hello Abaya Majesty, I am interested in ${selectedProduct.name} (Look ${lookNumber}). ${sizeText}. Please confirm price, availability, fit and ordering details.`;
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     });
   </script>
 </body>
