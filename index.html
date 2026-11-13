@@ -1,1011 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<meta name="description" content="Discover Abaya Majesty: elegant occasionwear and modest fashion in refined silhouettes, soft neutrals and considered details.">
-
-<meta name="theme-color" content="#f5f2eb">
-
-<title>Abaya Majesty | Modesty · Elegance · Grace</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="assets/css/style.css">
-
-<style>
-/* =========================================
-   ABAYA MAJESTY — PRODUCT POPUP
-   Single scrollable popup for desktop + mobile
-========================================= */
-
-.product-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: none;
-  align-items: flex-start;
-  justify-content: center;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 20px;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-}
-
-.product-modal.active {
-  display: flex;
-}
-
-.product-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(20, 18, 16, 0.78);
-  backdrop-filter: blur(5px);
-}
-
-.product-modal-content {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: stretch;
-  width: min(1100px, 100%);
-  max-height: calc(100vh - 40px);
-  max-height: calc(100dvh - 40px);
-  height: auto;
-  min-height: 0;
-  margin: auto;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  background: #f7f5ef;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, .25);
-  animation: modalAppear .35s ease;
-}
-
-@keyframes modalAppear {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.modal-product-image {
-  min-width: 0;
-  min-height: 0;
-  height: min(82vh, 850px);
-  background: #eeeae2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.modal-product-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: contain;
-  object-position: center;
-}
-
-.modal-product-info {
-  min-width: 0;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 65px 50px;
-  overflow: visible;
-}
-
-.modal-close {
-  position: sticky;
-  top: 12px;
-  justify-self: end;
-  grid-column: 2;
-  grid-row: 1;
-  z-index: 5;
-  width: 46px;
-  height: 46px;
-  margin: 12px 12px -58px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #d8d1c5;
-  background: #f7f5ef;
-  color: #211f1b;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-.modal-close:hover {
-  background: #211f1b;
-  color: #fff;
-}
-
-.modal-eyebrow,
-.modal-label {
-  color: #b39360;
-  font-size: 10px;
-  letter-spacing: .22em;
-}
-
-.modal-eyebrow {
-  margin: 0 0 20px;
-}
-
-.modal-product-info h2 {
-  margin: 0 0 22px;
-  color: #211f1b;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(34px, 4vw, 48px);
-  font-weight: 400;
-  line-height: 1.15;
-}
-
-.modal-description,
-.modal-note {
-  color: #777168;
-  font-size: 14px;
-  line-height: 1.9;
-}
-
-.modal-description {
-  margin: 0 0 25px;
-}
-
-.modal-divider {
-  width: 100%;
-  height: 1px;
-  margin: 10px 0 25px;
-  background: #ddd6ca;
-}
-
-.modal-label {
-  margin: 0 0 12px;
-}
-
-.modal-note {
-  margin: 0 0 28px;
-  font-size: 13px;
-}
-
-.modal-whatsapp {
-  display: inline-flex;
-  width: 100%;
-  min-height: 56px;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  padding: 17px 22px;
-  background: #c6a879;
-  color: #211f1b;
-  text-decoration: none;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  transition: background .3s, color .3s;
-}
-
-.modal-whatsapp:hover {
-  background: #211f1b;
-  color: #fff;
-}
-
-.product-photo {
-  cursor: pointer;
-}
-
-/* Mobile popup */
-@media (max-width: 700px) {
-  .product-modal {
-    padding: 10px;
-  }
-
-  .product-modal-content {
-    width: 100%;
-    max-height: calc(100vh - 20px);
-    max-height: calc(100dvh - 20px);
-    grid-template-columns: minmax(0, 1fr);
-    margin: auto;
-  }
-
-  .modal-product-image {
-    height: 42vh;
-    min-height: 260px;
-    max-height: 420px;
-  }
-
-  .modal-product-info {
-    padding: 32px 24px 28px;
-  }
-
-  .modal-product-info h2 {
-    font-size: 34px;
-  }
-
-  .modal-close {
-    position: sticky;
-    grid-column: 1;
-    grid-row: 1;
-    margin: 10px 10px -56px 0;
-    top: 10px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .product-modal-content {
-    animation: none;
-  }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discover Abaya Majesty: refined modest fashion, elegant abayas and occasionwear.">
+  <meta name="theme-color" content="#f7f5ef">
+  <title>Abaya Majesty | Modesty · Elegance · Grace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
+  <div class="announcement">DISCOVER ELEGANCE <span>✦</span> WORLDWIDE ENQUIRIES AVAILABLE</div>
 
-<!-- ANNOUNCEMENT -->
-
-<div class="announcement">
-  DISCOVER ELEGANCE <span>✦</span> WORLDWIDE ENQUIRIES AVAILABLE
-</div>
-
-<!-- HEADER -->
-
-<header class="main-header">
-
-  <a class="brand" href="#home" aria-label="Abaya Majesty home">
-    <img src="assets/abaya-majesty-logo.png" alt="Abaya Majesty logo">
-    <span>
-      <strong>ABAYA MAJESTY</strong>
-      <small>MODESTY · ELEGANCE · GRACE</small>
-    </span>
-  </a>
-
-  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
-    ☰
-  </button>
-
-  <nav class="nav-links" aria-label="Main navigation">
-    <a href="#home">Home</a>
-    <a href="#collection">Collections</a>
-    <a href="#new-arrivals">New arrivals</a>
-    <a href="#about">Our story</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <a class="header-cta" href="https://wa.me/971504202725">
-    Enquire now <span>↗</span>
-  </a>
-
-</header>
-
-<main>
-
-<!-- HERO -->
-
-<section class="hero" id="home">
-
-  <img class="hero-image"
-       src="assets/look-07-pearl-bridal.jpg"
-       alt="Pearl bridal occasionwear">
-
-  <div class="hero-shade"></div>
-
-  <div class="hero-content">
-
-    <p class="eyebrow light">
-      THE ART OF MODEST ELEGANCE
-    </p>
-
-    <h1>
-      Elegance in<br>
-      <em>Every Detail.</em>
-    </h1>
-
-    <p class="hero-copy">
-      Discover thoughtfully selected occasionwear and modest
-      silhouettes for moments worth remembering.
-    </p>
-
-    <a class="button button-gold" href="#new-arrivals">
-      Explore the collection <span>→</span>
+  <header class="main-header">
+    <a class="brand" href="#home" aria-label="Abaya Majesty home">
+      <img src="assets/abaya-majesty-logo.png" alt="Abaya Majesty monogram">
+      <span><strong>ABAYA MAJESTY</strong><small>MODESTY · ELEGANCE · GRACE</small></span>
     </a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#about">Our story</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="header-cta" href="https://wa.me/971505540491">Enquire now <span>↗</span></a>
+  </header>
 
-  </div>
+  <main>
+    <section class="hero" id="home">
+      <img class="hero-image" src="assets/look-21-white-bridal-cape.jpg" alt="White bridal cape abaya">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow light">THE ART OF MODEST ELEGANCE</p>
+        <h1>Elegance in<br><em>Every Detail.</em></h1>
+        <p class="hero-copy">Discover thoughtfully selected occasionwear and modest silhouettes for moments worth remembering.</p>
+        <a class="button button-gold" href="#new-arrivals">Explore the collection <span>→</span></a>
+      </div>
+      <div class="hero-caption">THE ABAYA MAJESTY EDIT · 2026</div>
+    </section>
 
-  <div class="hero-caption">
-    THE ABAYA MAJESTY EDIT · 2026
-  </div>
+    <section class="intro section-pad" id="about">
+      <p class="eyebrow">MODESTY · ELEGANCE · GRACE</p>
+      <h2>Quiet luxury.<br><em>Unforgettable presence.</em></h2>
+      <p>Abaya Majesty celebrates graceful dressing through fluid forms, refined details and a palette inspired by timeless neutrals. Explore the latest looks and contact us for availability and enquiries.</p>
+    </section>
 
-</section>
-
-<!-- INTRODUCTION -->
-
-<section class="intro section-pad" id="about">
-
-  <p class="eyebrow">
-    MODESTY · ELEGANCE · GRACE
-  </p>
-
-  <h2>
-    Quiet luxury.<br>
-    <em>Unforgettable presence.</em>
-  </h2>
-
-  <p>
-    Abaya Majesty celebrates graceful dressing through fluid forms,
-    refined details and a palette inspired by timeless neutrals.
-    Explore the latest looks and contact us for availability
-    and enquiries.
-  </p>
-
-</section>
-
-<!-- COLLECTIONS -->
-
-<section class="collection-band" id="collection">
-
-  <div class="section-heading">
-
-    <div>
-      <p class="eyebrow">CURATED FOR YOU</p>
-      <h2>Explore the <em>collections</em></h2>
-    </div>
-
-    <p>Find a look for every special occasion.</p>
-
-  </div>
-
-  <div class="collection-cards">
-
-    <a href="#new-arrivals" class="collection-card">
-      <img src="assets/look-07-pearl-bridal.jpg" alt="Bridal collection">
-      <span>01 / Bridal & occasion</span>
-      <b>View the edit ↗</b>
-    </a>
-
-    <a href="#new-arrivals" class="collection-card">
-      <img src="assets/look-01-taupe-ruffle.jpg" alt="Statement silhouettes">
-      <span>02 / Statement silhouettes</span>
-      <b>View the edit ↗</b>
-    </a>
-
-    <a href="#new-arrivals" class="collection-card">
-      <img src="assets/look-04-blush-cape.jpg" alt="Soft neutral collection">
-      <span>03 / Soft neutrals</span>
-      <b>View the edit ↗</b>
-    </a>
-
-  </div>
-
-</section>
-
-<!-- NEW ARRIVALS -->
-
-<section class="arrivals section-pad" id="new-arrivals">
-
-  <div class="section-heading">
-
-    <div>
-      <p class="eyebrow">THE LATEST SELECTION</p>
-      <h2>New <em>arrivals</em></h2>
-    </div>
-
-    <p>
-      Enquire about a look to check current availability,
-      sizing and details.
-    </p>
-
-  </div>
-
-  <!-- FILTERS -->
-
-  <div class="filter-row" role="group" aria-label="Filter looks">
-
-    <button class="filter active" data-filter="all">All looks</button>
-    <button class="filter" data-filter="ivory">Ivory edit</button>
-    <button class="filter" data-filter="neutral">Neutral edit</button>
-    <button class="filter" data-filter="occasion">Occasion edit</button>
-
-  </div>
-
-  <!-- PRODUCTS -->
-
-  <div class="product-grid">
-
-    <!-- LOOK 01 -->
-
-    <article class="product-card" data-tags="neutral occasion">
-
-      <a class="product-photo" href="assets/look-01-taupe-ruffle.jpg"
-         data-product="0">
-        <img src="assets/look-01-taupe-ruffle.jpg"
-             alt="Taupe pleated look with dramatic ruffle sleeves">
-        <span class="look-number">LOOK 01</span>
-      </a>
-
-      <div class="product-info">
-        <div>
-          <h3>Taupe Ruffle Statement</h3>
-          <p>Flowing pleats · dramatic sleeve detail</p>
-        </div>
-        <a class="enquire-link" href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty%2C%20please%20share%20details%20for%20Look%2001%20-%20Taupe%20Ruffle%20Statement.">
-          Enquire ↗
+    <section class="collection-band" id="collection">
+      <div class="section-heading">
+        <div><p class="eyebrow">CURATED FOR YOU</p><h2>Explore the <em>collections</em></h2></div>
+        <p>Find a look for every special occasion.</p>
+      </div>
+      <div class="collection-cards">
+        <a href="#new-arrivals" class="collection-card" data-jump-filter="bridal">
+          <img src="assets/look-21-white-bridal-cape.jpg" alt="Bridal collection">
+          <span>01 / Bridal & occasion</span><b>View the edit ↗</b>
+        </a>
+        <a href="#new-arrivals" class="collection-card" data-jump-filter="neutral">
+          <img src="assets/look-01-taupe-ruffle.jpg" alt="Statement silhouettes">
+          <span>02 / Statement silhouettes</span><b>View the edit ↗</b>
+        </a>
+        <a href="#new-arrivals" class="collection-card" data-jump-filter="ivory">
+          <img src="assets/look-19-ivory-embellished.jpg" alt="Ivory and soft neutral collection">
+          <span>03 / Soft neutrals</span><b>View the edit ↗</b>
         </a>
       </div>
+    </section>
 
-    </article>
-
-    <!-- LOOK 02 -->
-
-    <article class="product-card" data-tags="ivory occasion">
-
-      <a class="product-photo" href="assets/look-02-ivory-satin.jpg"
-         data-product="1">
-        <img src="assets/look-02-ivory-satin.jpg"
-             alt="Ivory satin occasion dress">
-        <span class="look-number">LOOK 02</span>
-      </a>
-
-      <div class="product-info">
-        <div>
-          <h3>Ivory Embellished Silhouette</h3>
-          <p>Soft sheen · delicate embellishment</p>
-        </div>
-        <a class="enquire-link" href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty%2C%20please%20share%20details%20for%20Look%2002%20-%20Ivory%20Embellished%20Silhouette.">
-          Enquire ↗
-        </a>
+    <section class="arrivals section-pad" id="new-arrivals">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE LATEST SELECTION</p><h2>New <em>arrivals</em></h2></div>
+        <p>Explore all 25 looks. Select a design to view its details and request your size.</p>
       </div>
-
-    </article>
-
-    <!-- LOOK 03 -->
-
-    <article class="product-card" data-tags="ivory occasion">
-
-      <a class="product-photo" href="assets/look-03-pearl-sleeve.jpg"
-         data-product="2">
-        <img src="assets/look-03-pearl-sleeve.jpg"
-             alt="Pearl sleeve ivory gown">
-        <span class="look-number">LOOK 03</span>
-      </a>
-
-      <div class="product-info">
-        <div>
-          <h3>Pearl Sleeve Elegance</h3>
-          <p>High neckline · embellished sleeves</p>
-        </div>
-        <a class="enquire-link" href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty%2C%20please%20share%20details%20for%20Look%2003%20-%20Pearl%20Sleeve%20Elegance.">
-          Enquire ↗
-        </a>
+      <div class="filter-row" role="group" aria-label="Filter looks">
+        <button class="filter active" type="button" data-filter="all">All looks</button>
+        <button class="filter" type="button" data-filter="bridal">Bridal edit</button>
+        <button class="filter" type="button" data-filter="ivory">Ivory edit</button>
+        <button class="filter" type="button" data-filter="neutral">Neutral edit</button>
+        <button class="filter" type="button" data-filter="occasion">Occasion edit</button>
       </div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <p class="availability-note">Sizes shown are enquiry options, not live stock confirmation. Please contact us to confirm availability, measurements, pricing and delivery.</p>
+    </section>
 
-    </article>
+    <section class="quote-panel">
+      <p class="eyebrow light">A NOTE FROM ABAYA MAJESTY</p>
+      <h2>Grace is never<br><em>out of style.</em></h2>
+      <a class="text-link light-link" href="#contact">Connect with us ↗</a>
+    </section>
 
-    <!-- LOOK 04 -->
-
-    <article class="product-card" data-tags="neutral occasion">
-
-      <a class="product-photo" href="assets/look-04-blush-cape.jpg"
-         data-product="3">
-        <img src="assets/look-04-blush-cape.jpg"
-             alt="Blush pink cape dress">
-        <span class="look-number">LOOK 04</span>
-      </a>
-
-      <div class="product-info">
-        <div>
-          <h3>Blush Cape Grace</h3>
-          <p>Soft blush tone · cape overlay</p>
-        </div>
-        <a class="enquire-link" href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty%2C%20please%20share%20details%20for%20Look%2004%20-%20Blush%20Cape%20Grace.">
-          Enquire ↗
-        </a>
+    <section class="contact-section section-pad" id="contact">
+      <div>
+        <p class="eyebrow">LET'S CONNECT</p>
+        <h2>Your next favourite<br><em>look awaits.</em></h2>
+        <p>For product enquiries, sizing assistance and availability, reach out to our team.</p>
       </div>
-
-    </article>
-
-    <!-- LOOK 05 -->
-
-    <article class="product-card" data-tags="ivory neutral">
-
-      <a class="product-photo" href="assets/look-05-ivory-cape.jpg"
-         data-product="4">
-        <img src="assets/look-05-ivory-cape.jpg"
-             alt="Ivory cape silhouette">
-        <span class="look-number">LOOK 05</span>
-      </a>
-
-      <div class="product-info">
-        <div>
-          <h3>Ivory Cape Silhouette</h3>
-          <p>Clean lines · fluid cape sleeves</p>
-        </div>
-        <a class="enquire-link" href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty%2C%20please%20share%20details%20for%20Look%2005%20-%20Ivory%20Cape%20Silhouette.">
-          Enquire ↗
-        </a>
+      <div class="contact-details">
+        <a href="https://wa.me/971505540491">WhatsApp <span>+971 50 420 2725 ↗</span></a>
+        <a href="mailto:abayamajesty0312@gmail.com">Email <span>abayamajesty0312@gmail.com ↗</span></a>
+        <a href="https://www.instagram.com/abaya_majesty0312/" target="_blank" rel="noopener">Instagram <span>@abaya_majesty0312 ↗</span></a>
       </div>
+    </section>
+  </main>
 
-    </article>
+  <footer class="site-footer">
+    <div class="footer-brand"><img src="assets/abaya-majesty-logo.png" alt=""><span>ABAYA MAJESTY<small>MODESTY · ELEGANCE · GRACE</small></span></div>
+    <div class="footer-links"><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a></div>
+    <p>© <span data-year></span> Abaya Majesty. All rights reserved.</p>
+  </footer>
 
-    <!-- LOOK 06 -->
+  <a class="whatsapp-float" href="https://wa.me/971505540491?text=Hello%20Abaya%20Majesty" aria-label="Chat with Abaya Majesty on WhatsApp">WA</a>
 
-    <article class="product-card" data-tags="neutral occasion">
-
-      <a class="product-photo" href="assets/look-06-mocha-drape.jpg"
-         data-product="5">
-        <img src="assets/look-06-mocha-drape.jpg"
-             alt="Mocha draped evening dress">
-        <span class="look-number">LOOK 06</span>
-      </a>
-
-      <div class="product-info">
-        <div>
-          <h3>Mocha Draped Evening</h3>
-          <p>Rich mocha tone · sculptural draping</p>
-        </div>
-        <a class="enquire-link" href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty%2C%20please%20share%20details%20for%20Look%2006%20-%20Mocha%20Draped%20Evening.">
-          Enquire ↗
-        </a>
+  <!-- Product detail popup: the entire popup scrolls, so details and size choices remain reachable on mobile and desktop. -->
+  <div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="product-modal-overlay" data-close-modal></div>
+    <section class="product-modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" aria-label="Close product details" data-close-modal>&times;</button>
+      <div class="modal-product-image"><img id="modalImage" src="" alt=""></div>
+      <div class="modal-product-info">
+        <p class="modal-eyebrow">THE ABAYA MAJESTY EDIT</p>
+        <h2 id="modalTitle"></h2>
+        <p class="modal-description" id="modalDescription"></p>
+        <div class="modal-divider"></div>
+        <form id="sizeForm">
+          <fieldset class="size-fieldset">
+            <legend class="modal-label">SELECT YOUR SIZE</legend>
+            <div class="size-options">
+              <label class="size-option"><input type="radio" name="size" value="S"><span>S</span></label>
+              <label class="size-option"><input type="radio" name="size" value="M"><span>M</span></label>
+              <label class="size-option"><input type="radio" name="size" value="L"><span>L</span></label>
+              <label class="size-option"><input type="radio" name="size" value="Custom"><span>Custom</span></label>
+            </div>
+          </fieldset>
+          <div class="custom-size-wrap" id="customSizeWrap" hidden>
+            <label class="modal-label" for="customSize">CUSTOM SIZE / MEASUREMENTS</label>
+            <textarea id="customSize" rows="3" placeholder="Enter your measurements or preferred fit (e.g. bust, waist, hips, shoulder and length)."></textarea>
+          </div>
+          <p class="size-help">Choose S, M or L, or select Custom and enter your measurements. Our team will confirm fit and availability.</p>
+          <button class="modal-whatsapp" id="modalWhatsApp" type="submit">Continue on WhatsApp ↗</button>
+          <p class="size-error" id="sizeError" role="alert" hidden>Please select a size before continuing.</p>
+        </form>
       </div>
-
-    </article>
-
-    <!-- LOOK 07 -->
-
-    <article class="product-card" data-tags="ivory occasion">
-
-      <a class="product-photo" href="assets/look-07-pearl-bridal.jpg"
-         data-product="6">
-        <img src="assets/look-07-pearl-bridal.jpg"
-             alt="Pearl bridal occasion dress">
-        <span class="look-number">LOOK 07</span>
-      </a>
-
-      <div class="product-info">
-        <div>
-          <h3>Pearl Bridal Edit</h3>
-          <p>Ivory finish · pearl-inspired details</p>
-        </div>
-        <a class="enquire-link" href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty%2C%20please%20share%20details%20for%20Look%2007%20-%20Pearl%20Bridal%20Edit.">
-          Enquire ↗
-        </a>
-      </div>
-
-    </article>
-
-    <!-- LOOK 08 -->
-
-    <article class="product-card" data-tags="ivory">
-
-      <a class="product-photo" href="assets/look-08-ivory-bloom.jpg"
-         data-product="7">
-        <img src="assets/look-08-ivory-bloom.jpg"
-             alt="Ivory Bloom modest dress">
-        <span class="look-number">LOOK 08</span>
-      </a>
-
-      <div class="product-info">
-        <div>
-          <h3>Ivory Bloom</h3>
-          <p>Minimal silhouette · soft drape</p>
-        </div>
-        <a class="enquire-link" href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty%2C%20please%20share%20details%20for%20Look%2008%20-%20Ivory%20Bloom.">
-          Enquire ↗
-        </a>
-      </div>
-
-    </article>
-
+    </section>
   </div>
 
-  <p class="availability-note">
-    Product names are editorial look names. Please enquire to confirm
-    product details, size options, price and availability.
-  </p>
-
-</section>
-
-<!-- QUOTE -->
-
-<section class="quote-panel">
-
-  <p class="eyebrow light">A NOTE FROM ABAYA MAJESTY</p>
-
-  <h2>
-    Grace is never<br>
-    <em>out of style.</em>
-  </h2>
-
-  <a class="text-link light-link" href="#contact">
-    Connect with us ↗
-  </a>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="contact-section section-pad" id="contact">
-
-  <div>
-
-    <p class="eyebrow">LET'S CONNECT</p>
-
-    <h2>
-      Your next favourite<br>
-      <em>look awaits.</em>
-    </h2>
-
-    <p>
-      For product enquiries, availability and assistance,
-      reach out to our team.
-    </p>
-
-  </div>
-
-  <div class="contact-details">
-
-    <a href="https://wa.me/971504202725">
-      WhatsApp
-      <span>+971 50 420 2725 ↗</span>
-    </a>
-
-    <a href="mailto:abayamajesty0312@gmail.com">
-      Email
-      <span>abayamajesty0312@gmail.com ↗</span>
-    </a>
-
-    <a href="https://www.instagram.com/abaya_majesty0312/"
-       target="_blank" rel="noopener">
-      Instagram
-      <span>@abaya_majesty0312 ↗</span>
-    </a>
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- FOOTER -->
-
-<footer class="site-footer">
-
-  <div class="footer-brand">
-
-    <img src="assets/abaya-majesty-logo.png" alt="">
-
-    <span>
-      ABAYA MAJESTY
-      <small>MODESTY · ELEGANCE · GRACE</small>
-    </span>
-
-  </div>
-
-  <div class="footer-links">
-
-    <a href="policies/terms.html">Terms & Conditions</a>
-    <a href="policies/privacy.html">Privacy Policy</a>
-    <a href="policies/disclaimer.html">Disclaimer</a>
-
-  </div>
-
-  <p>
-    © <span data-year></span> Abaya Majesty. All rights reserved.
-  </p>
-
-</footer>
-
-<!-- FLOATING WHATSAPP -->
-
-<a class="whatsapp-float"
-   href="https://wa.me/971504202725?text=Hello%20Abaya%20Majesty"
-   aria-label="Chat with Abaya Majesty on WhatsApp">
-  WA
-</a>
-
-<!-- =================================
-     PRODUCT DETAIL POPUP HTML
-================================= -->
-
-<div class="product-modal" id="productModal" aria-hidden="true">
-
-  <div class="product-modal-overlay"></div>
-
-  <div class="product-modal-content"
-       role="dialog"
-       aria-modal="true"
-       aria-labelledby="modalTitle">
-
-    <button class="modal-close" aria-label="Close popup">
-      &times;
-    </button>
-
-    <div class="modal-product-image">
-
-      <img id="modalImage" src="" alt="">
-
-    </div>
-
-    <div class="modal-product-info">
-
-      <p class="modal-eyebrow">
-        THE ABAYA MAJESTY EDIT
-      </p>
-
-      <h2 id="modalTitle"></h2>
-
-      <p class="modal-description" id="modalDescription"></p>
-
-      <div class="modal-divider"></div>
-
-      <p class="modal-label">
-        PERSONAL ENQUIRY
-      </p>
-
-      <p class="modal-note">
-        Interested in this design? Contact our team for
-        pricing, available sizes, colours and product details.
-      </p>
-
-      <a class="modal-whatsapp"
-         id="modalWhatsApp"
-         href="#"
-         target="_blank"
-         rel="noopener">
-        Enquire on WhatsApp ↗
-      </a>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- =================================
-     JAVASCRIPT
-================================= -->
-
-<script>
-
-// CURRENT YEAR
-
-document.querySelectorAll('[data-year]').forEach(el => {
-  el.textContent = new Date().getFullYear();
-});
-
-
-// MOBILE NAVIGATION
-
-const toggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav-links');
-
-toggle.addEventListener('click', () => {
-
-  const open = nav.classList.toggle('open');
-
-  toggle.setAttribute('aria-expanded', String(open));
-
-});
-
-nav.querySelectorAll('a').forEach(a => {
-
-  a.addEventListener('click', () => {
-    nav.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  });
-
-});
-
-
-// PRODUCT FILTERS
-
-document.querySelectorAll('.filter').forEach(button => {
-
-  button.addEventListener('click', () => {
-
-    document.querySelectorAll('.filter').forEach(b => {
-      b.classList.remove('active');
+  <script>
+    const WHATSAPP_NUMBER = "971505540491";
+
+    const products = [{"name": "Taupe Ruffle Statement", "img": "look-01-taupe-ruffle.jpg", "description": "A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing.", "tags": "neutral occasion", "short": "A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing"}, {"name": "Ivory Embellished Silhouette", "img": "look-02-ivory-satin.jpg", "description": "An elegant ivory design with a soft satin-inspired finish and delicate embellishment.", "tags": "ivory occasion", "short": "An elegant ivory design with a soft satin-inspired finish and delicate embellishment"}, {"name": "Pearl Sleeve Elegance", "img": "look-03-pearl-sleeve.jpg", "description": "A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing.", "tags": "ivory occasion bridal", "short": "A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing"}, {"name": "Blush Cape Grace", "img": "look-04-blush-cape.jpg", "description": "A soft blush-toned design with an elegant cape overlay and graceful movement.", "tags": "neutral occasion", "short": "A soft blush-toned design with an elegant cape overlay and graceful movement"}, {"name": "Ivory Cape Silhouette", "img": "look-05-ivory-cape.jpg", "description": "A timeless ivory design featuring clean lines and beautifully flowing cape sleeves.", "tags": "ivory neutral", "short": "A timeless ivory design featuring clean lines and beautifully flowing cape sleeves"}, {"name": "Mocha Draped Evening", "img": "look-06-mocha-drape.jpg", "description": "A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves.", "tags": "neutral occasion", "short": "A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves"}, {"name": "Pearl Bridal Edit", "img": "look-07-pearl-bridal.jpg", "description": "An elegant bridal-inspired ivory look with delicate pearl-inspired details.", "tags": "ivory bridal occasion", "short": "An elegant bridal-inspired ivory look with delicate pearl-inspired details"}, {"name": "Ivory Bloom", "img": "look-08-ivory-bloom.jpg", "description": "A minimal ivory silhouette with soft draping and understated elegance.", "tags": "ivory neutral", "short": "A minimal ivory silhouette with soft draping and understated elegance"}, {"name": "Bridal White Grace", "img": "look-09-bridal-white.jpg", "description": "A flowing white bridal silhouette with a refined, softly draped finish.", "tags": "ivory bridal occasion", "short": "A flowing white bridal silhouette with a refined, softly draped finish"}, {"name": "Ivory Satin Detail", "img": "look-10-ivory-satin-detail.jpg", "description": "A luminous ivory occasion silhouette with a fitted satin-inspired finish.", "tags": "ivory bridal occasion", "short": "A luminous ivory occasion silhouette with a fitted satin-inspired finish"}, {"name": "Champagne Cape Elegance", "img": "look-11-champagne-cape.jpg", "description": "A soft champagne-toned design with a graceful cape overlay.", "tags": "neutral occasion", "short": "A soft champagne-toned design with a graceful cape overlay"}, {"name": "Navy Cape Abaya", "img": "look-12-navy-cape.jpg", "description": "A deep navy cape-style abaya with a relaxed, elegant silhouette.", "tags": "occasion", "short": "A deep navy cape-style abaya with a relaxed, elegant silhouette"}, {"name": "Powder Blue Flow", "img": "look-13-powder-blue.jpg", "description": "A soft powder-blue flowing design for an understated occasion look.", "tags": "neutral occasion", "short": "A soft powder-blue flowing design for an understated occasion look"}, {"name": "Caramel Drape", "img": "look-14-caramel-drape.jpg", "description": "A warm caramel-toned draped silhouette with a fluid finish.", "tags": "neutral occasion", "short": "A warm caramel-toned draped silhouette with a fluid finish"}, {"name": "Berry Evening Edit", "img": "look-15-berry-evening.jpg", "description": "A rich berry-coloured evening design with a graceful draped shape.", "tags": "occasion", "short": "A rich berry-coloured evening design with a graceful draped shape"}, {"name": "Lilac Bridal Cape", "img": "look-16-lilac-bridal.jpg", "description": "A soft lilac bridal-inspired look with a flowing cape effect.", "tags": "bridal occasion", "short": "A soft lilac bridal-inspired look with a flowing cape effect"}, {"name": "Stone Grey Abaya", "img": "look-17-stone-grey.jpg", "description": "A muted stone-grey design with a simple, flowing silhouette.", "tags": "neutral", "short": "A muted stone-grey design with a simple, flowing silhouette"}, {"name": "Chocolate Embellished", "img": "look-18-chocolate-embellished.jpg", "description": "A deep chocolate occasion design with embellished detailing.", "tags": "neutral occasion", "short": "A deep chocolate occasion design with embellished detailing"}, {"name": "Ivory Embellished Cape", "img": "look-19-ivory-embellished.jpg", "description": "An ivory cape-style design finished with delicate embellishment.", "tags": "ivory bridal occasion", "short": "An ivory cape-style design finished with delicate embellishment"}, {"name": "Ivory Drape Elegance", "img": "look-20-ivory-drape.jpg", "description": "A soft ivory draped design with a graceful, fluid silhouette.", "tags": "ivory neutral", "short": "A soft ivory draped design with a graceful, fluid silhouette"}, {"name": "White Bridal Cape", "img": "look-21-white-bridal-cape.jpg", "description": "A white bridal cape silhouette with a long, flowing finish.", "tags": "ivory bridal occasion", "short": "A white bridal cape silhouette with a long, flowing finish"}, {"name": "Ivory Bridal Embroidery", "img": "look-22-ivory-bridal-embroidery.jpg", "description": "An ivory bridal-inspired abaya with delicate embroidered detailing.", "tags": "ivory bridal occasion", "short": "An ivory bridal-inspired abaya with delicate embroidered detailing"}, {"name": "Silver Crystal Kaftan", "img": "look-23-silver-crystal-kaftan.jpg", "description": "A statement silver-toned kaftan with crystal-inspired embellishment.", "tags": "occasion", "short": "A statement silver-toned kaftan with crystal-inspired embellishment"}, {"name": "Navy Embroidered Abaya", "img": "look-24-navy-embroidered.jpg", "description": "A deep navy abaya with ornate embroidered detailing.", "tags": "occasion", "short": "A deep navy abaya with ornate embroidered detailing"}, {"name": "Blush Embellished Abaya", "img": "look-25-blush-embellished.jpg", "description": "A blush-toned occasion abaya with scattered embellished details.", "tags": "neutral occasion", "short": "A blush-toned occasion abaya with scattered embellished details"}];
+
+    const productGrid = document.getElementById("productGrid");
+    const modal = document.getElementById("productModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const sizeForm = document.getElementById("sizeForm");
+    const customSizeWrap = document.getElementById("customSizeWrap");
+    const customSizeInput = document.getElementById("customSize");
+    const sizeError = document.getElementById("sizeError");
+    let selectedProduct = null;
+    let previousFocus = null;
+
+    document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+
+    function renderProducts(filter = "all") {
+      productGrid.innerHTML = "";
+      products.forEach((product, index) => {
+        if (filter !== "all" && !product.tags.split(" ").includes(filter)) return;
+        const card = document.createElement("article");
+        card.className = "product-card";
+        card.innerHTML = `
+          <button class="product-photo" type="button" data-product-index="${index}" aria-label="View ${product.name}">
+            <img src="assets/${product.img}" alt="${product.name}" loading="lazy">
+            <span class="look-number">LOOK ${String(index + 1).padStart(2, "0")}</span>
+          </button>
+          <div class="product-info">
+            <div><h3>${product.name}</h3><p>${product.short}</p></div>
+            <button class="enquire-link" type="button" data-product-index="${index}">Enquire ↗</button>
+          </div>`;
+        productGrid.appendChild(card);
+      });
+    }
+
+    renderProducts();
+
+    document.querySelectorAll(".filter").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+        button.classList.add("active");
+        renderProducts(button.dataset.filter);
+      });
     });
 
-    button.classList.add('active');
-
-    const filter = button.dataset.filter;
-
-    document.querySelectorAll('.product-card').forEach(card => {
-
-      card.hidden =
-        filter !== 'all' &&
-        !card.dataset.tags.split(' ').includes(filter);
-
+    document.querySelectorAll("[data-jump-filter]").forEach(card => {
+      card.addEventListener("click", () => {
+        const filter = card.dataset.jumpFilter;
+        const button = document.querySelector(`.filter[data-filter="${filter}"]`);
+        if (button) button.click();
+      });
     });
 
-  });
-
-});
-
-
-// PRODUCT INFORMATION
-
-const products = [
-
-  {
-    name: "Taupe Ruffle Statement",
-    image: "assets/look-01-taupe-ruffle.jpg",
-    description: "A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing. Enquire for pricing, sizing and availability."
-  },
-
-  {
-    name: "Ivory Embellished Silhouette",
-    image: "assets/look-02-ivory-satin.jpg",
-    description: "An elegant ivory design with a soft satin-inspired finish and delicate embellishment. Enquire for pricing, sizing and availability."
-  },
-
-  {
-    name: "Pearl Sleeve Elegance",
-    image: "assets/look-03-pearl-sleeve.jpg",
-    description: "A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing. Enquire for pricing, sizing and availability."
-  },
-
-  {
-    name: "Blush Cape Grace",
-    image: "assets/look-04-blush-cape.jpg",
-    description: "A soft blush-toned design with an elegant cape overlay and graceful movement. Enquire for pricing, sizing and availability."
-  },
-
-  {
-    name: "Ivory Cape Silhouette",
-    image: "assets/look-05-ivory-cape.jpg",
-    description: "A timeless ivory design featuring clean lines and beautifully flowing cape sleeves. Enquire for pricing, sizing and availability."
-  },
-
-  {
-    name: "Mocha Draped Evening",
-    image: "assets/look-06-mocha-drape.jpg",
-    description: "A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves. Enquire for pricing, sizing and availability."
-  },
-
-  {
-    name: "Pearl Bridal Edit",
-    image: "assets/look-07-pearl-bridal.jpg",
-    description: "An elegant bridal-inspired ivory look with delicate pearl-inspired details. Enquire for pricing, sizing and availability."
-  },
-
-  {
-    name: "Ivory Bloom",
-    image: "assets/look-08-ivory-bloom.jpg",
-    description: "A minimal ivory silhouette with soft draping and understated elegance. Enquire for pricing, sizing and availability."
-  }
-
-];
-
-
-// MODAL ELEMENTS
-
-const modal = document.getElementById('productModal');
-
-const modalImage = document.getElementById('modalImage');
-
-const modalTitle = document.getElementById('modalTitle');
-
-const modalDescription = document.getElementById('modalDescription');
-
-const modalWhatsApp = document.getElementById('modalWhatsApp');
-
-const closeButton = document.querySelector('.modal-close');
-
-const overlay = document.querySelector('.product-modal-overlay');
-
-let previousFocus = null;
-
-
-// OPEN PRODUCT POPUP
-
-function openProduct(index) {
-   previousFocus = document.activeElement;
-   // Reset popup scrolling every time
-const productInfo = document.querySelector('.modal-product-info');
-const productContent = document.querySelector('.product-modal-content');
-
-productInfo.scrollTop = 0;
-productContent.scrollTop = 0;
-
-  const product = products[index];
-
-  if (!product) return;
-
-  previousFocus = document.activeElement;
-
-  modalImage.src = product.image;
-
-  modalImage.alt = product.name;
-
-  modalTitle.textContent = product.name;
-
-  modalDescription.textContent = product.description;
-
-  const message =
-    "Hello Abaya Majesty, I am interested in " +
-    product.name +
-    ". Please share the price, available sizes, colours and ordering details.";
-
-  modalWhatsApp.href =
-    "https://wa.me/971504202725?text=" +
-    encodeURIComponent(message);
-
-  modal.classList.add('active');
-
-  modal.setAttribute('aria-hidden', 'false');
-
-  document.body.style.overflow = 'hidden';
-
-  closeButton.focus();
-
-}
-
-
-// CLOSE PRODUCT POPUP
-
-function closeProduct() {
-
-  modal.classList.remove('active');
-
-  modal.setAttribute('aria-hidden', 'true');
-
-  document.body.style.overflow = '';
-
-  if (previousFocus) {
-    previousFocus.focus();
-  }
-
-}
-
-
-// CONNECT ALL PRODUCT IMAGES
-
-document.querySelectorAll('.product-photo').forEach(link => {
-
-  link.addEventListener('click', event => {
-
-    event.preventDefault();
-
-    const index = Number(link.dataset.product);
-
-    openProduct(index);
-
-  });
-
-});
-
-
-// CLOSE BUTTON
-
-closeButton.addEventListener('click', closeProduct);
-
-
-// CLICK OUTSIDE POPUP
-
-overlay.addEventListener('click', closeProduct);
-
-
-// ESCAPE KEY
-
-document.addEventListener('keydown', event => {
-
-  if (event.key === 'Escape' && modal.classList.contains('active')) {
-    closeProduct();
-  }
-
-});
-
-</script>
-
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".nav-links");
+    menuToggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+    nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }));
+
+    function openProduct(index, trigger) {
+      selectedProduct = products[index];
+      if (!selectedProduct) return;
+      previousFocus = trigger || document.activeElement;
+      modalImage.src = "assets/" + selectedProduct.img;
+      modalImage.alt = selectedProduct.name;
+      modalTitle.textContent = selectedProduct.name;
+      modalDescription.textContent = selectedProduct.description;
+      sizeForm.reset();
+      customSizeWrap.hidden = true;
+      customSizeInput.value = "";
+      sizeError.hidden = true;
+      modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      modal.scrollTop = 0;
+      modal.querySelector(".modal-close").focus();
+    }
+
+    function closeProduct() {
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      if (previousFocus && typeof previousFocus.focus === "function") previousFocus.focus();
+    }
+
+    productGrid.addEventListener("click", event => {
+      const trigger = event.target.closest("[data-product-index]");
+      if (trigger) openProduct(Number(trigger.dataset.productIndex), trigger);
+    });
+
+    modal.querySelectorAll("[data-close-modal]").forEach(el => el.addEventListener("click", closeProduct));
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && modal.classList.contains("active")) closeProduct();
+    });
+
+    sizeForm.querySelectorAll('input[name="size"]').forEach(input => {
+      input.addEventListener("change", () => {
+        customSizeWrap.hidden = input.value !== "Custom";
+        sizeError.hidden = true;
+        if (input.value === "Custom") customSizeInput.focus();
+      });
+    });
+
+    sizeForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const chosen = sizeForm.querySelector('input[name="size"]:checked');
+      if (!chosen) {
+        sizeError.hidden = false;
+        return;
+      }
+      if (chosen.value === "Custom" && !customSizeInput.value.trim()) {
+        sizeError.textContent = "Please enter your custom measurements or fit requirements.";
+        sizeError.hidden = false;
+        customSizeInput.focus();
+        return;
+      }
+      const sizeText = chosen.value === "Custom"
+        ? "Custom size / measurements: " + customSizeInput.value.trim()
+        : "Requested size: " + chosen.value;
+      const message = `Hello Abaya Majesty, I am interested in ${selectedProduct.name} (Look ${String(products.indexOf(selectedProduct) + 1).padStart(2, "0")}). ${sizeText}. Please confirm price, availability, fit and ordering details.`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+    });
+  </script>
 </body>
 </html>
