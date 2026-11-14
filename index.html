@@ -114,6 +114,33 @@ body > #sizeChartModal.active{display:flex!important}
 
 </style>
 
+<style>
+
+/* Expanded catalogue and image uniqueness refinements */
+.hero{background:radial-gradient(circle at 78% 25%,rgba(190,157,112,.34),transparent 30%),linear-gradient(115deg,#29221d 0%,#514235 55%,#79664f 100%)!important}
+.hero-shade{background:linear-gradient(90deg,rgba(20,17,14,.44),rgba(20,17,14,.08))!important}
+.catalogue-category-cards{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.catalogue-category-cards .category-gateway{min-height:225px;display:flex;flex-direction:column;justify-content:flex-end;gap:13px;padding:24px 20px;background:linear-gradient(155deg,#f5efe5,#e6dac8)!important;border:1px solid #d9c9b2;position:relative;overflow:hidden;text-decoration:none}
+.catalogue-category-cards .category-gateway:nth-child(2){background:linear-gradient(155deg,#fbf8f1,#e9e2d6)!important}
+.catalogue-category-cards .category-gateway:nth-child(3){background:linear-gradient(155deg,#e8dfd1,#cdbca7)!important}
+.catalogue-category-cards .category-gateway:nth-child(4){background:linear-gradient(155deg,#d9d0c4,#a99b8b)!important}
+.catalogue-category-cards .category-gateway:nth-child(5){background:linear-gradient(155deg,#493b31,#211c18)!important;color:#f8f1e7}
+.catalogue-category-cards .category-gateway img{display:none!important}
+.catalogue-category-cards .category-gateway:before{content:"";position:absolute;inset:14px;border:1px solid rgba(166,133,91,.32);pointer-events:none}
+.catalogue-category-cards .category-number{font-size:9px;letter-spacing:.2em;opacity:.78}
+.catalogue-category-cards .category-gateway strong{font:400 clamp(19px,1.7vw,27px)/1.15 'Playfair Display',serif;max-width:190px}
+.catalogue-category-cards .category-gateway b{font-size:11px;letter-spacing:.08em;font-weight:500}
+.statement-feature{padding:76px 6%;background:#29231e;color:#f7f0e6}
+.statement-feature .section-heading{color:inherit}
+.statement-feature .statement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1200px;margin:30px auto 0}
+.statement-feature figure{margin:0;position:relative;overflow:hidden;background:#44392f}
+.statement-feature img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.statement-feature figcaption{padding:15px 3px 0;font:400 21px 'Playfair Display',serif}
+.statement-feature .eyebrow{color:#c5a16c}
+@media(max-width:900px){.catalogue-category-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.catalogue-category-cards{grid-template-columns:1fr 1fr;gap:10px}.catalogue-category-cards .category-gateway{min-height:165px;padding:18px 14px}.catalogue-category-cards .category-gateway strong{font-size:18px}.statement-feature{padding:55px 5%}.statement-feature .statement-grid{grid-template-columns:1fr;gap:25px}.statement-feature img{aspect-ratio:4/3}}
+
+</style>
 </head>
 <body>
   <div class="announcement">DISCOVER ELEGANCE <span>✦</span> WORLDWIDE ENQUIRIES AVAILABLE</div>
@@ -132,7 +159,6 @@ body > #sizeChartModal.active{display:flex!important}
 
   <main>
     <section class="hero" id="home">
-      <img class="hero-image" src="assets/look-21-white-bridal-cape.jpg" alt="White bridal cape abaya" fetchpriority="high">
       <div class="hero-shade"></div>
       <div class="hero-content">
         <p class="eyebrow light">THE ART OF MODEST ELEGANCE</p>
@@ -163,7 +189,7 @@ body > #sizeChartModal.active{display:flex!important}
     </section>
 
     <section class="am-proof-strip" aria-label="Abaya Majesty business highlights">
-      <div><strong>10,500+</strong><span>ABAYAS SOLD</span></div>
+      <div><strong>1,500+</strong><span>ABAYAS SOLD</span></div>
       <div><strong>In-house</strong><span>ABAYA MANUFACTURING</span></div>
       <div><strong>Worldwide</strong><span>ORDER ENQUIRIES</span></div>
     </section>
@@ -186,18 +212,21 @@ body > #sizeChartModal.active{display:flex!important}
         <div><p class="eyebrow">CURATED FOR YOU</p><h2>Explore the <em>collections</em></h2></div>
         <p>Find a look for every special occasion.</p>
       </div>
-      <div class="collection-cards">
-        <a href="#new-arrivals" class="collection-card" data-jump-filter="bridal">
-          <img src="assets/look-31-ivory-bridal-rose.jpg" alt="Ivory bridal abaya with bouquet" loading="lazy">
-          <span>01 / Bridal & occasion</span><b>Discover collection ↗</b>
+      <div class="collection-cards catalogue-category-cards">
+        <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="bridal">
+          <span class="category-number">01 / CEREMONIAL</span><strong>The Bridal Atelier</strong><b>Discover collection ↗</b>
         </a>
-        <a href="#new-arrivals" class="collection-card" data-jump-filter="neutral">
-          <img src="assets/look-26-taupe-crystal-kaftan.jpg" alt="Taupe embellished kaftan" loading="lazy">
-          <span>02 / Statement silhouettes</span><b>Discover collection ↗</b>
+        <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="ivory">
+          <span class="category-number">02 / TIMELESS</span><strong>The Ivory Collection</strong><b>Discover collection ↗</b>
         </a>
-        <a href="#new-arrivals" class="collection-card" data-jump-filter="ivory">
-          <img src="assets/look-27-ivory-blush-embellished-cape.jpg" alt="Ivory and blush embellished cape" loading="lazy">
-          <span>03 / Soft neutrals</span><b>Discover collection ↗</b>
+        <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="neutral">
+          <span class="category-number">03 / NATURAL PALETTE</span><strong>Earth &amp; Elegance</strong><b>Discover collection ↗</b>
+        </a>
+        <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="occasion">
+          <span class="category-number">04 / DRESSING UP</span><strong>The Occasion Atelier</strong><b>Discover collection ↗</b>
+        </a>
+        <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="statement">
+          <span class="category-number">05 / DISTINCTIVE</span><strong>The Statement Collection</strong><b>Discover collection ↗</b>
         </a>
       </div>
     </section>
@@ -219,15 +248,28 @@ body > #sizeChartModal.active{display:flex!important}
           <button class="filter" type="button" data-filter="ivory" aria-pressed="false">The Ivory Collection</button>
           <button class="filter" type="button" data-filter="neutral" aria-pressed="false">Earth &amp; Elegance</button>
           <button class="filter" type="button" data-filter="occasion" aria-pressed="false">The Occasion Atelier</button>
+          <button class="filter" type="button" data-filter="statement" aria-pressed="false">The Statement Collection</button>
         </div>
         <div class="catalog-sort"><label for="catalogSort">Sort designs:</label><select id="catalogSort"><option value="newest" selected>Newest first</option><option value="oldest">Oldest first</option><option value="name">Name A–Z</option></select></div>
       </div>
 
-      <p class="results-count" id="resultsCount" aria-live="polite">Showing 34 designs</p>
+      <p class="results-count" id="resultsCount" aria-live="polite">Showing 49 designs</p>
       <div class="product-grid" id="productGrid" aria-live="polite"></div>
-      <p class="empty-results" id="emptyResults" hidden>No designs match your search. Try another name or choose “All looks”.</p>
+      <p class="empty-results" id="emptyResults" hidden>No designs match your search. Try another name or choose “The Complete Collection”.</p>
     </section>
 
+
+    <section class="statement-feature" aria-labelledby="statement-feature-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE MAJESTY SIGNATURE</p><h2 id="statement-feature-title">Pieces that make <em>a statement.</em></h2></div>
+        <p>Selected silhouettes from the collection, featured again for their distinctive presence.</p>
+      </div>
+      <div class="statement-grid">
+        <figure><img src="assets/look-26-taupe-crystal-kaftan.jpg" alt="The Taupe Empress statement kaftan" loading="lazy"><figcaption>The Taupe Empress</figcaption></figure>
+        <figure><img src="assets/new-2026-11-14-01.jpg" alt="The Emerald Empress abaya" loading="lazy"><figcaption>The Emerald Empress</figcaption></figure>
+        <figure><img src="assets/new-2026-11-14-14.jpg" alt="The Burgundy Cascade abaya" loading="lazy"><figcaption>The Burgundy Cascade</figcaption></figure>
+      </div>
+    </section>
 
     <section class="quote-panel">
       <p class="eyebrow light">A NOTE FROM ABAYA MAJESTY</p>
@@ -373,7 +415,22 @@ body > #sizeChartModal.active{display:flex!important}
       {name:"The Ivory Bridal Rose",img:"look-31-ivory-bridal-rose.jpg",description:"A graceful ivory bridal silhouette with a soft cape finish and bouquet-ready elegance.",tags:"ivory bridal occasion",short:"Elegant ivory bridal look with a flowing cape."},
       {name:"The Cacao Drape",img:"look-32-dark-chocolate-drape.jpg",description:"A deep chocolate modest silhouette with a dramatic, flowing drape and understated finish.",tags:"neutral occasion",short:"Deep chocolate with a dramatic flowing drape."},
       {name:"The Seraphina Train",img:"look-33-white-bridal-train.jpg",description:"A statement white bridal design with an extended train and sculptural, flowing layers.",tags:"ivory bridal occasion",short:"White bridal design with an elegant extended train."},
-      {name:"The Navy Majesty",img:"look-34-navy-bridal-cape.jpg",description:"A deep navy cape-style occasion look with ornate detailing and a contrasting ivory inner layer.",tags:"occasion bridal",short:"Navy embellished cape with an ivory contrast."}
+      {name:"The Navy Majesty",img:"look-34-navy-bridal-cape.jpg",description:"A deep navy cape-style occasion look with ornate detailing and a contrasting ivory inner layer.",tags:"occasion bridal",short:"Navy embellished cape with an ivory contrast."},
+      {name:"The Emerald Empress",img:"new-2026-11-14-01.jpg",description:"A deep emerald abaya with intricate detailing and a rich, fluid silhouette.",tags:"occasion statement",short:"Deep emerald with refined statement detailing."},
+      {name:"The Nocturne Brocade",img:"new-2026-11-14-02.jpg",description:"A dramatic dark-toned ensemble with ornate brocade-inspired patterning and layered elegance.",tags:"occasion statement",short:"Ornate dark brocade with layered presence."},
+      {name:"The Ivory Grandeur",img:"new-2026-11-14-03.jpg",description:"A luminous ivory bridal silhouette with a beautifully extended train and graceful draping.",tags:"ivory bridal occasion statement",short:"An ivory bridal silhouette with an extended train."},
+      {name:"The Seraphina Ruffle",img:"new-2026-11-14-04.jpg",description:"A sculptural ivory bridal design with cascading ruffle layers and a dramatic train.",tags:"ivory bridal occasion statement",short:"Cascading ivory ruffles and a dramatic train."},
+      {name:"The Champagne Veil",img:"new-2026-11-14-05.jpg",description:"A soft champagne-toned cape abaya with fluid layers and understated occasion elegance.",tags:"neutral occasion",short:"Soft champagne layers with graceful movement."},
+      {name:"The Aurelia Cape",img:"new-2026-11-14-06.jpg",description:"A light ivory-gold cape silhouette with delicate detailing and an elegant finish.",tags:"ivory bridal occasion",short:"An ivory-gold cape with delicate detailing."},
+      {name:"The Dove Serenity",img:"new-2026-11-14-07.jpg",description:"A muted dove-grey ensemble with a relaxed cape silhouette and soft tonal styling.",tags:"neutral occasion",short:"Dove grey with a relaxed cape silhouette."},
+      {name:"The Plum Reverie",img:"new-2026-11-14-08.jpg",description:"A rich plum satin-inspired abaya with a sleek, flowing shape.",tags:"neutral occasion statement",short:"Rich plum with a sleek flowing finish."},
+      {name:"The Pearl Cathedral",img:"new-2026-11-14-09.jpg",description:"A graceful ivory bridal design photographed from the back, showcasing its long train.",tags:"ivory bridal occasion statement",short:"A long ivory bridal train with graceful volume."},
+      {name:"The Cacao Luxe",img:"new-2026-11-14-10.jpg",description:"A deep cacao-brown abaya with a refined, fluid silhouette and understated styling.",tags:"neutral occasion",short:"Deep cacao brown with a fluid silhouette."},
+      {name:"The Mauve Muse",img:"new-2026-11-14-11.jpg",description:"A muted mauve abaya with a softly luminous finish and elegant drape.",tags:"neutral occasion",short:"Muted mauve with a softly luminous finish."},
+      {name:"The Ruby Royale",img:"new-2026-11-14-12.jpg",description:"A rich ruby-burgundy abaya with graceful volume and confident evening presence.",tags:"occasion statement",short:"Rich ruby-burgundy for an evening statement."},
+      {name:"The Celeste Blue",img:"new-2026-11-14-13.jpg",description:"A powder-blue abaya with a soft cape-like drape and fresh, airy elegance.",tags:"occasion neutral",short:"Powder blue with a light, flowing drape."},
+      {name:"The Burgundy Cascade",img:"new-2026-11-14-14.jpg",description:"A dramatic burgundy design with flowing layers and a graceful extended finish.",tags:"occasion statement",short:"Burgundy layers with a dramatic flowing finish."},
+      {name:"The Gilded Grace",img:"new-2026-11-14-15.jpg",description:"A warm ivory-beige cape abaya with fluid panels and a softly luminous finish.",tags:"ivory neutral occasion",short:"Warm ivory-beige with fluid cape panels."}
     ];
 
     const productGrid = document.getElementById("productGrid");
