@@ -22,8 +22,8 @@
     .am-ordering article p{margin:0;line-height:1.65;color:#716a62}
     .size-options{display:flex;flex-wrap:wrap;gap:9px}
     .size-chart-trigger{display:inline-flex;align-items:center;gap:8px;margin:15px 0 8px;padding:0;border:0;background:transparent;color:#5b4638;text-decoration:underline;text-underline-offset:4px;font:inherit;cursor:pointer}
-    .size-chart-modal{position:fixed!important;inset:0!important;z-index:99999!important;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.82);pointer-events:none}.size-chart-modal.active{display:flex!important;pointer-events:auto!important}
-    .size-chart-modal.active{display:flex!important;pointer-events:auto!important}
+    .size-chart-modal{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.78)}
+    .size-chart-modal.active{display:flex}
     .size-chart-dialog{position:relative;width:min(100%,1000px);max-height:92vh;overflow:auto;background:#fbf9f4;border-radius:18px;padding:18px;box-shadow:0 20px 70px rgba(0,0,0,.3)}
     .size-chart-dialog img{display:block;width:100%;height:auto}
     .size-chart-close{position:sticky;top:0;float:right;z-index:2;border:0;border-radius:50%;width:42px;height:42px;background:#3e2b22;color:white;font-size:27px;cursor:pointer;margin:0 0 8px 8px}
@@ -37,22 +37,14 @@
     .am-small-note{font-size:13px;line-height:1.6;opacity:.8}
     @media(max-width:760px){.am-ordering .am-order-grid{grid-template-columns:1fr 1fr}.am-footer-columns{grid-template-columns:1fr;gap:18px}}
     @media(max-width:420px){.am-ordering .am-order-grid{grid-template-columns:1fr}}
-  
-    /* Abaya Majesty product image zoom viewer */
-    .modal-product-image img{cursor:zoom-in}
-    .am-image-zoom{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;background:rgba(24,21,19,.96);padding:76px 22px 28px}
-    .am-image-zoom.active{display:flex}
-    .am-image-zoom-stage{width:min(1100px,94vw);height:min(78vh,900px);display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;position:relative;cursor:grab}
-    .am-image-zoom-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;transform:translate3d(0,0,0) scale(1);transform-origin:center;transition:transform .12s ease;user-select:none;-webkit-user-drag:none;pointer-events:none}
-    .am-image-zoom-stage.is-dragging{cursor:grabbing}
-    .am-zoom-toolbar{position:absolute;top:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,253,250,.96);border:1px solid #c9b99f;border-radius:999px}
-    .am-zoom-toolbar button,.am-zoom-close{width:42px;height:42px;border:1px solid #dfd5c7;border-radius:50%;background:#fffdfa;color:#3e2b22;font-size:23px;cursor:pointer}
-    .am-zoom-toolbar button:hover,.am-zoom-close:hover{background:#eee7dc}
-    .am-zoom-level{min-width:54px;text-align:center;font:500 13px 'DM Sans',Arial,sans-serif;color:#3e2b22}
-    .am-zoom-close{position:absolute;top:20px;right:22px;font-size:25px}
-    .am-zoom-hint{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#f7f2e9;font:13px 'DM Sans',Arial,sans-serif;opacity:.85}
-    @media(max-width:600px){.am-image-zoom{padding:78px 10px 42px}.am-image-zoom-stage{width:96vw;height:76vh}.am-zoom-close{top:16px;right:12px}.am-zoom-toolbar{top:16px;left:12px;transform:none}.am-zoom-toolbar button{width:38px;height:38px}}
-
+    /* Clear and consistent selected filter state */
+    .filter-row .filter[aria-pressed="true"]{background:#29251f!important;color:#fff!important;border-color:#29251f!important;box-shadow:0 0 0 2px #c5a36b!important}
+    .filter-row .filter[aria-pressed="false"]{background:transparent;color:#5b5147;border-color:#d9d0c3;box-shadow:none}
+    .filter-row .filter:focus{outline:none}
+    .filter-row .filter:focus-visible{outline:2px solid #b9965b;outline-offset:4px}
+    .catalog-sort{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:12px 0 4px;color:#746b61;font-size:13px}
+    .catalog-sort select{border:1px solid #ded5c8;border-radius:30px;padding:9px 14px;background:#fffdfa;color:#3e342c;font:inherit}
+    @media(max-width:600px){.catalog-sort{justify-content:flex-start;margin-top:14px}}
   </style>
 
 </head>
@@ -143,6 +135,7 @@
           <button class="filter" type="button" data-filter="neutral" aria-pressed="false">Neutrals</button>
           <button class="filter" type="button" data-filter="occasion" aria-pressed="false">Occasionwear</button>
         </div>
+        <div class="catalog-sort"><label for="catalogSort">Sort designs:</label><select id="catalogSort"><option value="newest" selected>Newest first</option><option value="oldest">Oldest first</option><option value="name">Name A–Z</option></select></div>
       </div>
 
       <p class="results-count" id="resultsCount" aria-live="polite">Showing 34 designs</p>
@@ -199,7 +192,7 @@
     </div>
     <div class="am-footer-columns">
       <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#ordering">How to order</a><a href="#contact">Contact</a></div>
-      <div><h3>Customer Policies</h3><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a><a href="policies/returns-refunds.html">Returns & Refunds Policy</a><a href="policies/shipping-delivery.html">Shipping & Delivery Policy</a></div>
+      <div><h3>Customer Policies</h3><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a><a href="policies/Abaya_Majesty_Returns_and_Refunds_Policy.pdf" target="_blank" rel="noopener">Returns & Refunds Policy</a><a href="policies/Abaya_Majesty_Shipping_and_Delivery_Policy.pdf" target="_blank" rel="noopener">Shipping & Delivery Policy</a></div>
       <div><h3>Contact Info</h3><a href="mailto:abayamajesty0312@gmail.com">abayamajesty0312@gmail.com</a><a href="https://wa.me/971505540491" target="_blank" rel="noopener">WhatsApp: +971 50 554 0491</a><span>India</span></div>
     </div>
     <p>© <span data-year></span> Abaya Majesty. All rights reserved.</p>
@@ -255,24 +248,9 @@
   <div class="size-chart-modal" id="sizeChartModal" aria-hidden="true">
     <div class="size-chart-dialog" role="dialog" aria-modal="true" aria-label="Abaya Majesty size chart">
       <button class="size-chart-close" type="button" id="closeSizeChart" aria-label="Close size chart">&times;</button>
-      <img src="assets/abaya-majesty-size-chart.png" alt="Abaya Majesty size chart with bust, waist, hip measurements and international size conversion" onerror="this.alt='Size chart image could not be loaded. Please contact us for the size guide.'">
+      <img src="assets/abaya-majesty-size-chart.png" alt="Abaya Majesty size chart with bust, waist, hip measurements and international size conversion">
       <p class="am-small-note">Measurements are a general guide. For a more accurate fit, please confirm your measurements with our team before ordering.</p>
     </div>
-  </div>
-
-
-  <div class="am-image-zoom" id="amImageZoom" aria-hidden="true">
-    <button class="am-zoom-close" id="amZoomClose" type="button" aria-label="Close enlarged product image">&times;</button>
-    <div class="am-zoom-toolbar" role="group" aria-label="Image zoom controls">
-      <button id="amZoomOut" type="button" aria-label="Zoom out">−</button>
-      <span class="am-zoom-level" id="amZoomLevel">100%</span>
-      <button id="amZoomIn" type="button" aria-label="Zoom in">+</button>
-      <button id="amZoomReset" type="button" aria-label="Reset zoom">↺</button>
-    </div>
-    <div class="am-image-zoom-stage" id="amZoomStage">
-      <img id="amZoomImage" src="" alt="">
-    </div>
-    <p class="am-zoom-hint">Use + / − to zoom · Scroll to zoom · Double-click to reset</p>
   </div>
 
   <script>
@@ -318,108 +296,6 @@
     const productGrid = document.getElementById("productGrid");
     const modal = document.getElementById("productModal");
     const modalImage = document.getElementById("modalImage");
-
-    const amImageZoom = document.getElementById("amImageZoom");
-    const amZoomImage = document.getElementById("amZoomImage");
-    const amZoomStage = document.getElementById("amZoomStage");
-    const amZoomLevel = document.getElementById("amZoomLevel");
-    let amZoomScale = 1;
-    let amPanX = 0;
-    let amPanY = 0;
-    let amDrag = null;
-
-    function clampAmPan() {
-      const stageRect = amZoomStage.getBoundingClientRect();
-      const baseWidth = amZoomImage.clientWidth;
-      const baseHeight = amZoomImage.clientHeight;
-      const maxX = Math.max(0, (baseWidth * amZoomScale - stageRect.width) / 2);
-      const maxY = Math.max(0, (baseHeight * amZoomScale - stageRect.height) / 2);
-      amPanX = Math.max(-maxX, Math.min(maxX, amPanX));
-      amPanY = Math.max(-maxY, Math.min(maxY, amPanY));
-    }
-    function updateAmZoom() {
-      clampAmPan();
-      amZoomImage.style.transform = `translate3d(${amPanX}px, ${amPanY}px, 0) scale(${amZoomScale})`;
-      amZoomLevel.textContent = `${Math.round(amZoomScale * 100)}%`;
-      amZoomStage.classList.toggle("is-zoomed", amZoomScale > 1);
-    }
-    function setAmZoom(next, resetPan = false) {
-      amZoomScale = Math.max(1, Math.min(4, next));
-      if (resetPan || amZoomScale === 1) { amPanX = 0; amPanY = 0; }
-      updateAmZoom();
-    }
-    function openAmImageZoom() {
-      if (!modalImage.src) return;
-      amZoomImage.src = modalImage.src;
-      amZoomImage.alt = modalImage.alt || "Enlarged Abaya Majesty product image";
-      amPanX = 0; amPanY = 0;
-      setAmZoom(1, true);
-      amImageZoom.classList.add("active");
-      amImageZoom.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      amZoomImage.onload = () => updateAmZoom();
-      document.getElementById("amZoomClose").focus();
-    }
-    function closeAmImageZoom() {
-      amImageZoom.classList.remove("active");
-      amImageZoom.setAttribute("aria-hidden", "true");
-      amZoomImage.src = "";
-      amDrag = null;
-      amZoomStage.classList.remove("is-dragging");
-      document.body.style.overflow = modal.classList.contains("active") ? "hidden" : "";
-      modalImage.focus?.();
-    }
-    modalImage.addEventListener("click", openAmImageZoom);
-    document.getElementById("amZoomClose").addEventListener("click", closeAmImageZoom);
-    document.getElementById("amZoomIn").addEventListener("click", () => setAmZoom(amZoomScale + 0.5));
-    document.getElementById("amZoomOut").addEventListener("click", () => setAmZoom(amZoomScale - 0.5));
-    document.getElementById("amZoomReset").addEventListener("click", () => setAmZoom(1, true));
-
-    // Zoom toward the pointer position, then keep the enlarged image inside the viewer.
-    amZoomStage.addEventListener("wheel", event => {
-      event.preventDefault();
-      const rect = amZoomStage.getBoundingClientRect();
-      const px = event.clientX - (rect.left + rect.width / 2);
-      const py = event.clientY - (rect.top + rect.height / 2);
-      const oldScale = amZoomScale;
-      const nextScale = Math.max(1, Math.min(4, oldScale + (event.deltaY < 0 ? 0.25 : -0.25)));
-      if (nextScale !== oldScale) {
-        const ratio = nextScale / oldScale;
-        amPanX = px - (px - amPanX) * ratio;
-        amPanY = py - (py - amPanY) * ratio;
-        amZoomScale = nextScale;
-        if (nextScale === 1) { amPanX = 0; amPanY = 0; }
-        updateAmZoom();
-      }
-    }, {passive:false});
-
-    // Drag with mouse or touch to inspect different parts of a zoomed image.
-    amZoomStage.addEventListener("pointerdown", event => {
-      if (amZoomScale <= 1 || event.target.closest("button")) return;
-      event.preventDefault();
-      amDrag = {x:event.clientX, y:event.clientY, panX:amPanX, panY:amPanY, pointerId:event.pointerId};
-      amZoomStage.classList.add("is-dragging");
-      amZoomStage.setPointerCapture(event.pointerId);
-    });
-    amZoomStage.addEventListener("pointermove", event => {
-      if (!amDrag || event.pointerId !== amDrag.pointerId) return;
-      amPanX = amDrag.panX + (event.clientX - amDrag.x);
-      amPanY = amDrag.panY + (event.clientY - amDrag.y);
-      updateAmZoom();
-    });
-    function endAmDrag(event) {
-      if (amDrag && (!event || event.pointerId === amDrag.pointerId)) {
-        amDrag = null;
-        amZoomStage.classList.remove("is-dragging");
-      }
-    }
-    ["pointerup","pointercancel","lostpointercapture"].forEach(name => amZoomStage.addEventListener(name, endAmDrag));
-    amZoomImage.addEventListener("dblclick", () => setAmZoom(1, true));
-    window.addEventListener("resize", () => { if (amImageZoom.classList.contains("active")) updateAmZoom(); });
-    amImageZoom.addEventListener("click", event => {
-      if (event.target === amImageZoom) closeAmImageZoom();
-    });
-
     const modalTitle = document.getElementById("modalTitle");
     const modalDescription = document.getElementById("modalDescription");
     const sizeForm = document.getElementById("sizeForm");
@@ -427,21 +303,29 @@
     const customSizeInput = document.getElementById("customSize");
     const sizeError = document.getElementById("sizeError");
     const searchInput = document.getElementById("productSearch");
+    const catalogSort = document.getElementById("catalogSort");
     const resultsCount = document.getElementById("resultsCount");
     const emptyResults = document.getElementById("emptyResults");
     let selectedProduct = null;
     let previousFocus = null;
     let activeFilter = "all";
+    let activeSort = "newest";
 
     document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 
     function renderProducts() {
       const query = searchInput.value.trim().toLowerCase();
       const filtered = products.map((product, index) => ({product, index})).filter(({product}) => {
-        const matchesFilter = activeFilter === "all" || product.tags.split(" ").includes(activeFilter);
+        const productTags = product.tags.split(/\s+/);
+        const matchesFilter = activeFilter === "all" || productTags.includes(activeFilter);
         const searchable = `${product.name} ${product.description} ${product.tags}`.toLowerCase();
         return matchesFilter && searchable.includes(query);
       });
+
+      // Latest additions (highest Look number) appear first by default.
+      if (activeSort === "newest") filtered.sort((a, b) => b.index - a.index);
+      else if (activeSort === "oldest") filtered.sort((a, b) => a.index - b.index);
+      else if (activeSort === "name") filtered.sort((a, b) => a.product.name.localeCompare(b.product.name));
 
       productGrid.innerHTML = "";
       filtered.forEach(({product, index}) => {
@@ -484,32 +368,21 @@
     }
 
     const sizeChartModal = document.getElementById("sizeChartModal");
+    const openSizeChartButton = document.getElementById("openSizeChart");
     const closeSizeChartButton = document.getElementById("closeSizeChart");
-    // Keep the chart overlay at document level so product-modal stacking/overflow
-    // cannot hide it on mobile or desktop.
-    document.body.appendChild(sizeChartModal);
-
     function openSizeChart() {
       sizeChartModal.classList.add("active");
       sizeChartModal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
       closeSizeChartButton.focus();
     }
     function closeSizeChart() {
       sizeChartModal.classList.remove("active");
       sizeChartModal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      const trigger = document.getElementById("openSizeChart");
-      if (trigger) trigger.focus();
+      if (openSizeChartButton) openSizeChartButton.focus();
     }
-
-    // Delegation ensures the trigger works even if the product modal is re-used.
-    document.addEventListener("click", event => {
-      if (event.target.closest("#openSizeChart")) {
-        event.preventDefault();
-        openSizeChart();
-      }
-      if (event.target.closest("#closeSizeChart")) closeSizeChart();
+    openSizeChartButton.addEventListener("click", openSizeChart);
+    closeSizeChartButton.addEventListener("click", closeSizeChart);
+    sizeChartModal.addEventListener("click", event => {
       if (event.target === sizeChartModal) closeSizeChart();
     });
     document.addEventListener("keydown", event => {
@@ -531,6 +404,10 @@
       });
     });
     searchInput.addEventListener("input", renderProducts);
+    catalogSort.addEventListener("change", () => {
+      activeSort = catalogSort.value;
+      renderProducts();
+    });
 
     document.querySelectorAll("[data-jump-filter]").forEach(card => {
       card.addEventListener("click", () => {
@@ -562,7 +439,6 @@
     }));
 
     function openProduct(index, trigger) {
-      if (amImageZoom.classList.contains("active")) closeAmImageZoom();
       selectedProduct = products[index];
       if (!selectedProduct) return;
       previousFocus = trigger || document.activeElement;
@@ -598,10 +474,6 @@
     modal.querySelectorAll("[data-close-modal]").forEach(el => el.addEventListener("click", closeProduct));
 
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && amImageZoom.classList.contains("active")) {
-        closeAmImageZoom();
-        return;
-      }
       if (!modal.classList.contains("active")) return;
       if (event.key === "Escape") closeProduct();
       if (event.key === "Tab") {
