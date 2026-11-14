@@ -22,8 +22,8 @@
     .am-ordering article p{margin:0;line-height:1.65;color:#716a62}
     .size-options{display:flex;flex-wrap:wrap;gap:9px}
     .size-chart-trigger{display:inline-flex;align-items:center;gap:8px;margin:15px 0 8px;padding:0;border:0;background:transparent;color:#5b4638;text-decoration:underline;text-underline-offset:4px;font:inherit;cursor:pointer}
-    .size-chart-modal{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.78)}
-    .size-chart-modal.active{display:flex}
+    .size-chart-modal{position:fixed!important;inset:0!important;z-index:99999!important;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.82);pointer-events:none}.size-chart-modal.active{display:flex!important;pointer-events:auto!important}
+    .size-chart-modal.active{display:flex!important;pointer-events:auto!important}
     .size-chart-dialog{position:relative;width:min(100%,1000px);max-height:92vh;overflow:auto;background:#fbf9f4;border-radius:18px;padding:18px;box-shadow:0 20px 70px rgba(0,0,0,.3)}
     .size-chart-dialog img{display:block;width:100%;height:auto}
     .size-chart-close{position:sticky;top:0;float:right;z-index:2;border:0;border-radius:50%;width:42px;height:42px;background:#3e2b22;color:white;font-size:27px;cursor:pointer;margin:0 0 8px 8px}
@@ -183,7 +183,7 @@
     </div>
     <div class="am-footer-columns">
       <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#ordering">How to order</a><a href="#contact">Contact</a></div>
-      <div><h3>Customer Policies</h3><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a><a href="policies/Abaya_Majesty_Returns_and_Refunds_Policy.pdf" target="_blank" rel="noopener">Returns & Refunds Policy</a><a href="policies/Abaya_Majesty_Shipping_and_Delivery_Policy.pdf" target="_blank" rel="noopener">Shipping & Delivery Policy</a></div>
+      <div><h3>Customer Policies</h3><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a><a href="policies/returns-refunds.html">Returns & Refunds Policy</a><a href="policies/shipping-delivery.html">Shipping & Delivery Policy</a></div>
       <div><h3>Contact Info</h3><a href="mailto:abayamajesty0312@gmail.com">abayamajesty0312@gmail.com</a><a href="https://wa.me/971505540491" target="_blank" rel="noopener">WhatsApp: +971 50 554 0491</a><span>India</span></div>
     </div>
     <p>© <span data-year></span> Abaya Majesty. All rights reserved.</p>
@@ -239,7 +239,7 @@
   <div class="size-chart-modal" id="sizeChartModal" aria-hidden="true">
     <div class="size-chart-dialog" role="dialog" aria-modal="true" aria-label="Abaya Majesty size chart">
       <button class="size-chart-close" type="button" id="closeSizeChart" aria-label="Close size chart">&times;</button>
-      <img src="assets/abaya-majesty-size-chart.png" alt="Abaya Majesty size chart with bust, waist, hip measurements and international size conversion">
+      <img src="assets/abaya-majesty-size-chart.png" alt="Abaya Majesty size chart with bust, waist, hip measurements and international size conversion" onerror="this.alt='Size chart image could not be loaded. Please contact us for the size guide.'">
       <p class="am-small-note">Measurements are a general guide. For a more accurate fit, please confirm your measurements with our team before ordering.</p>
     </div>
   </div>
@@ -351,21 +351,32 @@
     }
 
     const sizeChartModal = document.getElementById("sizeChartModal");
-    const openSizeChartButton = document.getElementById("openSizeChart");
     const closeSizeChartButton = document.getElementById("closeSizeChart");
+    // Keep the chart overlay at document level so product-modal stacking/overflow
+    // cannot hide it on mobile or desktop.
+    document.body.appendChild(sizeChartModal);
+
     function openSizeChart() {
       sizeChartModal.classList.add("active");
       sizeChartModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
       closeSizeChartButton.focus();
     }
     function closeSizeChart() {
       sizeChartModal.classList.remove("active");
       sizeChartModal.setAttribute("aria-hidden", "true");
-      if (openSizeChartButton) openSizeChartButton.focus();
+      document.body.style.overflow = "";
+      const trigger = document.getElementById("openSizeChart");
+      if (trigger) trigger.focus();
     }
-    openSizeChartButton.addEventListener("click", openSizeChart);
-    closeSizeChartButton.addEventListener("click", closeSizeChart);
-    sizeChartModal.addEventListener("click", event => {
+
+    // Delegation ensures the trigger works even if the product modal is re-used.
+    document.addEventListener("click", event => {
+      if (event.target.closest("#openSizeChart")) {
+        event.preventDefault();
+        openSizeChart();
+      }
+      if (event.target.closest("#closeSizeChart")) closeSizeChart();
       if (event.target === sizeChartModal) closeSizeChart();
     });
     document.addEventListener("keydown", event => {
