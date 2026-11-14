@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Discover Abaya Majesty: refined modest fashion, elegant abayas and occasionwear.">
   <meta name="theme-color" content="#f7f5ef">
-  <meta property="og:title" content="Abaya Majesty | Modesty · Elegance · Grace">
+  <meta property="og:title" content="Abaya Majesty | The Abaya Collection">
   <meta property="og:description" content="Discover refined modest fashion and made-to-order abayas from Abaya Majesty.">
   <meta property="og:type" content="website">
   <title>Abaya Majesty | Modesty · Elegance · Grace</title>
@@ -37,6 +37,20 @@
     .am-small-note{font-size:13px;line-height:1.6;opacity:.8}
     @media(max-width:760px){.am-ordering .am-order-grid{grid-template-columns:1fr 1fr}.am-footer-columns{grid-template-columns:1fr;gap:18px}}
     @media(max-width:420px){.am-ordering .am-order-grid{grid-template-columns:1fr}}
+
+    .product-stars{display:flex;align-items:center;margin:8px 0 7px;color:#b39360;font-size:15px;letter-spacing:2px;line-height:1}
+    .modal-stars{font-size:18px;margin:0 0 14px}
+    .product-stars span{display:inline-block;text-shadow:0 1px 0 rgba(179,147,96,.12)}
+    .am-experience{padding:78px 6%;background:#f8f6f1;color:#3e2b22}
+    .am-experience .section-heading{margin-bottom:30px}
+    .am-experience-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .am-experience-card{background:#fffdfa;border:1px solid #e7dfd3;border-radius:16px;padding:26px 24px;min-height:190px;box-shadow:0 8px 28px rgba(55,42,30,.035)}
+    .am-experience-card .ornament{color:#b39360;font-size:18px;letter-spacing:4px;margin-bottom:15px}
+    .am-experience-card h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;margin:0 0 10px;color:#3e2b22}
+    .am-experience-card p{margin:0;color:#716a62;line-height:1.7}
+    .am-experience-note{font-size:12px;color:#81776b;margin-top:18px}
+    @media(max-width:760px){.am-experience-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.am-experience-grid{grid-template-columns:1fr}}
     /* Clear and consistent selected filter state */
     .filter-row .filter[aria-pressed="true"]{background:#29251f!important;color:#fff!important;border-color:#29251f!important;box-shadow:0 0 0 2px #c5a36b!important}
     .filter-row .filter[aria-pressed="false"]{background:transparent;color:#5b5147;border-color:#d9d0c3;box-shadow:none}
@@ -118,8 +132,7 @@
 
     <section class="arrivals section-pad" id="new-arrivals">
       <div class="section-heading">
-        <div><p class="eyebrow">THE LATEST SELECTION</p><h2>New <em>arrivals</em></h2></div>
-        <p>Explore all 34 looks. Select a design to view details, choose a size and view our size chart.</p>
+        <div><p class="eyebrow">EXPLORE THE COLLECTION</p><h2>The <em>Abaya Collection</em></h2></div>
       </div>
 
       <div class="catalog-tools">
@@ -141,7 +154,6 @@
       <p class="results-count" id="resultsCount" aria-live="polite">Showing 34 designs</p>
       <div class="product-grid" id="productGrid" aria-live="polite"></div>
       <p class="empty-results" id="emptyResults" hidden>No designs match your search. Try another name or choose “All looks”.</p>
-      <p class="availability-note">Sizes are enquiry options, not live stock confirmation. Please contact us to confirm availability, measurements, pricing and delivery.</p>
     </section>
 
 
@@ -157,6 +169,23 @@
         <article><b>Worldwide shipping</b><p>Worldwide delivery is available subject to courier coverage and destination rules. Shipping charges and estimated transit time are confirmed before payment.</p></article>
       </div>
       <p class="am-small-note" style="margin-top:22px">Made-to-order items are not eligible for change-of-mind returns or exchanges. This does not affect rights and remedies that cannot legally be excluded. Please read our Returns & Refunds Policy before ordering.</p>
+    </section>
+
+
+    <section class="am-experience" aria-labelledby="experience-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE ABAYA MAJESTY EXPERIENCE</p><h2 id="experience-title">An expression of <em>elegance</em></h2></div>
+        <p>Thoughtful details that shape the way we approach modest fashion.</p>
+      </div>
+      <div class="am-experience-grid">
+        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Elegance in every detail</h3><p>Explore graceful silhouettes and considered finishing, selected to bring quiet sophistication to your wardrobe.</p></article>
+        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Made for your moments</h3><p>From meaningful celebrations to refined everyday dressing, discover designs for occasions worth remembering.</p></article>
+        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>A fit that feels personal</h3><p>Choose from a broad size range or enquire about custom measurements for a more personal fit.</p></article>
+        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Timeless over trend-led</h3><p>Discover soft neutrals, flowing forms and distinctive details designed to feel graceful beyond a single season.</p></article>
+        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Personal assistance</h3><p>Our team can help with design enquiries, sizing guidance and the details you need before placing an order.</p></article>
+        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Considered from start to finish</h3><p>We aim to make choosing your abaya clear and straightforward, with order details confirmed before production.</p></article>
+      </div>
+      <p class="am-experience-note">These are Abaya Majesty brand highlights, not customer reviews or product ratings.</p>
     </section>
 
     <section class="quote-panel">
@@ -211,6 +240,7 @@
       <div class="modal-product-info">
         <p class="modal-eyebrow">ABAYA MAJESTY · DESIGN DETAILS</p>
         <h2 id="modalTitle"></h2>
+        <div class="product-stars modal-stars" aria-label="Decorative five-star brand motif; not a customer rating"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
         <p class="modal-description" id="modalDescription"></p>
         <div class="modal-divider"></div>
         <form id="sizeForm">
@@ -341,19 +371,20 @@
         image.alt = product.name;
         image.loading = "lazy";
         image.onerror = () => { image.closest(".product-photo").classList.add("image-missing"); image.alt = "Image unavailable"; };
-        const number = document.createElement("span");
-        number.className = "look-number";
-        number.textContent = `LOOK ${String(index + 1).padStart(2, "0")}`;
-        button.append(image, number);
+        button.append(image);
 
         const info = document.createElement("div");
         info.className = "product-info";
         const copy = document.createElement("div");
         const title = document.createElement("h3");
         title.textContent = product.name;
+        const stars = document.createElement("div");
+        stars.className = "product-stars";
+        stars.setAttribute("aria-label", "Decorative five-star brand motif; not a customer rating");
+        stars.innerHTML = '<span aria-hidden="true">★ ★ ★ ★ ★</span>';
         const short = document.createElement("p");
         short.textContent = product.short;
-        copy.append(title, short);
+        copy.append(title, stars, short);
         const enquire = document.createElement("button");
         enquire.className = "enquire-link";
         enquire.type = "button";
@@ -516,8 +547,7 @@
       const sizeText = chosen.value === "Custom"
         ? `Custom size / measurements: ${customSizeInput.value.trim()}`
         : `Requested size: ${chosen.value}`;
-      const lookNumber = String(products.indexOf(selectedProduct) + 1).padStart(2, "0");
-      const message = `Hello Abaya Majesty, I am interested in ${selectedProduct.name} (Look ${lookNumber}). ${sizeText}. Please confirm price, availability, fit and ordering details.`;
+      const message = `Hello Abaya Majesty, I am interested in ${selectedProduct.name}. ${sizeText}. Please confirm price, availability, fit and ordering details.`;
       const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     });
