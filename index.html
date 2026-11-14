@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Discover Abaya Majesty: refined modest fashion, elegant abayas and occasionwear.">
+  <meta name="description" content="Abaya Majesty manufactures elegant abayas for retail customers, wholesale partners and international bulk orders.">
   <meta name="theme-color" content="#f7f5ef">
   <meta property="og:title" content="Abaya Majesty | The Abaya Collection">
   <meta property="og:description" content="Discover refined modest fashion and made-to-order abayas from Abaya Majesty.">
@@ -15,11 +15,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
 
   <style>
-    .am-ordering{padding:76px 6%;background:#f2eee7;color:#3e2b22}
-    .am-ordering .am-order-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:28px}
-    .am-ordering article{background:#fffdfa;border:1px solid #e5ddd1;border-radius:18px;padding:24px}
-    .am-ordering article b{display:block;font-family:'Playfair Display',serif;font-size:21px;margin:0 0 10px}
-    .am-ordering article p{margin:0;line-height:1.65;color:#716a62}
     .size-options{display:flex;flex-wrap:wrap;gap:9px}
     .size-chart-trigger{display:inline-flex;align-items:center;gap:8px;margin:15px 0 8px;padding:0;border:0;background:transparent;color:#5b4638;text-decoration:underline;text-underline-offset:4px;font:inherit;cursor:pointer}
     .size-chart-modal{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.78)}
@@ -35,22 +30,7 @@
     .am-footer-columns a{display:block;margin:10px 0;color:inherit;text-decoration:none;opacity:.88}
     .am-footer-columns a:hover,.am-social a:hover{text-decoration:underline}
     .am-small-note{font-size:13px;line-height:1.6;opacity:.8}
-    @media(max-width:760px){.am-ordering .am-order-grid{grid-template-columns:1fr 1fr}.am-footer-columns{grid-template-columns:1fr;gap:18px}}
-    @media(max-width:420px){.am-ordering .am-order-grid{grid-template-columns:1fr}}
 
-    .product-stars{display:flex;align-items:center;margin:8px 0 7px;color:#b39360;font-size:15px;letter-spacing:2px;line-height:1}
-    .modal-stars{font-size:18px;margin:0 0 14px}
-    .product-stars span{display:inline-block;text-shadow:0 1px 0 rgba(179,147,96,.12)}
-    .am-experience{padding:78px 6%;background:#f8f6f1;color:#3e2b22}
-    .am-experience .section-heading{margin-bottom:30px}
-    .am-experience-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-    .am-experience-card{background:#fffdfa;border:1px solid #e7dfd3;border-radius:16px;padding:26px 24px;min-height:190px;box-shadow:0 8px 28px rgba(55,42,30,.035)}
-    .am-experience-card .ornament{color:#b39360;font-size:18px;letter-spacing:4px;margin-bottom:15px}
-    .am-experience-card h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;margin:0 0 10px;color:#3e2b22}
-    .am-experience-card p{margin:0;color:#716a62;line-height:1.7}
-    .am-experience-note{font-size:12px;color:#81776b;margin-top:18px}
-    @media(max-width:760px){.am-experience-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:480px){.am-experience-grid{grid-template-columns:1fr}}
     /* Clear and consistent selected filter state */
     .filter-row .filter[aria-pressed="true"]{background:#29251f!important;color:#fff!important;border-color:#29251f!important;box-shadow:0 0 0 2px #c5a36b!important}
     .filter-row .filter[aria-pressed="false"]{background:transparent;color:#5b5147;border-color:#d9d0c3;box-shadow:none}
@@ -59,7 +39,25 @@
     .catalog-sort{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:12px 0 4px;color:#746b61;font-size:13px}
     .catalog-sort select{border:1px solid #ded5c8;border-radius:30px;padding:9px 14px;background:#fffdfa;color:#3e342c;font:inherit}
     @media(max-width:600px){.catalog-sort{justify-content:flex-start;margin-top:14px}}
-  </style>
+  
+    .am-business-intro{padding:82px 6%;background:#f4f0e8;color:#3e2b22}
+    .am-business-heading{max-width:700px;margin:0 auto 36px;text-align:center}
+    .am-business-heading h2{font:400 clamp(36px,5vw,58px)/1.12 'Playfair Display',serif;margin:12px 0 16px}
+    .am-business-heading h2 em{color:#b39360}
+    .am-business-heading>p:last-child{color:#746b61;line-height:1.8;max-width:590px;margin:0 auto}
+    .am-business-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1200px;margin:auto}
+    .am-business-card{display:flex;flex-direction:column;min-height:250px;padding:30px;background:#fffdfa;border:1px solid #e5ddd1;border-radius:16px;text-decoration:none;color:#3e2b22;transition:transform .25s,box-shadow .25s}
+    .am-business-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(55,42,30,.09)}
+    .am-business-kicker{font-size:10px;letter-spacing:.17em;color:#a17c45}
+    .am-business-card h3{font:400 27px 'Playfair Display',serif;margin:18px 0 10px}
+    .am-business-card p{font-size:14px;line-height:1.75;color:#746b61;margin:0 0 22px}
+    .am-business-card b{margin-top:auto;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;color:#5b4638}
+    .am-proof-strip{display:flex;justify-content:center;gap:clamp(35px,9vw,130px);padding:34px 6%;background:#29251f;color:#fff;text-align:center}
+    .am-proof-strip div{display:flex;flex-direction:column;gap:7px}
+    .am-proof-strip strong{font:400 clamp(25px,3vw,36px) 'Playfair Display',serif;color:#d0b17b}
+    .am-proof-strip span{font-size:9px;letter-spacing:.18em;color:#e8dfd2}
+    @media(max-width:800px){.am-business-grid{grid-template-columns:1fr}.am-business-card{min-height:0}.am-proof-strip{gap:22px;flex-wrap:wrap}.nav-links{max-height:80vh;overflow:auto}}
+</style>
 
 </head>
 <body>
@@ -72,7 +70,7 @@
     </a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">☰</button>
     <nav class="nav-links" id="mainNav" aria-label="Main navigation">
-      <a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#about">Our story</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">Shop</a><a href="wholesale.html">Wholesale</a><a href="bulk-orders.html">Bulk orders</a><a href="#about">Our story</a><a href="#contact">Contact</a>
     </nav>
     <a class="header-cta" href="https://wa.me/971505540491" target="_blank" rel="noopener">Enquire now <span>↗</span></a>
   </header>
@@ -84,7 +82,7 @@
       <div class="hero-content">
         <p class="eyebrow light">THE ART OF MODEST ELEGANCE</p>
         <h1>Elegance in<br><em>Every Detail.</em></h1>
-        <p class="hero-copy">Discover thoughtfully selected occasionwear and modest silhouettes for moments worth remembering.</p>
+        <p class="hero-copy">Discover abayas designed and made by Abaya Majesty, with retail, wholesale and international bulk-order enquiries.</p>
         <a class="button button-gold" href="#new-arrivals">Explore the collection <span>→</span></a>
       </div>
       <div class="hero-caption">THE ABAYA MAJESTY COLLECTION · 2026</div>
@@ -93,7 +91,26 @@
     <section class="intro section-pad" id="about">
       <p class="eyebrow">MODESTY · ELEGANCE · GRACE</p>
       <h2>Quiet luxury.<br><em>Unforgettable presence.</em></h2>
-      <p>Abaya Majesty celebrates graceful dressing through fluid forms, refined details and a palette inspired by timeless neutrals. Explore the latest looks and contact us for availability and enquiries.</p>
+      <p>Abaya Majesty is an abaya manufacturer creating modest fashion for individual customers, boutiques and wholesale partners. Explore our collection for retail purchases or speak with our team about wholesale and international bulk orders.</p>
+    </section>
+
+    <section class="am-business-intro" aria-labelledby="business-title">
+      <div class="am-business-heading">
+        <p class="eyebrow">ONE BRAND · MULTIPLE WAYS TO WORK WITH US</p>
+        <h2 id="business-title">Made by us.<br><em>Chosen around the world.</em></h2>
+        <p>From a single abaya to wholesale partnerships and larger international orders, discover how to work with Abaya Majesty.</p>
+      </div>
+      <div class="am-business-grid">
+        <a class="am-business-card" href="#new-arrivals"><span class="am-business-kicker">FOR INDIVIDUAL CUSTOMERS</span><h3>Shop the collection</h3><p>Explore individual designs, choose your preferred size and enquire directly with our team.</p><b>Explore abayas <span>↗</span></b></a>
+        <a class="am-business-card" href="wholesale.html"><span class="am-business-kicker">FOR BOUTIQUES & RETAILERS</span><h3>Wholesale partnerships</h3><p>Discuss wholesale opportunities and collections manufactured by Abaya Majesty.</p><b>Discover wholesale <span>↗</span></b></a>
+        <a class="am-business-card" href="bulk-orders.html"><span class="am-business-kicker">FOR LARGER REQUIREMENTS</span><h3>International bulk orders</h3><p>Talk to us about larger quantities, destination requirements and a tailored quotation.</p><b>Enquire about bulk orders <span>↗</span></b></a>
+      </div>
+    </section>
+
+    <section class="am-proof-strip" aria-label="Abaya Majesty business highlights">
+      <div><strong>1,500+</strong><span>ABAYAS SOLD</span></div>
+      <div><strong>In-house</strong><span>ABAYA MANUFACTURING</span></div>
+      <div><strong>Worldwide</strong><span>ORDER ENQUIRIES</span></div>
     </section>
 
     <section class="signature-section section-pad" aria-labelledby="signature-title">
@@ -157,37 +174,6 @@
     </section>
 
 
-    <section class="am-ordering" id="ordering" aria-labelledby="ordering-title">
-      <div class="section-heading">
-        <div><p class="eyebrow">MADE WITH CARE</p><h2 id="ordering-title">The <em>ordering experience</em></h2></div>
-        <p>Please review the order process and policies before confirming your order.</p>
-      </div>
-      <div class="am-order-grid">
-        <article><b>Made to order</b><p>Each abaya is prepared after your design, size and order details are confirmed.</p></article>
-        <article><b>Full payment first</b><p>100% payment is required before production begins. We confirm the order details with you before payment.</p></article>
-        <article><b>14-day production</b><p>Allow up to 14 days for production after payment and confirmation. Courier transit time is additional.</p></article>
-        <article><b>Worldwide shipping</b><p>Worldwide delivery is available subject to courier coverage and destination rules. Shipping charges and estimated transit time are confirmed before payment.</p></article>
-      </div>
-      <p class="am-small-note" style="margin-top:22px">Made-to-order items are not eligible for change-of-mind returns or exchanges. This does not affect rights and remedies that cannot legally be excluded. Please read our Returns & Refunds Policy before ordering.</p>
-    </section>
-
-
-    <section class="am-experience" aria-labelledby="experience-title">
-      <div class="section-heading">
-        <div><p class="eyebrow">THE ABAYA MAJESTY EXPERIENCE</p><h2 id="experience-title">An expression of <em>elegance</em></h2></div>
-        <p>Thoughtful details that shape the way we approach modest fashion.</p>
-      </div>
-      <div class="am-experience-grid">
-        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Elegance in every detail</h3><p>Explore graceful silhouettes and considered finishing, selected to bring quiet sophistication to your wardrobe.</p></article>
-        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Made for your moments</h3><p>From meaningful celebrations to refined everyday dressing, discover designs for occasions worth remembering.</p></article>
-        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>A fit that feels personal</h3><p>Choose from a broad size range or enquire about custom measurements for a more personal fit.</p></article>
-        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Timeless over trend-led</h3><p>Discover soft neutrals, flowing forms and distinctive details designed to feel graceful beyond a single season.</p></article>
-        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Personal assistance</h3><p>Our team can help with design enquiries, sizing guidance and the details you need before placing an order.</p></article>
-        <article class="am-experience-card"><div class="ornament" aria-hidden="true">✦ ✦ ✦</div><h3>Considered from start to finish</h3><p>We aim to make choosing your abaya clear and straightforward, with order details confirmed before production.</p></article>
-      </div>
-      <p class="am-experience-note">These are Abaya Majesty brand highlights, not customer reviews or product ratings.</p>
-    </section>
-
     <section class="quote-panel">
       <p class="eyebrow light">A NOTE FROM ABAYA MAJESTY</p>
       <h2>Grace is never<br><em>out of style.</em></h2>
@@ -220,7 +206,7 @@
       </a>
     </div>
     <div class="am-footer-columns">
-      <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#ordering">How to order</a><a href="#contact">Contact</a></div>
+      <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">Shop abayas</a><a href="wholesale.html">Wholesale</a><a href="bulk-orders.html">Bulk orders</a><a href="#contact">Contact</a></div>
       <div><h3>Customer Policies</h3><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a><a href="policies/Abaya_Majesty_Returns_and_Refunds_Policy.pdf" target="_blank" rel="noopener">Returns & Refunds Policy</a><a href="policies/Abaya_Majesty_Shipping_and_Delivery_Policy.pdf" target="_blank" rel="noopener">Shipping & Delivery Policy</a></div>
       <div><h3>Contact Info</h3><a href="mailto:abayamajesty0312@gmail.com">abayamajesty0312@gmail.com</a><a href="https://wa.me/971505540491" target="_blank" rel="noopener">WhatsApp: +971 50 554 0491</a><span>India</span></div>
     </div>
@@ -240,7 +226,6 @@
       <div class="modal-product-info">
         <p class="modal-eyebrow">ABAYA MAJESTY · DESIGN DETAILS</p>
         <h2 id="modalTitle"></h2>
-        <div class="product-stars modal-stars" aria-label="Decorative five-star brand motif; not a customer rating"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
         <p class="modal-description" id="modalDescription"></p>
         <div class="modal-divider"></div>
         <form id="sizeForm">
@@ -378,13 +363,9 @@
         const copy = document.createElement("div");
         const title = document.createElement("h3");
         title.textContent = product.name;
-        const stars = document.createElement("div");
-        stars.className = "product-stars";
-        stars.setAttribute("aria-label", "Decorative five-star brand motif; not a customer rating");
-        stars.innerHTML = '<span aria-hidden="true">★ ★ ★ ★ ★</span>';
         const short = document.createElement("p");
         short.textContent = product.short;
-        copy.append(title, stars, short);
+        copy.append(title, short);
         const enquire = document.createElement("button");
         enquire.className = "enquire-link";
         enquire.type = "button";
