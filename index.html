@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Abaya Majesty manufactures elegant abayas for retail customers, wholesale partners and international bulk orders.">
+  <meta name="description" content="Discover Abaya Majesty: refined modest fashion, elegant abayas and occasionwear.">
   <meta name="theme-color" content="#f7f5ef">
-  <meta property="og:title" content="Abaya Majesty | The Abaya Collection">
+  <meta property="og:title" content="Abaya Majesty | Modesty · Elegance · Grace">
   <meta property="og:description" content="Discover refined modest fashion and made-to-order abayas from Abaya Majesty.">
   <meta property="og:type" content="website">
   <title>Abaya Majesty | Modesty · Elegance · Grace</title>
@@ -15,9 +15,14 @@
   <link rel="stylesheet" href="assets/css/style.css">
 
   <style>
+    .am-ordering{padding:76px 6%;background:#f2eee7;color:#3e2b22}
+    .am-ordering .am-order-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:28px}
+    .am-ordering article{background:#fffdfa;border:1px solid #e5ddd1;border-radius:18px;padding:24px}
+    .am-ordering article b{display:block;font-family:'Playfair Display',serif;font-size:21px;margin:0 0 10px}
+    .am-ordering article p{margin:0;line-height:1.65;color:#716a62}
     .size-options{display:flex;flex-wrap:wrap;gap:9px}
     .size-chart-trigger{display:inline-flex;align-items:center;gap:8px;margin:15px 0 8px;padding:0;border:0;background:transparent;color:#5b4638;text-decoration:underline;text-underline-offset:4px;font:inherit;cursor:pointer}
-    .size-chart-modal{position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.78)}
+    .size-chart-modal{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.78)}
     .size-chart-modal.active{display:flex}
     .size-chart-dialog{position:relative;width:min(100%,1000px);max-height:92vh;overflow:auto;background:#fbf9f4;border-radius:18px;padding:18px;box-shadow:0 20px 70px rgba(0,0,0,.3)}
     .size-chart-dialog img{display:block;width:100%;height:auto}
@@ -30,58 +35,9 @@
     .am-footer-columns a{display:block;margin:10px 0;color:inherit;text-decoration:none;opacity:.88}
     .am-footer-columns a:hover,.am-social a:hover{text-decoration:underline}
     .am-small-note{font-size:13px;line-height:1.6;opacity:.8}
-
-    /* Clear and consistent selected filter state */
-    .filter-row .filter[aria-pressed="true"]{background:#29251f!important;color:#fff!important;border-color:#29251f!important;box-shadow:0 0 0 2px #c5a36b!important}
-    .filter-row .filter[aria-pressed="false"]{background:transparent;color:#5b5147;border-color:#d9d0c3;box-shadow:none}
-    .filter-row .filter:focus{outline:none}
-    .filter-row .filter:focus-visible{outline:2px solid #b9965b;outline-offset:4px}
-    .catalog-sort{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:12px 0 4px;color:#746b61;font-size:13px}
-    .catalog-sort select{border:1px solid #ded5c8;border-radius:30px;padding:9px 14px;background:#fffdfa;color:#3e342c;font:inherit}
-    @media(max-width:600px){.catalog-sort{justify-content:flex-start;margin-top:14px}}
-  
-    .am-business-intro{padding:82px 6%;background:#f4f0e8;color:#3e2b22}
-    .am-business-heading{max-width:700px;margin:0 auto 36px;text-align:center}
-    .am-business-heading h2{font:400 clamp(36px,5vw,58px)/1.12 'Playfair Display',serif;margin:12px 0 16px}
-    .am-business-heading h2 em{color:#b39360}
-    .am-business-heading>p:last-child{color:#746b61;line-height:1.8;max-width:590px;margin:0 auto}
-    .am-business-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1200px;margin:auto}
-    .am-business-card{display:flex;flex-direction:column;min-height:250px;padding:30px;background:#fffdfa;border:1px solid #e5ddd1;border-radius:16px;text-decoration:none;color:#3e2b22;transition:transform .25s,box-shadow .25s}
-    .am-business-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(55,42,30,.09)}
-    .am-business-kicker{font-size:10px;letter-spacing:.17em;color:#a17c45}
-    .am-business-card h3{font:400 27px 'Playfair Display',serif;margin:18px 0 10px}
-    .am-business-card p{font-size:14px;line-height:1.75;color:#746b61;margin:0 0 22px}
-    .am-business-card b{margin-top:auto;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;color:#5b4638}
-    .am-proof-strip{display:flex;justify-content:center;gap:clamp(35px,9vw,130px);padding:34px 6%;background:#29251f;color:#fff;text-align:center}
-    .am-proof-strip div{display:flex;flex-direction:column;gap:7px}
-    .am-proof-strip strong{font:400 clamp(25px,3vw,36px) 'Playfair Display',serif;color:#d0b17b}
-    .am-proof-strip span{font-size:9px;letter-spacing:.18em;color:#e8dfd2}
-    @media(max-width:800px){.am-business-grid{grid-template-columns:1fr}.am-business-card{min-height:0}.am-proof-strip{gap:22px;flex-wrap:wrap}.nav-links{max-height:80vh;overflow:auto}}
-
-/* Mobile footer: prevent contact details from being clipped */
-@media (max-width: 760px) {
-  .am-footer-columns {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 22px !important;
-    margin: 22px 0 !important;
-  }
-  .am-footer-columns > div {
-    min-width: 0;
-    width: 100%;
-  }
-  .am-footer-columns a,
-  .am-footer-columns span {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: normal;
-    line-height: 1.65;
-  }
-  .am-footer-columns h3 {
-    margin-bottom: 10px;
-  }
-}
-
-</style>
+    @media(max-width:760px){.am-ordering .am-order-grid{grid-template-columns:1fr 1fr}.am-footer-columns{grid-template-columns:1fr;gap:18px}}
+    @media(max-width:420px){.am-ordering .am-order-grid{grid-template-columns:1fr}}
+  </style>
 
 </head>
 <body>
@@ -94,7 +50,7 @@
     </a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">☰</button>
     <nav class="nav-links" id="mainNav" aria-label="Main navigation">
-      <a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">Shop</a><a href="wholesale.html">Wholesale</a><a href="bulk-orders.html">Bulk orders</a><a href="#about">Our story</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#about">Our story</a><a href="#contact">Contact</a>
     </nav>
     <a class="header-cta" href="https://wa.me/971505540491" target="_blank" rel="noopener">Enquire now <span>↗</span></a>
   </header>
@@ -106,7 +62,7 @@
       <div class="hero-content">
         <p class="eyebrow light">THE ART OF MODEST ELEGANCE</p>
         <h1>Elegance in<br><em>Every Detail.</em></h1>
-        <p class="hero-copy">Discover abayas designed and made by Abaya Majesty, with retail, wholesale and international bulk-order enquiries.</p>
+        <p class="hero-copy">Discover thoughtfully selected occasionwear and modest silhouettes for moments worth remembering.</p>
         <a class="button button-gold" href="#new-arrivals">Explore the collection <span>→</span></a>
       </div>
       <div class="hero-caption">THE ABAYA MAJESTY COLLECTION · 2026</div>
@@ -115,26 +71,7 @@
     <section class="intro section-pad" id="about">
       <p class="eyebrow">MODESTY · ELEGANCE · GRACE</p>
       <h2>Quiet luxury.<br><em>Unforgettable presence.</em></h2>
-      <p>Abaya Majesty is an abaya manufacturer creating modest fashion for individual customers, boutiques and wholesale partners. Explore our collection for retail purchases or speak with our team about wholesale and international bulk orders.</p>
-    </section>
-
-    <section class="am-business-intro" aria-labelledby="business-title">
-      <div class="am-business-heading">
-        <p class="eyebrow">ONE BRAND · MULTIPLE WAYS TO WORK WITH US</p>
-        <h2 id="business-title">Made by us.<br><em>Chosen around the world.</em></h2>
-        <p>From a single abaya to wholesale partnerships and larger international orders, discover how to work with Abaya Majesty.</p>
-      </div>
-      <div class="am-business-grid">
-        <a class="am-business-card" href="#new-arrivals"><span class="am-business-kicker">FOR INDIVIDUAL CUSTOMERS</span><h3>Shop the collection</h3><p>Explore individual designs, choose your preferred size and enquire directly with our team.</p><b>Explore abayas <span>↗</span></b></a>
-        <a class="am-business-card" href="wholesale.html"><span class="am-business-kicker">FOR BOUTIQUES & RETAILERS</span><h3>Wholesale partnerships</h3><p>Discuss wholesale opportunities and collections manufactured by Abaya Majesty.</p><b>Discover wholesale <span>↗</span></b></a>
-        <a class="am-business-card" href="bulk-orders.html"><span class="am-business-kicker">FOR LARGER REQUIREMENTS</span><h3>International bulk orders</h3><p>Talk to us about larger quantities, destination requirements and a tailored quotation.</p><b>Enquire about bulk orders <span>↗</span></b></a>
-      </div>
-    </section>
-
-    <section class="am-proof-strip" aria-label="Abaya Majesty business highlights">
-      <div><strong>1,500+</strong><span>ABAYAS SOLD</span></div>
-      <div><strong>In-house</strong><span>ABAYA MANUFACTURING</span></div>
-      <div><strong>Worldwide</strong><span>ORDER ENQUIRIES</span></div>
+      <p>Abaya Majesty celebrates graceful dressing through fluid forms, refined details and a palette inspired by timeless neutrals. Explore the latest looks and contact us for availability and enquiries.</p>
     </section>
 
     <section class="signature-section section-pad" aria-labelledby="signature-title">
@@ -158,22 +95,23 @@
       <div class="collection-cards">
         <a href="#new-arrivals" class="collection-card" data-jump-filter="bridal">
           <img src="assets/look-31-ivory-bridal-rose.jpg" alt="Ivory bridal abaya with bouquet" loading="lazy">
-          <span>01 / Bridal & occasion</span><b>Discover collection ↗</b>
+          <span>01 / The Bridal Atelier</span><b>Discover collection ↗</b>
         </a>
-        <a href="#new-arrivals" class="collection-card" data-jump-filter="neutral">
+        <a href="#new-arrivals" class="collection-card" data-jump-filter="statement">
           <img src="assets/look-26-taupe-crystal-kaftan.jpg" alt="Taupe embellished kaftan" loading="lazy">
-          <span>02 / Statement silhouettes</span><b>Discover collection ↗</b>
+          <span>02 / Signature Silhouettes</span><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card" data-jump-filter="ivory">
           <img src="assets/look-27-ivory-blush-embellished-cape.jpg" alt="Ivory and blush embellished cape" loading="lazy">
-          <span>03 / Soft neutrals</span><b>Discover collection ↗</b>
+          <span>03 / Earth & Elegance</span><b>Discover collection ↗</b>
         </a>
       </div>
     </section>
 
     <section class="arrivals section-pad" id="new-arrivals">
       <div class="section-heading">
-        <div><p class="eyebrow">EXPLORE THE COLLECTION</p><h2>The <em>Abaya Collection</em></h2></div>
+        <div><p class="eyebrow">THE LATEST SELECTION</p><h2>The <em>Abaya Collection</em></h2></div>
+        <p>Discover 34 distinctive designs. Select a piece to explore its details, choose your size and view the size chart.</p>
       </div>
 
       <div class="catalog-tools">
@@ -183,20 +121,38 @@
           <span aria-hidden="true">⌕</span>
         </label>
         <div class="filter-row" role="group" aria-label="Filter looks">
-          <button class="filter active" type="button" data-filter="all" aria-pressed="true">All looks</button>
-          <button class="filter" type="button" data-filter="bridal" aria-pressed="false">Bridal</button>
-          <button class="filter" type="button" data-filter="ivory" aria-pressed="false">Ivory</button>
-          <button class="filter" type="button" data-filter="neutral" aria-pressed="false">Neutrals</button>
-          <button class="filter" type="button" data-filter="occasion" aria-pressed="false">Occasionwear</button>
+          <button class="filter active" type="button" data-filter="all" aria-pressed="true">The Complete Collection</button>
+          <button class="filter" type="button" data-filter="bridal" aria-pressed="false">The Bridal Atelier</button>
+          <button class="filter" type="button" data-filter="ivory" aria-pressed="false">The Ivory Collection</button>
+          <button class="filter" type="button" data-filter="neutral" aria-pressed="false">Earth & Elegance</button>
+          <button class="filter" type="button" data-filter="occasion" aria-pressed="false">The Occasion Atelier</button>
+          <button class="filter" type="button" data-filter="statement" aria-pressed="false">The Statement Collection</button>
         </div>
-        <div class="catalog-sort"><label for="catalogSort">Sort designs:</label><select id="catalogSort"><option value="newest" selected>Newest first</option><option value="oldest">Oldest first</option><option value="name">Name A–Z</option></select></div>
+        <label class="catalog-sort" for="catalogSort">Sort by
+          <select id="catalogSort"><option value="newest">Newest first</option><option value="name">Name A–Z</option></select>
+        </label>
       </div>
 
       <p class="results-count" id="resultsCount" aria-live="polite">Showing 34 designs</p>
       <div class="product-grid" id="productGrid" aria-live="polite"></div>
       <p class="empty-results" id="emptyResults" hidden>No designs match your search. Try another name or choose “All looks”.</p>
+      <p class="availability-note">Sizes are enquiry options, not live stock confirmation. Please contact us to confirm availability, measurements, pricing and delivery.</p>
     </section>
 
+
+    <section class="am-ordering" id="ordering" aria-labelledby="ordering-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">MADE WITH CARE</p><h2 id="ordering-title">The <em>ordering experience</em></h2></div>
+        <p>Please review the order process and policies before confirming your order.</p>
+      </div>
+      <div class="am-order-grid">
+        <article><b>Made to order</b><p>Each abaya is prepared after your design, size and order details are confirmed.</p></article>
+        <article><b>Full payment first</b><p>100% payment is required before production begins. We confirm the order details with you before payment.</p></article>
+        <article><b>14-day production</b><p>Allow up to 14 days for production after payment and confirmation. Courier transit time is additional.</p></article>
+        <article><b>Worldwide shipping</b><p>Worldwide delivery is available subject to courier coverage and destination rules. Shipping charges and estimated transit time are confirmed before payment.</p></article>
+      </div>
+      <p class="am-small-note" style="margin-top:22px">Made-to-order items are not eligible for change-of-mind returns or exchanges. This does not affect rights and remedies that cannot legally be excluded. Please read our Returns & Refunds Policy before ordering.</p>
+    </section>
 
     <section class="quote-panel">
       <p class="eyebrow light">A NOTE FROM ABAYA MAJESTY</p>
@@ -230,7 +186,7 @@
       </a>
     </div>
     <div class="am-footer-columns">
-      <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">Shop abayas</a><a href="wholesale.html">Wholesale</a><a href="bulk-orders.html">Bulk orders</a><a href="#contact">Contact</a></div>
+      <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#ordering">How to order</a><a href="#contact">Contact</a></div>
       <div><h3>Customer Policies</h3><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a><a href="policies/Abaya_Majesty_Returns_and_Refunds_Policy.pdf" target="_blank" rel="noopener">Returns & Refunds Policy</a><a href="policies/Abaya_Majesty_Shipping_and_Delivery_Policy.pdf" target="_blank" rel="noopener">Shipping & Delivery Policy</a></div>
       <div><h3>Contact Info</h3><a href="mailto:abayamajesty0312@gmail.com">abayamajesty0312@gmail.com</a><a href="https://wa.me/971505540491" target="_blank" rel="noopener">WhatsApp: +971 50 554 0491</a><span>India</span></div>
     </div>
@@ -296,40 +252,40 @@
     "use strict";
     const WHATSAPP_NUMBER = "971505540491";
     const products = [
-      {name:"Taupe Ruffle Statement",img:"look-01-taupe-ruffle.jpg",description:"A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing.",tags:"neutral occasion",short:"Flowing pleats with dramatic ruffle sleeves."},
-      {name:"Ivory Embellished Silhouette",img:"look-02-ivory-satin.jpg",description:"An elegant ivory design with a soft satin-inspired finish and delicate embellishment.",tags:"ivory occasion",short:"Soft satin-inspired ivory with delicate detail."},
-      {name:"Pearl Sleeve Elegance",img:"look-03-pearl-sleeve.jpg",description:"A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing.",tags:"ivory occasion bridal",short:"High neckline with pearl-inspired sleeves."},
-      {name:"Blush Cape Grace",img:"look-04-blush-cape.jpg",description:"A soft blush-toned design with an elegant cape overlay and graceful movement.",tags:"neutral occasion",short:"Soft blush with a graceful cape overlay."},
-      {name:"Ivory Cape Silhouette",img:"look-05-ivory-cape.jpg",description:"A timeless ivory design featuring clean lines and beautifully flowing cape sleeves.",tags:"ivory neutral",short:"Timeless ivory with flowing cape sleeves."},
-      {name:"Mocha Draped Evening",img:"look-06-mocha-drape.jpg",description:"A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves.",tags:"neutral occasion",short:"Sculptural draping in a rich mocha tone."},
-      {name:"Pearl Bridal Grace",img:"look-07-pearl-bridal.jpg",description:"An elegant bridal-inspired ivory look with delicate pearl-inspired details.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with pearl details."},
-      {name:"Ivory Bloom",img:"look-08-ivory-bloom.jpg",description:"A minimal ivory silhouette with soft draping and understated elegance.",tags:"ivory neutral",short:"Minimal ivory with soft, fluid draping."},
-      {name:"Bridal White Grace",img:"look-09-bridal-white.jpg",description:"A flowing white bridal silhouette with a refined, softly draped finish.",tags:"ivory bridal occasion",short:"A softly draped bridal-white silhouette."},
-      {name:"Ivory Satin Detail",img:"look-10-ivory-satin-detail.jpg",description:"A luminous ivory occasion silhouette with a fitted satin-inspired finish.",tags:"ivory bridal occasion",short:"Luminous ivory with a satin-inspired finish."},
-      {name:"Champagne Cape Elegance",img:"look-11-champagne-cape.jpg",description:"A soft champagne-toned design with a graceful cape overlay.",tags:"neutral occasion",short:"Champagne tone with a flowing cape overlay."},
-      {name:"Navy Cape Abaya",img:"look-12-navy-cape.jpg",description:"A deep navy cape-style abaya with a relaxed, elegant silhouette.",tags:"occasion",short:"A relaxed, elegant navy cape silhouette."},
-      {name:"Powder Blue Flow",img:"look-13-powder-blue.jpg",description:"A soft powder-blue flowing design for an understated occasion look.",tags:"neutral occasion",short:"Soft powder blue with fluid movement."},
-      {name:"Caramel Drape",img:"look-14-caramel-drape.jpg",description:"A warm caramel-toned draped silhouette with a fluid finish.",tags:"neutral occasion",short:"Warm caramel tone with fluid draping."},
-      {name:"Berry Evening Gown",img:"look-15-berry-evening.jpg",description:"A rich berry-coloured evening design with a graceful draped shape.",tags:"occasion",short:"A rich berry tone for evening occasions."},
-      {name:"Lilac Bridal Cape",img:"look-16-lilac-bridal.jpg",description:"A soft lilac bridal-inspired look with a flowing cape effect.",tags:"bridal occasion",short:"Soft lilac with a flowing cape effect."},
-      {name:"Stone Grey Abaya",img:"look-17-stone-grey.jpg",description:"A muted stone-grey design with a simple, flowing silhouette.",tags:"neutral",short:"Muted stone grey in a simple silhouette."},
-      {name:"Chocolate Embellished",img:"look-18-chocolate-embellished.jpg",description:"A deep chocolate occasion design with embellished detailing.",tags:"neutral occasion",short:"Deep chocolate with refined embellishment."},
-      {name:"Ivory Embellished Cape",img:"look-19-ivory-embellished.jpg",description:"An ivory cape-style design finished with delicate embellishment.",tags:"ivory bridal occasion",short:"An embellished ivory cape-style design."},
-      {name:"Ivory Drape Elegance",img:"look-20-ivory-drape.jpg",description:"A soft ivory draped design with a graceful, fluid silhouette.",tags:"ivory neutral",short:"Soft ivory with a graceful draped silhouette."},
-      {name:"White Bridal Cape",img:"look-21-white-bridal-cape.jpg",description:"A white bridal cape silhouette with a long, flowing finish.",tags:"ivory bridal occasion",short:"A long, flowing white bridal cape."},
-      {name:"Ivory Bridal Embroidery",img:"look-22-ivory-bridal-embroidery.jpg",description:"An ivory bridal-inspired abaya with delicate embroidered detailing.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with embroidered detail."},
-      {name:"Silver Crystal Kaftan",img:"look-23-silver-crystal-kaftan.jpg",description:"A statement silver-toned kaftan with crystal-inspired embellishment.",tags:"occasion",short:"A statement kaftan with crystal-inspired detail."},
-      {name:"Navy Embroidered Abaya",img:"look-24-navy-embroidered.jpg",description:"A deep navy abaya with ornate embroidered detailing.",tags:"occasion",short:"Deep navy with ornate embroidery."},
-      {name:"Blush Embellished Abaya",img:"look-25-blush-embellished.jpg",description:"A blush-toned occasion abaya with scattered embellished details.",tags:"neutral occasion",short:"Blush occasionwear with scattered embellishment."},
-      {name:"Taupe Crystal Kaftan",img:"look-26-taupe-crystal-kaftan.jpg",description:"A flowing taupe kaftan finished with a statement crystal neckline and wide, graceful sleeves.",tags:"neutral occasion",short:"Taupe kaftan with a crystal-embellished neckline."},
-      {name:"Ivory Blush Embellished Cape",img:"look-27-ivory-blush-embellished-cape.jpg",description:"A soft blush satin-inspired dress layered with an ivory embellished cape and delicate crystal motifs.",tags:"ivory bridal occasion",short:"Blush satin-inspired dress with ivory embellished cape."},
-      {name:"Chocolate Pearl Cape",img:"look-28-chocolate-pearl-cape.jpg",description:"A rich chocolate cape with intricate pearl-like embroidery over a softly contrasting ivory base.",tags:"neutral occasion",short:"Chocolate cape with ornate pearl-inspired embroidery."},
-      {name:"Aqua Jewel Cape",img:"look-29-aqua-jewel-cape.jpg",description:"A refreshing aqua cape adorned with jewel-like embellishments, styled over a soft ivory inner layer.",tags:"occasion",short:"Aqua cape with jewel-like embellishments."},
-      {name:"Blush Ombre Fringe",img:"look-30-blush-ombre-fringe.jpg",description:"A romantic blush-to-rose ombre kaftan with flowing panels and statement fringe detailing.",tags:"neutral occasion",short:"Blush ombre with flowing fringe panels."},
-      {name:"Ivory Bridal Rose",img:"look-31-ivory-bridal-rose.jpg",description:"A graceful ivory bridal silhouette with a soft cape finish and bouquet-ready elegance.",tags:"ivory bridal occasion",short:"Elegant ivory bridal look with a flowing cape."},
-      {name:"Dark Chocolate Drape",img:"look-32-dark-chocolate-drape.jpg",description:"A deep chocolate modest silhouette with a dramatic, flowing drape and understated finish.",tags:"neutral occasion",short:"Deep chocolate with a dramatic flowing drape."},
-      {name:"White Bridal Train",img:"look-33-white-bridal-train.jpg",description:"A statement white bridal design with an extended train and sculptural, flowing layers.",tags:"ivory bridal occasion",short:"White bridal design with an elegant extended train."},
-      {name:"Navy Bridal Cape",img:"look-34-navy-bridal-cape.jpg",description:"A deep navy cape-style occasion look with ornate detailing and a contrasting ivory inner layer.",tags:"occasion bridal",short:"Navy embellished cape with an ivory contrast."}
+      {name:"The Amara Ruffle",img:"look-01-taupe-ruffle.jpg",description:"A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing.",tags:"neutral occasion statement",short:"Flowing pleats with dramatic ruffle sleeves."},
+      {name:"The Celeste Satin",img:"look-02-ivory-satin.jpg",description:"An elegant ivory design with a soft satin-inspired finish and delicate embellishment.",tags:"ivory occasion",short:"Soft satin-inspired ivory with delicate detail."},
+      {name:"The Pearl Étoile",img:"look-03-pearl-sleeve.jpg",description:"A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing.",tags:"ivory occasion bridal statement",short:"High neckline with pearl-inspired sleeves."},
+      {name:"The Roselle Cape",img:"look-04-blush-cape.jpg",description:"A soft blush-toned design with an elegant cape overlay and graceful movement.",tags:"neutral occasion",short:"Soft blush with a graceful cape overlay."},
+      {name:"The Elara Cape",img:"look-05-ivory-cape.jpg",description:"A timeless ivory design featuring clean lines and beautifully flowing cape sleeves.",tags:"ivory neutral",short:"Timeless ivory with flowing cape sleeves."},
+      {name:"The Sienna Drape",img:"look-06-mocha-drape.jpg",description:"A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves.",tags:"neutral occasion statement",short:"Sculptural draping in a rich mocha tone."},
+      {name:"The Aveline Pearl",img:"look-07-pearl-bridal.jpg",description:"An elegant bridal-inspired ivory look with delicate pearl-inspired details.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with pearl details."},
+      {name:"The Ivory Serenade",img:"look-08-ivory-bloom.jpg",description:"A minimal ivory silhouette with soft draping and understated elegance.",tags:"ivory neutral",short:"Minimal ivory with soft, fluid draping."},
+      {name:"The Bianca Grace",img:"look-09-bridal-white.jpg",description:"A flowing white bridal silhouette with a refined, softly draped finish.",tags:"ivory bridal occasion",short:"A softly draped bridal-white silhouette."},
+      {name:"The Lumière Satin",img:"look-10-ivory-satin-detail.jpg",description:"A luminous ivory occasion silhouette with a fitted satin-inspired finish.",tags:"ivory bridal occasion",short:"Luminous ivory with a satin-inspired finish."},
+      {name:"The Champagne Aura",img:"look-11-champagne-cape.jpg",description:"A soft champagne-toned design with a graceful cape overlay.",tags:"neutral occasion",short:"Champagne tone with a flowing cape overlay."},
+      {name:"The Noelle Navy",img:"look-12-navy-cape.jpg",description:"A deep navy cape-style abaya with a relaxed, elegant silhouette.",tags:"occasion",short:"A relaxed, elegant navy cape silhouette."},
+      {name:"The Celestia Blue",img:"look-13-powder-blue.jpg",description:"A soft powder-blue flowing design for an understated occasion look.",tags:"neutral occasion",short:"Soft powder blue with fluid movement."},
+      {name:"The Caramel Muse",img:"look-14-caramel-drape.jpg",description:"A warm caramel-toned draped silhouette with a fluid finish.",tags:"neutral occasion",short:"Warm caramel tone with fluid draping."},
+      {name:"The Amethyst Rose",img:"look-15-berry-evening.jpg",description:"A rich berry-coloured evening design with a graceful draped shape.",tags:"occasion",short:"A rich berry tone for evening occasions."},
+      {name:"The Lilac Reverie",img:"look-16-lilac-bridal.jpg",description:"A soft lilac bridal-inspired look with a flowing cape effect.",tags:"bridal occasion",short:"Soft lilac with a flowing cape effect."},
+      {name:"The Stone Élise",img:"look-17-stone-grey.jpg",description:"A muted stone-grey design with a simple, flowing silhouette.",tags:"neutral",short:"Muted stone grey in a simple silhouette."},
+      {name:"The Cacao Belle",img:"look-18-chocolate-embellished.jpg",description:"A deep chocolate occasion design with embellished detailing.",tags:"neutral occasion statement",short:"Deep chocolate with refined embellishment."},
+      {name:"The Opaline Cape",img:"look-19-ivory-embellished.jpg",description:"An ivory cape-style design finished with delicate embellishment.",tags:"ivory bridal occasion",short:"An embellished ivory cape-style design."},
+      {name:"The Alina Drape",img:"look-20-ivory-drape.jpg",description:"A soft ivory draped design with a graceful, fluid silhouette.",tags:"ivory neutral",short:"Soft ivory with a graceful draped silhouette."},
+      {name:"The Seraphina Cape",img:"look-21-white-bridal-cape.jpg",description:"A white bridal cape silhouette with a long, flowing finish.",tags:"ivory bridal occasion",short:"A long, flowing white bridal cape."},
+      {name:"The Noor Embroidery",img:"look-22-ivory-bridal-embroidery.jpg",description:"An ivory bridal-inspired abaya with delicate embroidered detailing.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with embroidered detail."},
+      {name:"The Silver Celeste",img:"look-23-silver-crystal-kaftan.jpg",description:"A statement silver-toned kaftan with crystal-inspired embellishment.",tags:"occasion statement",short:"A statement kaftan with crystal-inspired detail."},
+      {name:"The Midnight Noor",img:"look-24-navy-embroidered.jpg",description:"A deep navy abaya with ornate embroidered detailing.",tags:"occasion statement",short:"Deep navy with ornate embroidery."},
+      {name:"The Blush Isadora",img:"look-25-blush-embellished.jpg",description:"A blush-toned occasion abaya with scattered embellished details.",tags:"neutral occasion",short:"Blush occasionwear with scattered embellishment."},
+      {name:"The Taupe Empress",img:"look-26-taupe-crystal-kaftan.jpg",description:"A flowing taupe kaftan finished with a statement crystal neckline and wide, graceful sleeves.",tags:"neutral occasion statement",short:"Taupe kaftan with a crystal-embellished neckline."},
+      {name:"The Élysée Cape",img:"look-27-ivory-blush-embellished-cape.jpg",description:"A soft blush satin-inspired dress layered with an ivory embellished cape and delicate crystal motifs.",tags:"ivory bridal occasion statement",short:"Blush satin-inspired dress with ivory embellished cape."},
+      {name:"The Cacao Pearl",img:"look-28-chocolate-pearl-cape.jpg",description:"A rich chocolate cape with intricate pearl-like embroidery over a softly contrasting ivory base.",tags:"neutral occasion statement",short:"Chocolate cape with ornate pearl-inspired embroidery."},
+      {name:"The Aqua Majestic",img:"look-29-aqua-jewel-cape.jpg",description:"A refreshing aqua cape adorned with jewel-like embellishments, styled over a soft ivory inner layer.",tags:"occasion statement",short:"Aqua cape with jewel-like embellishments."},
+      {name:"The Rosé Cascade",img:"look-30-blush-ombre-fringe.jpg",description:"A romantic blush-to-rose ombre kaftan with flowing panels and statement fringe detailing.",tags:"neutral occasion statement",short:"Blush ombre with flowing fringe panels."},
+      {name:"The Ivory Amorette",img:"look-31-ivory-bridal-rose.jpg",description:"A graceful ivory bridal silhouette with a soft cape finish and bouquet-ready elegance.",tags:"ivory bridal occasion",short:"Elegant ivory bridal look with a flowing cape."},
+      {name:"The Dark Cacao",img:"look-32-dark-chocolate-drape.jpg",description:"A deep chocolate modest silhouette with a dramatic, flowing drape and understated finish.",tags:"neutral occasion",short:"Deep chocolate with a dramatic flowing drape."},
+      {name:"The Seraphina Train",img:"look-33-white-bridal-train.jpg",description:"A statement white bridal design with an extended train and sculptural, flowing layers.",tags:"ivory bridal occasion statement",short:"White bridal design with an elegant extended train."},
+      {name:"The Navy Étoile",img:"look-34-navy-bridal-cape.jpg",description:"A deep navy cape-style occasion look with ornate detailing and a contrasting ivory inner layer.",tags:"occasion bridal statement",short:"Navy embellished cape with an ivory contrast."}
     ];
 
     const productGrid = document.getElementById("productGrid");
@@ -342,29 +298,23 @@
     const customSizeInput = document.getElementById("customSize");
     const sizeError = document.getElementById("sizeError");
     const searchInput = document.getElementById("productSearch");
-    const catalogSort = document.getElementById("catalogSort");
     const resultsCount = document.getElementById("resultsCount");
     const emptyResults = document.getElementById("emptyResults");
+    const catalogSort = document.getElementById("catalogSort");
     let selectedProduct = null;
     let previousFocus = null;
     let activeFilter = "all";
-    let activeSort = "newest";
 
     document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 
     function renderProducts() {
       const query = searchInput.value.trim().toLowerCase();
       const filtered = products.map((product, index) => ({product, index})).filter(({product}) => {
-        const productTags = product.tags.split(/\s+/);
-        const matchesFilter = activeFilter === "all" || productTags.includes(activeFilter);
+        const matchesFilter = activeFilter === "all" || product.tags.split(" ").includes(activeFilter);
         const searchable = `${product.name} ${product.description} ${product.tags}`.toLowerCase();
         return matchesFilter && searchable.includes(query);
       });
-
-      // Latest additions (highest Look number) appear first by default.
-      if (activeSort === "newest") filtered.sort((a, b) => b.index - a.index);
-      else if (activeSort === "oldest") filtered.sort((a, b) => a.index - b.index);
-      else if (activeSort === "name") filtered.sort((a, b) => a.product.name.localeCompare(b.product.name));
+      if (catalogSort && catalogSort.value === "name") filtered.sort((a,b) => a.product.name.localeCompare(b.product.name));
 
       productGrid.innerHTML = "";
       filtered.forEach(({product, index}) => {
@@ -380,7 +330,10 @@
         image.alt = product.name;
         image.loading = "lazy";
         image.onerror = () => { image.closest(".product-photo").classList.add("image-missing"); image.alt = "Image unavailable"; };
-        button.append(image);
+        const number = document.createElement("span");
+        number.className = "look-number";
+        number.textContent = product.tags.split(" ").includes("bridal") ? "BRIDAL" : product.tags.split(" ").includes("statement") ? "SIGNATURE" : product.tags.split(" ").includes("occasion") ? "OCCASION" : "COLLECTION";
+        button.append(image, number);
 
         const info = document.createElement("div");
         info.className = "product-info";
@@ -440,10 +393,7 @@
       });
     });
     searchInput.addEventListener("input", renderProducts);
-    catalogSort.addEventListener("change", () => {
-      activeSort = catalogSort.value;
-      renderProducts();
-    });
+    if (catalogSort) catalogSort.addEventListener("change", renderProducts);
 
     document.querySelectorAll("[data-jump-filter]").forEach(card => {
       card.addEventListener("click", () => {
