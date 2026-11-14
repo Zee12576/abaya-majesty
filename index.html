@@ -37,6 +37,22 @@
     .am-small-note{font-size:13px;line-height:1.6;opacity:.8}
     @media(max-width:760px){.am-ordering .am-order-grid{grid-template-columns:1fr 1fr}.am-footer-columns{grid-template-columns:1fr;gap:18px}}
     @media(max-width:420px){.am-ordering .am-order-grid{grid-template-columns:1fr}}
+  
+    /* Abaya Majesty product image zoom viewer */
+    .modal-product-image img{cursor:zoom-in}
+    .am-image-zoom{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;background:rgba(24,21,19,.96);padding:76px 22px 28px}
+    .am-image-zoom.active{display:flex}
+    .am-image-zoom-stage{width:min(1100px,94vw);height:min(78vh,900px);display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:pan-y}
+    .am-image-zoom-stage img{max-width:100%;max-height:100%;object-fit:contain;transform:scale(1);transform-origin:center;transition:transform .18s ease;user-select:none;-webkit-user-drag:none;cursor:grab}
+    .am-image-zoom-stage img:active{cursor:grabbing}
+    .am-zoom-toolbar{position:absolute;top:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,253,250,.96);border:1px solid #c9b99f;border-radius:999px}
+    .am-zoom-toolbar button,.am-zoom-close{width:42px;height:42px;border:1px solid #dfd5c7;border-radius:50%;background:#fffdfa;color:#3e2b22;font-size:23px;cursor:pointer}
+    .am-zoom-toolbar button:hover,.am-zoom-close:hover{background:#eee7dc}
+    .am-zoom-level{min-width:54px;text-align:center;font:500 13px 'DM Sans',Arial,sans-serif;color:#3e2b22}
+    .am-zoom-close{position:absolute;top:20px;right:22px;font-size:25px}
+    .am-zoom-hint{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#f7f2e9;font:13px 'DM Sans',Arial,sans-serif;opacity:.85}
+    @media(max-width:600px){.am-image-zoom{padding:78px 10px 42px}.am-image-zoom-stage{width:96vw;height:76vh}.am-zoom-close{top:16px;right:12px}.am-zoom-toolbar{top:16px;left:12px;transform:none}.am-zoom-toolbar button{width:38px;height:38px}}
+
   </style>
 
 </head>
@@ -244,6 +260,21 @@
     </div>
   </div>
 
+
+  <div class="am-image-zoom" id="amImageZoom" aria-hidden="true">
+    <button class="am-zoom-close" id="amZoomClose" type="button" aria-label="Close enlarged product image">&times;</button>
+    <div class="am-zoom-toolbar" role="group" aria-label="Image zoom controls">
+      <button id="amZoomOut" type="button" aria-label="Zoom out">−</button>
+      <span class="am-zoom-level" id="amZoomLevel">100%</span>
+      <button id="amZoomIn" type="button" aria-label="Zoom in">+</button>
+      <button id="amZoomReset" type="button" aria-label="Reset zoom">↺</button>
+    </div>
+    <div class="am-image-zoom-stage" id="amZoomStage">
+      <img id="amZoomImage" src="" alt="">
+    </div>
+    <p class="am-zoom-hint">Use + / − to zoom · Scroll to zoom · Double-click to reset</p>
+  </div>
+
   <script>
     "use strict";
     const WHATSAPP_NUMBER = "971505540491";
@@ -287,6 +318,67 @@
     const productGrid = document.getElementById("productGrid");
     const modal = document.getElementById("productModal");
     const modalImage = document.getElementById("modalImage");
+
+    const amImageZoom = document.getElementById("amImageZoom");
+    const amZoomImage = document.getElementById("amZoomImage");
+    const amZoomStage = document.getElementById("amZoomStage");
+    const amZoomLevel = document.getElementById("amZoomLevel");
+    let amZoomScale = 1;
+    let amDrag = null;
+
+    function updateAmZoom() {
+      amZoomImage.style.transform = `scale(${amZoomScale})`;
+      amZoomLevel.textContent = `${Math.round(amZoomScale * 100)}%`;
+      amZoomImage.style.cursor = amZoomScale > 1 ? "grab" : "zoom-in";
+    }
+    function setAmZoom(next) {
+      amZoomScale = Math.max(1, Math.min(4, next));
+      updateAmZoom();
+    }
+    function openAmImageZoom() {
+      if (!modalImage.src) return;
+      amZoomImage.src = modalImage.src;
+      amZoomImage.alt = modalImage.alt || "Enlarged Abaya Majesty product image";
+      setAmZoom(1);
+      amImageZoom.classList.add("active");
+      amImageZoom.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      document.getElementById("amZoomClose").focus();
+    }
+    function closeAmImageZoom() {
+      amImageZoom.classList.remove("active");
+      amImageZoom.setAttribute("aria-hidden", "true");
+      amZoomImage.src = "";
+      document.body.style.overflow = modal.classList.contains("active") ? "hidden" : "";
+      modalImage.focus?.();
+    }
+    modalImage.addEventListener("click", openAmImageZoom);
+    document.getElementById("amZoomClose").addEventListener("click", closeAmImageZoom);
+    document.getElementById("amZoomIn").addEventListener("click", () => setAmZoom(amZoomScale + 0.5));
+    document.getElementById("amZoomOut").addEventListener("click", () => setAmZoom(amZoomScale - 0.5));
+    document.getElementById("amZoomReset").addEventListener("click", () => setAmZoom(1));
+    amZoomStage.addEventListener("wheel", event => {
+      event.preventDefault();
+      setAmZoom(amZoomScale + (event.deltaY < 0 ? 0.2 : -0.2));
+    }, {passive:false});
+    amZoomImage.addEventListener("dblclick", () => setAmZoom(1));
+    amZoomImage.addEventListener("pointerdown", event => {
+      if (amZoomScale <= 1) return;
+      amDrag = {x:event.clientX, y:event.clientY, left:amZoomStage.scrollLeft, top:amZoomStage.scrollTop};
+      amZoomImage.setPointerCapture(event.pointerId);
+    });
+    amZoomImage.addEventListener("pointermove", event => {
+      if (!amDrag) return;
+      amZoomStage.scrollLeft = amDrag.left - (event.clientX - amDrag.x);
+      amZoomStage.scrollTop = amDrag.top - (event.clientY - amDrag.y);
+    });
+    ["pointerup","pointercancel","lostpointercapture"].forEach(name =>
+      amZoomImage.addEventListener(name, () => { amDrag = null; })
+    );
+    amImageZoom.addEventListener("click", event => {
+      if (event.target === amImageZoom) closeAmImageZoom();
+    });
+
     const modalTitle = document.getElementById("modalTitle");
     const modalDescription = document.getElementById("modalDescription");
     const sizeForm = document.getElementById("sizeForm");
@@ -429,6 +521,7 @@
     }));
 
     function openProduct(index, trigger) {
+      if (amImageZoom.classList.contains("active")) closeAmImageZoom();
       selectedProduct = products[index];
       if (!selectedProduct) return;
       previousFocus = trigger || document.activeElement;
@@ -464,6 +557,10 @@
     modal.querySelectorAll("[data-close-modal]").forEach(el => el.addEventListener("click", closeProduct));
 
     document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && amImageZoom.classList.contains("active")) {
+        closeAmImageZoom();
+        return;
+      }
       if (!modal.classList.contains("active")) return;
       if (event.key === "Escape") closeProduct();
       if (event.key === "Tab") {
