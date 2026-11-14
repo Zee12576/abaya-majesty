@@ -414,7 +414,7 @@ body > #sizeChartModal.active{display:flex!important}
           <button class="filter" type="button" data-filter="occasion" aria-pressed="false">The Occasion Atelier</button>
           <button class="filter" type="button" data-filter="statement" aria-pressed="false">The Statement Collection</button>
         </div>
-        <div class="catalog-sort"><label for="catalogSort">Sort designs:</label><select id="catalogSort"><option value="newest" selected>Newest first</option><option value="oldest">Oldest first</option><option value="name">Name A–Z</option></select></div>
+        <div class="catalog-sort"><label for="catalogSort">Sort designs:</label><select id="catalogSort"><option value="newest">Newest first</option><option value="oldest" selected>Featured order</option><option value="name">Name A–Z</option></select></div>
       </div>
 
       <p class="results-count" id="resultsCount" aria-live="polite">Showing 49 designs</p>
@@ -546,14 +546,16 @@ body > #sizeChartModal.active{display:flex!important}
     "use strict";
     const WHATSAPP_NUMBER = "971505540491";
     const products = [
+      {name:"The Ivory Bloom",img:"look-08-ivory-bloom.jpg",description:"A minimal ivory silhouette with soft draping and understated elegance.",tags:"ivory neutral",short:"Minimal ivory with soft, fluid draping."},
+      {name:"The Roselle Cape",img:"look-04-blush-cape.jpg",description:"A soft blush-toned design with an elegant cape overlay and graceful movement.",tags:"neutral occasion",short:"Soft blush with a graceful cape overlay."},
+      {name:"The Azure Jewel",img:"look-29-aqua-jewel-cape.jpg",description:"A refreshing aqua cape adorned with jewel-like embellishments, styled over a soft ivory inner layer.",tags:"occasion",short:"Aqua cape with jewel-like embellishments."},
+      {name:"The Ivory Heirloom",img:"look-22-ivory-bridal-embroidery.jpg",description:"An ivory bridal-inspired abaya with delicate embroidered detailing.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with embroidered detail."},
       {name:"The Amara Ruffle",img:"look-01-taupe-ruffle.jpg",description:"A graceful taupe silhouette featuring flowing pleats and dramatic ruffle sleeve detailing.",tags:"neutral occasion",short:"Flowing pleats with dramatic ruffle sleeves."},
       {name:"The Ivory Lumière",img:"look-02-ivory-satin.jpg",description:"An elegant ivory design with a soft satin-inspired finish and delicate embellishment.",tags:"ivory occasion",short:"Soft satin-inspired ivory with delicate detail."},
       {name:"The Pearl Étoile",img:"look-03-pearl-sleeve.jpg",description:"A refined ivory silhouette featuring a high neckline and pearl-inspired sleeve detailing.",tags:"ivory occasion bridal",short:"High neckline with pearl-inspired sleeves."},
-      {name:"The Roselle Cape",img:"look-04-blush-cape.jpg",description:"A soft blush-toned design with an elegant cape overlay and graceful movement.",tags:"neutral occasion",short:"Soft blush with a graceful cape overlay."},
       {name:"The Ivory Serene",img:"look-05-ivory-cape.jpg",description:"A timeless ivory design featuring clean lines and beautifully flowing cape sleeves.",tags:"ivory neutral",short:"Timeless ivory with flowing cape sleeves."},
       {name:"The Sienna Drape",img:"look-06-mocha-drape.jpg",description:"A sophisticated mocha evening silhouette with sculptural draping and flowing sleeves.",tags:"neutral occasion",short:"Sculptural draping in a rich mocha tone."},
       {name:"The Pearl Promise",img:"look-07-pearl-bridal.jpg",description:"An elegant bridal-inspired ivory look with delicate pearl-inspired details.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with pearl details."},
-      {name:"The Ivory Bloom",img:"look-08-ivory-bloom.jpg",description:"A minimal ivory silhouette with soft draping and understated elegance.",tags:"ivory neutral",short:"Minimal ivory with soft, fluid draping."},
       {name:"The Seraphina White",img:"look-09-bridal-white.jpg",description:"A flowing white bridal silhouette with a refined, softly draped finish.",tags:"ivory bridal occasion",short:"A softly draped bridal-white silhouette."},
       {name:"The Satin Élysée",img:"look-10-ivory-satin-detail.jpg",description:"A luminous ivory occasion silhouette with a fitted satin-inspired finish.",tags:"ivory bridal occasion",short:"Luminous ivory with a satin-inspired finish."},
       {name:"The Champagne Veil",img:"look-11-champagne-cape.jpg",description:"A soft champagne-toned design with a graceful cape overlay.",tags:"neutral occasion",short:"Champagne tone with a flowing cape overlay."},
@@ -567,14 +569,12 @@ body > #sizeChartModal.active{display:flex!important}
       {name:"The Ivory Celeste",img:"look-19-ivory-embellished.jpg",description:"An ivory cape-style design finished with delicate embellishment.",tags:"ivory bridal occasion",short:"An embellished ivory cape-style design."},
       {name:"The Ivory Cascade",img:"look-20-ivory-drape.jpg",description:"A soft ivory draped design with a graceful, fluid silhouette.",tags:"ivory neutral",short:"Soft ivory with a graceful draped silhouette."},
       {name:"The Seraphina Cape",img:"look-21-white-bridal-cape.jpg",description:"A white bridal cape silhouette with a long, flowing finish.",tags:"ivory bridal occasion",short:"A long, flowing white bridal cape."},
-      {name:"The Ivory Heirloom",img:"look-22-ivory-bridal-embroidery.jpg",description:"An ivory bridal-inspired abaya with delicate embroidered detailing.",tags:"ivory bridal occasion",short:"Bridal-inspired ivory with embroidered detail."},
       {name:"The Silver Stardust",img:"look-23-silver-crystal-kaftan.jpg",description:"A statement silver-toned kaftan with crystal-inspired embellishment.",tags:"occasion",short:"A statement kaftan with crystal-inspired detail."},
       {name:"The Midnight Embroidery",img:"look-24-navy-embroidered.jpg",description:"A deep navy abaya with ornate embroidered detailing.",tags:"occasion",short:"Deep navy with ornate embroidery."},
       {name:"The Rosé Allure",img:"look-25-blush-embellished.jpg",description:"A blush-toned occasion abaya with scattered embellished details.",tags:"neutral occasion",short:"Blush occasionwear with scattered embellishment."},
       {name:"The Taupe Empress",img:"look-26-taupe-crystal-kaftan.jpg",description:"A flowing taupe kaftan finished with a statement crystal neckline and wide, graceful sleeves.",tags:"neutral occasion",short:"Taupe kaftan with a crystal-embellished neckline."},
       {name:"The Rosé Élysée",img:"look-27-ivory-blush-embellished-cape.jpg",description:"A soft blush satin-inspired dress layered with an ivory embellished cape and delicate crystal motifs.",tags:"ivory bridal occasion",short:"Blush satin-inspired dress with ivory embellished cape."},
       {name:"The Cacao Pearl",img:"look-28-chocolate-pearl-cape.jpg",description:"A rich chocolate cape with intricate pearl-like embroidery over a softly contrasting ivory base.",tags:"neutral occasion",short:"Chocolate cape with ornate pearl-inspired embroidery."},
-      {name:"The Azure Jewel",img:"look-29-aqua-jewel-cape.jpg",description:"A refreshing aqua cape adorned with jewel-like embellishments, styled over a soft ivory inner layer.",tags:"occasion",short:"Aqua cape with jewel-like embellishments."},
       {name:"The Rosé Cascade",img:"look-30-blush-ombre-fringe.jpg",description:"A romantic blush-to-rose ombre kaftan with flowing panels and statement fringe detailing.",tags:"neutral occasion",short:"Blush ombre with flowing fringe panels."},
       {name:"The Ivory Bridal Rose",img:"look-31-ivory-bridal-rose.jpg",description:"A graceful ivory bridal silhouette with a soft cape finish and bouquet-ready elegance.",tags:"ivory bridal occasion",short:"Elegant ivory bridal look with a flowing cape."},
       {name:"The Cacao Drape",img:"look-32-dark-chocolate-drape.jpg",description:"A deep chocolate modest silhouette with a dramatic, flowing drape and understated finish.",tags:"neutral occasion",short:"Deep chocolate with a dramatic flowing drape."},
@@ -615,7 +615,7 @@ body > #sizeChartModal.active{display:flex!important}
     let selectedProduct = null;
     let previousFocus = null;
     let activeFilter = "all";
-    let activeSort = "newest";
+    let activeSort = "oldest";
 
     document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 
