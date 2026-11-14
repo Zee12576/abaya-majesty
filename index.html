@@ -112,6 +112,22 @@ body > #sizeChartModal.active{display:flex!important}
 #modalImage{cursor:zoom-in}
 @media(max-width:600px){#abayaZoomViewer{padding:70px 8px 12px}#abayaZoomViewer .zoom-toolbar{left:8px;transform:none;gap:5px}#abayaZoomViewer .zoom-toolbar button{min-width:34px;padding:0 9px}}
 
+
+    /* Full-screen product image zoom and pan viewer */
+    .modal-product-image img{cursor:zoom-in}
+    .image-zoom-viewer{position:fixed;inset:0;z-index:2147483646;display:none;background:rgba(18,16,14,.96);color:#fff}
+    .image-zoom-viewer.active{display:flex;flex-direction:column}
+    .zoom-close{position:absolute;right:22px;top:18px;z-index:5;width:44px;height:44px;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:30px;cursor:pointer}
+    .zoom-toolbar{position:absolute;top:22px;left:50%;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(255,255,255,.22);border-radius:30px;background:rgba(30,26,22,.82)}
+    .zoom-toolbar button{min-width:34px;height:34px;border:1px solid rgba(255,255,255,.3);border-radius:20px;background:transparent;color:#fff;cursor:pointer;font-size:18px}
+    .zoom-toolbar #zoomReset{padding:0 12px;font-size:12px}
+    #zoomLevel{min-width:48px;text-align:center;font-size:12px;letter-spacing:.06em}
+    .zoom-stage{position:absolute;inset:78px 0 54px;overflow:hidden;display:flex;align-items:center;justify-content:center;touch-action:none;cursor:grab}
+    .zoom-stage.dragging{cursor:grabbing}
+    .zoom-stage img{max-width:90vw;max-height:calc(100vh - 150px);width:auto;height:auto;object-fit:contain;transform-origin:center center;user-select:none;-webkit-user-drag:none;pointer-events:none}
+    .zoom-hint{position:absolute;bottom:15px;left:0;right:0;margin:0;text-align:center;color:rgba(255,255,255,.7);font-size:12px}
+    @media(max-width:600px){.zoom-toolbar{top:auto;bottom:58px}.zoom-stage{inset:20px 0 112px}.zoom-hint{font-size:10px;bottom:17px}.zoom-close{right:12px;top:12px}}
+
 </style>
 
 <style>
@@ -189,7 +205,7 @@ body > #sizeChartModal.active{display:flex!important}
     </section>
 
     <section class="am-proof-strip" aria-label="Abaya Majesty business highlights">
-      <div><strong>10,500+</strong><span>ABAYAS SOLD</span></div>
+      <div><strong>1,500+</strong><span>ABAYAS SOLD</span></div>
       <div><strong>In-house</strong><span>ABAYA MANUFACTURING</span></div>
       <div><strong>Worldwide</strong><span>ORDER ENQUIRIES</span></div>
     </section>
@@ -430,7 +446,9 @@ body > #sizeChartModal.active{display:flex!important}
       {name:"The Ruby Royale",img:"new-2026-11-14-12.jpg",description:"A rich ruby-burgundy abaya with graceful volume and confident evening presence.",tags:"occasion statement",short:"Rich ruby-burgundy for an evening statement."},
       {name:"The Celeste Blue",img:"new-2026-11-14-13.jpg",description:"A powder-blue abaya with a soft cape-like drape and fresh, airy elegance.",tags:"occasion neutral",short:"Powder blue with a light, flowing drape."},
       {name:"The Burgundy Cascade",img:"new-2026-11-14-14.jpg",description:"A dramatic burgundy design with flowing layers and a graceful extended finish.",tags:"occasion statement",short:"Burgundy layers with a dramatic flowing finish."},
-      {name:"The Gilded Grace",img:"new-2026-11-14-15.jpg",description:"A warm ivory-beige cape abaya with fluid panels and a softly luminous finish.",tags:"ivory neutral occasion",short:"Warm ivory-beige with fluid cape panels."}
+      {name:"The Gilded Grace",img:"new-2026-11-14-15.jpg",description:"A warm ivory-beige cape abaya with fluid panels and a softly luminous finish.",tags:"ivory neutral occasion",short:"Warm ivory-beige with fluid cape panels."},
+      {name:"The Cocoa Nocturne",img:"new-2026-11-14-16.jpg",description:"A rich chocolate satin abaya with intricate embellishment, sculpted draping and a graceful extended silhouette.",tags:"neutral occasion statement",short:"Embellished chocolate satin with dramatic draping."},
+      {name:"The Slate Serenity",img:"new-2026-11-14-17.jpg",description:"A deep slate-grey abaya with a fluid cape overlay and understated, contemporary elegance.",tags:"neutral occasion statement",short:"Slate grey with a flowing cape overlay."}
     ];
 
     const productGrid = document.getElementById("productGrid");
@@ -633,6 +651,7 @@ body > #sizeChartModal.active{display:flex!important}
     modal.querySelectorAll("[data-close-modal]").forEach(el => el.addEventListener("click", closeProduct));
 
     document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && zoomViewer.classList.contains("active")) { closeZoomViewer(); return; }
       if (!modal.classList.contains("active")) return;
       if (event.key === "Escape") closeProduct();
       if (event.key === "Tab") {
@@ -709,7 +728,85 @@ body > #sizeChartModal.active{display:flex!important}
   viewer.addEventListener('click', e => { if(e.target===viewer) close(); });
   document.addEventListener('keydown', e => { if(e.key==='Escape' && viewer.classList.contains('active')) close(); });
 })();
-</script>
+
+    // Product image zoom viewer: click image, zoom, drag/pan, reset.
+    const zoomViewer = document.getElementById("imageZoomViewer");
+    const zoomStage = document.getElementById("zoomStage");
+    const zoomImage = document.getElementById("zoomImage");
+    const zoomLevelLabel = document.getElementById("zoomLevel");
+    let zoomScale = 1, zoomX = 0, zoomY = 0, draggingZoom = false, dragStartX = 0, dragStartY = 0, dragOriginX = 0, dragOriginY = 0;
+
+    function updateZoom() {
+      zoomImage.style.transform = `translate(${zoomX}px, ${zoomY}px) scale(${zoomScale})`;
+      zoomLevelLabel.textContent = `${Math.round(zoomScale * 100)}%`;
+    }
+    function setZoom(next) {
+      zoomScale = Math.max(1, Math.min(4, next));
+      if (zoomScale === 1) { zoomX = 0; zoomY = 0; }
+      updateZoom();
+    }
+    function openZoomViewer() {
+      if (!modalImage.src) return;
+      zoomImage.src = modalImage.src;
+      zoomImage.alt = modalImage.alt || "Abaya product image";
+      zoomScale = 1; zoomX = 0; zoomY = 0; updateZoom();
+      zoomViewer.classList.add("active");
+      zoomViewer.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      document.getElementById("zoomClose").focus();
+    }
+    function closeZoomViewer() {
+      zoomViewer.classList.remove("active");
+      zoomViewer.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (modal.classList.contains("active")) modal.querySelector(".modal-close").focus();
+    }
+    modalImage.addEventListener("click", openZoomViewer);
+    document.getElementById("zoomClose").addEventListener("click", closeZoomViewer);
+    document.getElementById("zoomIn").addEventListener("click", () => setZoom(zoomScale + 0.5));
+    document.getElementById("zoomOut").addEventListener("click", () => setZoom(zoomScale - 0.5));
+    document.getElementById("zoomReset").addEventListener("click", () => setZoom(1));
+    zoomStage.addEventListener("wheel", event => {
+      event.preventDefault();
+      setZoom(zoomScale + (event.deltaY < 0 ? 0.2 : -0.2));
+    }, {passive:false});
+    zoomStage.addEventListener("pointerdown", event => {
+      if (zoomScale <= 1) return;
+      draggingZoom = true;
+      dragStartX = event.clientX; dragStartY = event.clientY;
+      dragOriginX = zoomX; dragOriginY = zoomY;
+      zoomStage.classList.add("dragging");
+      zoomStage.setPointerCapture(event.pointerId);
+    });
+    zoomStage.addEventListener("pointermove", event => {
+      if (!draggingZoom) return;
+      zoomX = dragOriginX + event.clientX - dragStartX;
+      zoomY = dragOriginY + event.clientY - dragStartY;
+      updateZoom();
+    });
+    function stopZoomDrag() { draggingZoom = false; zoomStage.classList.remove("dragging"); }
+    zoomStage.addEventListener("pointerup", stopZoomDrag);
+    zoomStage.addEventListener("pointercancel", stopZoomDrag);
+    zoomViewer.addEventListener("click", event => {
+      if (event.target === zoomViewer) closeZoomViewer();
+    });
+
+    </script>
+
+
+  <div class="image-zoom-viewer" id="imageZoomViewer" aria-hidden="true">
+    <button class="zoom-close" id="zoomClose" type="button" aria-label="Close image viewer">&times;</button>
+    <div class="zoom-toolbar" aria-label="Image zoom controls">
+      <button type="button" id="zoomOut" aria-label="Zoom out">−</button>
+      <span id="zoomLevel">100%</span>
+      <button type="button" id="zoomIn" aria-label="Zoom in">+</button>
+      <button type="button" id="zoomReset">Reset</button>
+    </div>
+    <div class="zoom-stage" id="zoomStage">
+      <img id="zoomImage" src="" alt="">
+    </div>
+    <p class="zoom-hint">Scroll or use + / − to zoom · Drag to move · Esc to close</p>
+  </div>
 
 </body>
 </html>
