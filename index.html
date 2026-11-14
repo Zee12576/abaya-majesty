@@ -5,11 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Discover Abaya Majesty: refined modest fashion, elegant abayas and occasionwear.">
   <meta name="theme-color" content="#f7f5ef">
+  <meta property="og:title" content="Abaya Majesty | Modesty · Elegance · Grace">
+  <meta property="og:description" content="Discover refined modest fashion and made-to-order abayas from Abaya Majesty.">
+  <meta property="og:type" content="website">
   <title>Abaya Majesty | Modesty · Elegance · Grace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .am-ordering{padding:76px 6%;background:#f2eee7;color:#3e2b22}
+    .am-ordering .am-order-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:28px}
+    .am-ordering article{background:#fffdfa;border:1px solid #e5ddd1;border-radius:18px;padding:24px}
+    .am-ordering article b{display:block;font-family:'Playfair Display',serif;font-size:21px;margin:0 0 10px}
+    .am-ordering article p{margin:0;line-height:1.65;color:#716a62}
+    .size-options{display:flex;flex-wrap:wrap;gap:9px}
+    .size-chart-trigger{display:inline-flex;align-items:center;gap:8px;margin:15px 0 8px;padding:0;border:0;background:transparent;color:#5b4638;text-decoration:underline;text-underline-offset:4px;font:inherit;cursor:pointer}
+    .size-chart-modal{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.78)}
+    .size-chart-modal.active{display:flex}
+    .size-chart-dialog{position:relative;width:min(100%,1000px);max-height:92vh;overflow:auto;background:#fbf9f4;border-radius:18px;padding:18px;box-shadow:0 20px 70px rgba(0,0,0,.3)}
+    .size-chart-dialog img{display:block;width:100%;height:auto}
+    .size-chart-close{position:sticky;top:0;float:right;z-index:2;border:0;border-radius:50%;width:42px;height:42px;background:#3e2b22;color:white;font-size:27px;cursor:pointer;margin:0 0 8px 8px}
+    .am-social{display:flex;gap:18px;align-items:center;margin:18px 0 22px}
+    .am-social a{display:inline-flex;align-items:center;gap:8px;color:inherit;text-decoration:none}
+    .am-social svg{width:23px;height:23px;fill:currentColor}
+    .am-footer-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin:24px 0}
+    .am-footer-columns h3{margin:0 0 14px;font-size:18px;color:#fff}
+    .am-footer-columns a{display:block;margin:10px 0;color:inherit;text-decoration:none;opacity:.88}
+    .am-footer-columns a:hover,.am-social a:hover{text-decoration:underline}
+    .am-small-note{font-size:13px;line-height:1.6;opacity:.8}
+    @media(max-width:760px){.am-ordering .am-order-grid{grid-template-columns:1fr 1fr}.am-footer-columns{grid-template-columns:1fr;gap:18px}}
+    @media(max-width:420px){.am-ordering .am-order-grid{grid-template-columns:1fr}}
+  </style>
+
 </head>
 <body>
   <div class="announcement">DISCOVER ELEGANCE <span>✦</span> WORLDWIDE ENQUIRIES AVAILABLE</div>
@@ -54,7 +83,7 @@
       <div class="signature-points">
         <article><span>01</span><h3>Refined silhouettes</h3><p>Fluid shapes and elegant proportions across occasionwear and everyday statements.</p></article>
         <article><span>02</span><h3>Thoughtful detailing</h3><p>Explore soft draping, delicate embellishment and expressive finishing touches.</p></article>
-        <article><span>03</span><h3>A more personal fit</h3><p>Choose S, M or L, or share custom measurements with our team through WhatsApp.</p></article>
+        <article><span>03</span><h3>A more personal fit</h3><p>Choose from XS to 7XL, or request a custom fit with your measurements.</p></article>
       </div>
     </section>
 
@@ -82,7 +111,7 @@
     <section class="arrivals section-pad" id="new-arrivals">
       <div class="section-heading">
         <div><p class="eyebrow">THE LATEST SELECTION</p><h2>New <em>arrivals</em></h2></div>
-        <p>Explore all 34 looks. Select a design to view details and request your preferred size.</p>
+        <p>Explore all 34 looks. Select a design to view details, choose a size and view our size chart.</p>
       </div>
 
       <div class="catalog-tools">
@@ -104,6 +133,21 @@
       <div class="product-grid" id="productGrid" aria-live="polite"></div>
       <p class="empty-results" id="emptyResults" hidden>No designs match your search. Try another name or choose “All looks”.</p>
       <p class="availability-note">Sizes are enquiry options, not live stock confirmation. Please contact us to confirm availability, measurements, pricing and delivery.</p>
+    </section>
+
+
+    <section class="am-ordering" id="ordering" aria-labelledby="ordering-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">MADE WITH CARE</p><h2 id="ordering-title">The <em>ordering experience</em></h2></div>
+        <p>Please review the order process and policies before confirming your order.</p>
+      </div>
+      <div class="am-order-grid">
+        <article><b>Made to order</b><p>Each abaya is prepared after your design, size and order details are confirmed.</p></article>
+        <article><b>Full payment first</b><p>100% payment is required before production begins. We confirm the order details with you before payment.</p></article>
+        <article><b>14-day production</b><p>Allow up to 14 days for production after payment and confirmation. Courier transit time is additional.</p></article>
+        <article><b>Worldwide shipping</b><p>Worldwide delivery is available subject to courier coverage and destination rules. Shipping charges and estimated transit time are confirmed before payment.</p></article>
+      </div>
+      <p class="am-small-note" style="margin-top:22px">Made-to-order items are not eligible for change-of-mind returns or exchanges. This does not affect rights and remedies that cannot legally be excluded. Please read our Returns & Refunds Policy before ordering.</p>
     </section>
 
     <section class="quote-panel">
@@ -128,7 +172,20 @@
 
   <footer class="site-footer">
     <div class="footer-brand"><img src="assets/abaya-majesty-logo.png" alt=""><span>ABAYA MAJESTY<small>MODESTY · ELEGANCE · GRACE</small></span></div>
-    <div class="footer-links"><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a></div>
+    <p>Premium modest fashion that celebrates elegance and tradition.</p>
+    <div class="am-social" aria-label="Social media links">
+      <a href="https://www.instagram.com/abaya_majesty0312/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7zm5 2.3a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2.2a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6zm5.8-3.4a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg><span>Instagram</span>
+      </a>
+      <a href="https://www.youtube.com/@abayamajesty0312" target="_blank" rel="noopener" aria-label="Abaya Majesty on YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg><span>YouTube</span>
+      </a>
+    </div>
+    <div class="am-footer-columns">
+      <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#collection">Collections</a><a href="#new-arrivals">New arrivals</a><a href="#ordering">How to order</a><a href="#contact">Contact</a></div>
+      <div><h3>Customer Policies</h3><a href="policies/terms.html">Terms & Conditions</a><a href="policies/privacy.html">Privacy Policy</a><a href="policies/disclaimer.html">Disclaimer</a><a href="policies/Abaya_Majesty_Returns_and_Refunds_Policy.pdf" target="_blank" rel="noopener">Returns & Refunds Policy</a><a href="policies/Abaya_Majesty_Shipping_and_Delivery_Policy.pdf" target="_blank" rel="noopener">Shipping & Delivery Policy</a></div>
+      <div><h3>Contact Info</h3><a href="mailto:abayamajesty0312@gmail.com">abayamajesty0312@gmail.com</a><a href="https://wa.me/971505540491" target="_blank" rel="noopener">WhatsApp: +971 50 554 0491</a><span>India</span></div>
+    </div>
     <p>© <span data-year></span> Abaya Majesty. All rights reserved.</p>
   </footer>
 
@@ -151,23 +208,40 @@
           <fieldset class="size-fieldset">
             <legend class="modal-label">SELECT YOUR SIZE</legend>
             <div class="size-options">
+              <label class="size-option"><input type="radio" name="size" value="XS"><span>XS</span></label>
               <label class="size-option"><input type="radio" name="size" value="S"><span>S</span></label>
               <label class="size-option"><input type="radio" name="size" value="M"><span>M</span></label>
               <label class="size-option"><input type="radio" name="size" value="L"><span>L</span></label>
+              <label class="size-option"><input type="radio" name="size" value="XL"><span>XL</span></label>
+              <label class="size-option"><input type="radio" name="size" value="XXL"><span>XXL</span></label>
+              <label class="size-option"><input type="radio" name="size" value="3XL"><span>3XL</span></label>
+              <label class="size-option"><input type="radio" name="size" value="4XL"><span>4XL</span></label>
+              <label class="size-option"><input type="radio" name="size" value="5XL"><span>5XL</span></label>
+              <label class="size-option"><input type="radio" name="size" value="6XL"><span>6XL</span></label>
+              <label class="size-option"><input type="radio" name="size" value="7XL"><span>7XL</span></label>
               <label class="size-option"><input type="radio" name="size" value="Custom"><span>Custom</span></label>
             </div>
+            <button class="size-chart-trigger" type="button" id="openSizeChart">View Size Chart ↗</button>
           </fieldset>
           <div class="custom-size-wrap" id="customSizeWrap" hidden>
             <label class="modal-label" for="customSize">CUSTOM SIZE / MEASUREMENTS</label>
             <textarea id="customSize" rows="4" placeholder="Please share your measurements (bust, waist, hips, shoulder, sleeve and desired length), height and preferred fit."></textarea>
             <small>Include your measurement unit (cm or inches).</small>
           </div>
-          <p class="size-help">Choose S, M or L, or select Custom and share your measurements. Our team will confirm fit and availability.</p>
+          <p class="size-help">Choose your preferred size from XS to 7XL, or select Custom and share your measurements. Use the size chart as a guide; our team will help confirm the fit.</p>
           <button class="modal-whatsapp" id="modalWhatsApp" type="submit">Continue on WhatsApp ↗</button>
           <p class="size-error" id="sizeError" role="alert" hidden></p>
         </form>
       </div>
     </section>
+  </div>
+
+  <div class="size-chart-modal" id="sizeChartModal" aria-hidden="true">
+    <div class="size-chart-dialog" role="dialog" aria-modal="true" aria-label="Abaya Majesty size chart">
+      <button class="size-chart-close" type="button" id="closeSizeChart" aria-label="Close size chart">&times;</button>
+      <img src="assets/abaya-majesty-size-chart.png" alt="Abaya Majesty size chart with bust, waist, hip measurements and international size conversion">
+      <p class="am-small-note">Measurements are a general guide. For a more accurate fit, please confirm your measurements with our team before ordering.</p>
+    </div>
   </div>
 
   <script>
@@ -276,6 +350,28 @@
       emptyResults.hidden = filtered.length !== 0;
     }
 
+    const sizeChartModal = document.getElementById("sizeChartModal");
+    const openSizeChartButton = document.getElementById("openSizeChart");
+    const closeSizeChartButton = document.getElementById("closeSizeChart");
+    function openSizeChart() {
+      sizeChartModal.classList.add("active");
+      sizeChartModal.setAttribute("aria-hidden", "false");
+      closeSizeChartButton.focus();
+    }
+    function closeSizeChart() {
+      sizeChartModal.classList.remove("active");
+      sizeChartModal.setAttribute("aria-hidden", "true");
+      if (openSizeChartButton) openSizeChartButton.focus();
+    }
+    openSizeChartButton.addEventListener("click", openSizeChart);
+    closeSizeChartButton.addEventListener("click", closeSizeChart);
+    sizeChartModal.addEventListener("click", event => {
+      if (event.target === sizeChartModal) closeSizeChart();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && sizeChartModal.classList.contains("active")) closeSizeChart();
+    });
+
     renderProducts();
 
     document.querySelectorAll(".filter").forEach(button => {
@@ -342,6 +438,7 @@
     }
 
     function closeProduct() {
+      if (sizeChartModal.classList.contains("active")) closeSizeChart();
       if (!modal.classList.contains("active")) return;
       modal.classList.remove("active");
       modal.setAttribute("aria-hidden", "true");
@@ -385,7 +482,7 @@
       const chosen = sizeForm.querySelector('input[name="size"]:checked');
       sizeError.hidden = true;
       if (!chosen) {
-        sizeError.textContent = "Please select S, M, L or Custom before continuing.";
+        sizeError.textContent = "Please select a size or Custom before continuing.";
         sizeError.hidden = false;
         return;
       }
