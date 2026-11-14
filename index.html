@@ -17,11 +17,46 @@
   <style>
     .size-options{display:flex;flex-wrap:wrap;gap:9px}
     .size-chart-trigger{display:inline-flex;align-items:center;gap:8px;margin:15px 0 8px;padding:0;border:0;background:transparent;color:#5b4638;text-decoration:underline;text-underline-offset:4px;font:inherit;cursor:pointer}
-    .size-chart-modal{position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.78)}
-    .size-chart-modal.active{display:flex}
-    .size-chart-dialog{position:relative;width:min(100%,1000px);max-height:92vh;overflow:auto;background:#fbf9f4;border-radius:18px;padding:18px;box-shadow:0 20px 70px rgba(0,0,0,.3)}
+    /* Size chart is a separate top-level dialog above the product popup */
+    body > .size-chart-modal{
+      position:fixed!important;
+      inset:0!important;
+      z-index:2147483647!important;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(20,18,16,.82);
+      pointer-events:auto;
+    }
+    body > .size-chart-modal.active{display:flex!important}
+    .size-chart-dialog{
+      position:relative;
+      z-index:1;
+      width:min(100%,1000px);
+      max-height:92vh;
+      overflow:auto;
+      background:#fbf9f4;
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 20px 70px rgba(0,0,0,.3);
+    }
     .size-chart-dialog img{display:block;width:100%;height:auto}
-    .size-chart-close{position:sticky;top:0;float:right;z-index:2;border:0;border-radius:50%;width:42px;height:42px;background:#3e2b22;color:white;font-size:27px;cursor:pointer;margin:0 0 8px 8px}
+    .size-chart-close{
+      position:sticky;
+      top:0;
+      float:right;
+      z-index:2;
+      border:0;
+      border-radius:50%;
+      width:42px;
+      height:42px;
+      background:#3e2b22;
+      color:white;
+      font-size:27px;
+      cursor:pointer;
+      margin:0 0 8px 8px
+    }
     .am-social{display:flex;gap:18px;align-items:center;margin:18px 0 22px}
     .am-social a{display:inline-flex;align-items:center;gap:8px;color:inherit;text-decoration:none}
     .am-social svg{width:23px;height:23px;fill:currentColor}
@@ -263,7 +298,8 @@
   <div class="size-chart-modal" id="sizeChartModal" aria-hidden="true">
     <div class="size-chart-dialog" role="dialog" aria-modal="true" aria-label="Abaya Majesty size chart">
       <button class="size-chart-close" type="button" id="closeSizeChart" aria-label="Close size chart">&times;</button>
-      <img src="assets/abaya-majesty-size-chart.png" alt="Abaya Majesty size chart with bust, waist, hip measurements and international size conversion">
+      <img id="abayaSizeChartImage" src="assets/abaya-majesty-size-chart.png" alt="Abaya Majesty size chart with bust, waist, hip measurements and international size conversion">
+      <p class="am-small-note" id="sizeChartImageNotice" hidden>The size chart image could not be loaded. Please contact our team on WhatsApp for the measurement guide.</p>
       <p class="am-small-note">Measurements are a general guide. For a more accurate fit, please confirm your measurements with our team before ordering.</p>
     </div>
   </div>
@@ -380,25 +416,59 @@
     }
 
     const sizeChartModal = document.getElementById("sizeChartModal");
-    const openSizeChartButton = document.getElementById("openSizeChart");
     const closeSizeChartButton = document.getElementById("closeSizeChart");
-    function openSizeChart() {
+    const sizeChartImage = document.getElementById("abayaSizeChartImage");
+    const sizeChartImageNotice = document.getElementById("sizeChartImageNotice");
+    sizeChartImage.addEventListener("error", () => {
+      sizeChartImage.hidden = true;
+      sizeChartImageNotice.hidden = false;
+    });
+    let sizeChartOpener = null;
+
+    function openSizeChart(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        sizeChartOpener = event.currentTarget;
+      }
+      // Keep the chart outside any transformed/stacked popup containers.
+      if (sizeChartModal.parentElement !== document.body) {
+        document.body.appendChild(sizeChartModal);
+      }
       sizeChartModal.classList.add("active");
       sizeChartModal.setAttribute("aria-hidden", "false");
+      sizeChartModal.style.setProperty("display", "flex", "important");
+      sizeChartModal.style.setProperty("visibility", "visible", "important");
+      sizeChartModal.style.setProperty("opacity", "1", "important");
       closeSizeChartButton.focus();
     }
+
     function closeSizeChart() {
       sizeChartModal.classList.remove("active");
       sizeChartModal.setAttribute("aria-hidden", "true");
-      if (openSizeChartButton) openSizeChartButton.focus();
+      sizeChartModal.style.removeProperty("display");
+      sizeChartModal.style.removeProperty("visibility");
+      sizeChartModal.style.removeProperty("opacity");
+      if (sizeChartOpener && document.contains(sizeChartOpener)) {
+        sizeChartOpener.focus();
+      }
     }
-    openSizeChartButton.addEventListener("click", openSizeChart);
-    closeSizeChartButton.addEventListener("click", closeSizeChart);
-    sizeChartModal.addEventListener("click", event => {
-      if (event.target === sizeChartModal) closeSizeChart();
-    });
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && sizeChartModal.classList.contains("active")) closeSizeChart();
+
+    // Delegated handling remains reliable if the product dialog is rebuilt.
+    document.addEventListener("click", event => {
+      const openButton = event.target.closest("#openSizeChart");
+      if (openButton) {
+        openSizeChart(event);
+        return;
+      }
+      if (event.target.closest("#closeSizeChart")) {
+        event.preventDefault();
+        closeSizeChart();
+        return;
+      }
+      if (event.target === sizeChartModal) {
+        closeSizeChart();
+      }
     });
 
     renderProducts();
