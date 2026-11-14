@@ -42,9 +42,9 @@
     .modal-product-image img{cursor:zoom-in}
     .am-image-zoom{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;background:rgba(24,21,19,.96);padding:76px 22px 28px}
     .am-image-zoom.active{display:flex}
-    .am-image-zoom-stage{width:min(1100px,94vw);height:min(78vh,900px);display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:pan-y}
-    .am-image-zoom-stage img{max-width:100%;max-height:100%;object-fit:contain;transform:scale(1);transform-origin:center;transition:transform .18s ease;user-select:none;-webkit-user-drag:none;cursor:grab}
-    .am-image-zoom-stage img:active{cursor:grabbing}
+    .am-image-zoom-stage{width:min(1100px,94vw);height:min(78vh,900px);display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;position:relative;cursor:grab}
+    .am-image-zoom-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;transform:translate3d(0,0,0) scale(1);transform-origin:center;transition:transform .12s ease;user-select:none;-webkit-user-drag:none;pointer-events:none}
+    .am-image-zoom-stage.is-dragging{cursor:grabbing}
     .am-zoom-toolbar{position:absolute;top:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,253,250,.96);border:1px solid #c9b99f;border-radius:999px}
     .am-zoom-toolbar button,.am-zoom-close{width:42px;height:42px;border:1px solid #dfd5c7;border-radius:50%;background:#fffdfa;color:#3e2b22;font-size:23px;cursor:pointer}
     .am-zoom-toolbar button:hover,.am-zoom-close:hover{background:#eee7dc}
@@ -324,31 +324,48 @@
     const amZoomStage = document.getElementById("amZoomStage");
     const amZoomLevel = document.getElementById("amZoomLevel");
     let amZoomScale = 1;
+    let amPanX = 0;
+    let amPanY = 0;
     let amDrag = null;
 
-    function updateAmZoom() {
-      amZoomImage.style.transform = `scale(${amZoomScale})`;
-      amZoomLevel.textContent = `${Math.round(amZoomScale * 100)}%`;
-      amZoomImage.style.cursor = amZoomScale > 1 ? "grab" : "zoom-in";
+    function clampAmPan() {
+      const stageRect = amZoomStage.getBoundingClientRect();
+      const baseWidth = amZoomImage.clientWidth;
+      const baseHeight = amZoomImage.clientHeight;
+      const maxX = Math.max(0, (baseWidth * amZoomScale - stageRect.width) / 2);
+      const maxY = Math.max(0, (baseHeight * amZoomScale - stageRect.height) / 2);
+      amPanX = Math.max(-maxX, Math.min(maxX, amPanX));
+      amPanY = Math.max(-maxY, Math.min(maxY, amPanY));
     }
-    function setAmZoom(next) {
+    function updateAmZoom() {
+      clampAmPan();
+      amZoomImage.style.transform = `translate3d(${amPanX}px, ${amPanY}px, 0) scale(${amZoomScale})`;
+      amZoomLevel.textContent = `${Math.round(amZoomScale * 100)}%`;
+      amZoomStage.classList.toggle("is-zoomed", amZoomScale > 1);
+    }
+    function setAmZoom(next, resetPan = false) {
       amZoomScale = Math.max(1, Math.min(4, next));
+      if (resetPan || amZoomScale === 1) { amPanX = 0; amPanY = 0; }
       updateAmZoom();
     }
     function openAmImageZoom() {
       if (!modalImage.src) return;
       amZoomImage.src = modalImage.src;
       amZoomImage.alt = modalImage.alt || "Enlarged Abaya Majesty product image";
-      setAmZoom(1);
+      amPanX = 0; amPanY = 0;
+      setAmZoom(1, true);
       amImageZoom.classList.add("active");
       amImageZoom.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+      amZoomImage.onload = () => updateAmZoom();
       document.getElementById("amZoomClose").focus();
     }
     function closeAmImageZoom() {
       amImageZoom.classList.remove("active");
       amImageZoom.setAttribute("aria-hidden", "true");
       amZoomImage.src = "";
+      amDrag = null;
+      amZoomStage.classList.remove("is-dragging");
       document.body.style.overflow = modal.classList.contains("active") ? "hidden" : "";
       modalImage.focus?.();
     }
@@ -356,25 +373,49 @@
     document.getElementById("amZoomClose").addEventListener("click", closeAmImageZoom);
     document.getElementById("amZoomIn").addEventListener("click", () => setAmZoom(amZoomScale + 0.5));
     document.getElementById("amZoomOut").addEventListener("click", () => setAmZoom(amZoomScale - 0.5));
-    document.getElementById("amZoomReset").addEventListener("click", () => setAmZoom(1));
+    document.getElementById("amZoomReset").addEventListener("click", () => setAmZoom(1, true));
+
+    // Zoom toward the pointer position, then keep the enlarged image inside the viewer.
     amZoomStage.addEventListener("wheel", event => {
       event.preventDefault();
-      setAmZoom(amZoomScale + (event.deltaY < 0 ? 0.2 : -0.2));
+      const rect = amZoomStage.getBoundingClientRect();
+      const px = event.clientX - (rect.left + rect.width / 2);
+      const py = event.clientY - (rect.top + rect.height / 2);
+      const oldScale = amZoomScale;
+      const nextScale = Math.max(1, Math.min(4, oldScale + (event.deltaY < 0 ? 0.25 : -0.25)));
+      if (nextScale !== oldScale) {
+        const ratio = nextScale / oldScale;
+        amPanX = px - (px - amPanX) * ratio;
+        amPanY = py - (py - amPanY) * ratio;
+        amZoomScale = nextScale;
+        if (nextScale === 1) { amPanX = 0; amPanY = 0; }
+        updateAmZoom();
+      }
     }, {passive:false});
-    amZoomImage.addEventListener("dblclick", () => setAmZoom(1));
-    amZoomImage.addEventListener("pointerdown", event => {
-      if (amZoomScale <= 1) return;
-      amDrag = {x:event.clientX, y:event.clientY, left:amZoomStage.scrollLeft, top:amZoomStage.scrollTop};
-      amZoomImage.setPointerCapture(event.pointerId);
+
+    // Drag with mouse or touch to inspect different parts of a zoomed image.
+    amZoomStage.addEventListener("pointerdown", event => {
+      if (amZoomScale <= 1 || event.target.closest("button")) return;
+      event.preventDefault();
+      amDrag = {x:event.clientX, y:event.clientY, panX:amPanX, panY:amPanY, pointerId:event.pointerId};
+      amZoomStage.classList.add("is-dragging");
+      amZoomStage.setPointerCapture(event.pointerId);
     });
-    amZoomImage.addEventListener("pointermove", event => {
-      if (!amDrag) return;
-      amZoomStage.scrollLeft = amDrag.left - (event.clientX - amDrag.x);
-      amZoomStage.scrollTop = amDrag.top - (event.clientY - amDrag.y);
+    amZoomStage.addEventListener("pointermove", event => {
+      if (!amDrag || event.pointerId !== amDrag.pointerId) return;
+      amPanX = amDrag.panX + (event.clientX - amDrag.x);
+      amPanY = amDrag.panY + (event.clientY - amDrag.y);
+      updateAmZoom();
     });
-    ["pointerup","pointercancel","lostpointercapture"].forEach(name =>
-      amZoomImage.addEventListener(name, () => { amDrag = null; })
-    );
+    function endAmDrag(event) {
+      if (amDrag && (!event || event.pointerId === amDrag.pointerId)) {
+        amDrag = null;
+        amZoomStage.classList.remove("is-dragging");
+      }
+    }
+    ["pointerup","pointercancel","lostpointercapture"].forEach(name => amZoomStage.addEventListener(name, endAmDrag));
+    amZoomImage.addEventListener("dblclick", () => setAmZoom(1, true));
+    window.addEventListener("resize", () => { if (amImageZoom.classList.contains("active")) updateAmZoom(); });
     amImageZoom.addEventListener("click", event => {
       if (event.target === amImageZoom) closeAmImageZoom();
     });
