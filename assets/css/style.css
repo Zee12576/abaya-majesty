@@ -271,3 +271,17 @@ img { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+/* FIX 01 — Footer email alignment */
+
+.am-footer-columns > div {
+  min-width: 0;
+}
+
+.am-footer-columns > div:last-child a[href^="mailto:"] {
+  display: block;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.45;
+}
