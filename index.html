@@ -128,6 +128,19 @@ body > #sizeChartModal.active{display:flex!important}
     .zoom-hint{position:absolute;bottom:15px;left:0;right:0;margin:0;text-align:center;color:rgba(255,255,255,.7);font-size:12px}
     @media(max-width:600px){.zoom-toolbar{top:auto;bottom:58px}.zoom-stage{inset:20px 0 112px}.zoom-hint{font-size:10px;bottom:17px}.zoom-close{right:12px;top:12px}}
 
+
+/* Restore the photographic hero and collection gateway imagery */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#29221d!important}
+.hero-image{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center 35%;z-index:0}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,17,14,.62) 0%,rgba(20,17,14,.28) 58%,rgba(20,17,14,.08) 100%)!important}
+.hero-content,.hero-caption{position:relative;z-index:2}
+.catalogue-category-cards .category-gateway{isolation:isolate;background:#514235!important;color:#fff!important}
+.catalogue-category-cards .category-gateway img{display:block!important;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;transition:transform .6s ease}
+.catalogue-category-cards .category-gateway:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,18,15,.02) 25%,rgba(22,18,15,.72) 100%);z-index:1;pointer-events:none}
+.catalogue-category-cards .category-gateway:before{z-index:2}
+.catalogue-category-cards .category-gateway>*{position:relative;z-index:3;color:#fff!important}
+.catalogue-category-cards .category-gateway:hover img{transform:scale(1.045)}
+
 </style>
 
 <style>
@@ -175,6 +188,7 @@ body > #sizeChartModal.active{display:flex!important}
 
   <main>
     <section class="hero" id="home">
+      <img class="hero-image" src="assets/look-21-white-bridal-cape.jpg" alt="White bridal cape abaya from Abaya Majesty" fetchpriority="high">
       <div class="hero-shade"></div>
       <div class="hero-content">
         <p class="eyebrow light">THE ART OF MODEST ELEGANCE</p>
@@ -230,19 +244,19 @@ body > #sizeChartModal.active{display:flex!important}
       </div>
       <div class="collection-cards catalogue-category-cards">
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="bridal">
-          <span class="category-number">01 / CEREMONIAL</span><strong>The Bridal Atelier</strong><b>Discover collection ↗</b>
+          <img src="assets/look-31-ivory-bridal-rose.jpg" alt="Ivory bridal abaya" loading="lazy"><span class="category-number">01 / CEREMONIAL</span><strong>The Bridal Atelier</strong><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="ivory">
-          <span class="category-number">02 / TIMELESS</span><strong>The Ivory Collection</strong><b>Discover collection ↗</b>
+          <img src="assets/look-05-ivory-cape.jpg" alt="Ivory cape abaya" loading="lazy"><span class="category-number">02 / TIMELESS</span><strong>The Ivory Collection</strong><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="neutral">
-          <span class="category-number">03 / NATURAL PALETTE</span><strong>Earth &amp; Elegance</strong><b>Discover collection ↗</b>
+          <img src="assets/look-26-taupe-crystal-kaftan.jpg" alt="Taupe embellished abaya" loading="lazy"><span class="category-number">03 / NATURAL PALETTE</span><strong>Earth &amp; Elegance</strong><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="occasion">
-          <span class="category-number">04 / DRESSING UP</span><strong>The Occasion Atelier</strong><b>Discover collection ↗</b>
+          <img src="assets/look-12-navy-cape.jpg" alt="Navy occasion abaya" loading="lazy"><span class="category-number">04 / DRESSING UP</span><strong>The Occasion Atelier</strong><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="statement">
-          <span class="category-number">05 / DISTINCTIVE</span><strong>The Statement Collection</strong><b>Discover collection ↗</b>
+          <img src="assets/look-29-aqua-jewel-cape.jpg" alt="Aqua embellished cape abaya" loading="lazy"><span class="category-number">05 / DISTINCTIVE</span><strong>The Statement Collection</strong><b>Discover collection ↗</b>
         </a>
       </div>
     </section>
