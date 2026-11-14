@@ -141,6 +141,84 @@ body > #sizeChartModal.active{display:flex!important}
 .catalogue-category-cards .category-gateway>*{position:relative;z-index:3;color:#fff!important}
 .catalogue-category-cards .category-gateway:hover img{transform:scale(1.045)}
 
+
+/* FINAL SIZE CHART FIT FIX — keep the complete chart inside the viewport */
+body.size-chart-open { overflow: hidden !important; }
+body > #sizeChartModal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483647 !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  padding: 12px !important;
+  overflow: hidden !important;
+  background: rgba(20,18,16,.84) !important;
+}
+body > #sizeChartModal.active { display: flex !important; }
+#sizeChartModal .size-chart-dialog {
+  position: relative !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  max-width: min(96vw, 980px) !important;
+  height: auto !important;
+  max-height: 94vh !important;
+  max-height: 94dvh !important;
+  margin: 0 !important;
+  padding: 54px 16px 14px !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+  background: #fbf9f4 !important;
+}
+#sizeChartModal .size-chart-dialog img {
+  display: block !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: calc(94vh - 82px) !important;
+  max-height: calc(94dvh - 82px) !important;
+  object-fit: contain !important;
+  margin: 0 auto !important;
+}
+#sizeChartModal .size-chart-close {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  float: none !important;
+  z-index: 5 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 38px !important;
+  margin: 0 !important;
+}
+#sizeChartModal .am-small-note { max-width: 100%; text-align: center; }
+@media (max-width: 600px) {
+  body > #sizeChartModal { padding: 8px !important; }
+  #sizeChartModal .size-chart-dialog {
+    width: 96vw !important;
+    max-width: 96vw !important;
+    max-height: 94dvh !important;
+    padding: 48px 8px 8px !important;
+    border-radius: 12px !important;
+  }
+  #sizeChartModal .size-chart-dialog img {
+    max-width: 100% !important;
+    max-height: calc(94dvh - 66px) !important;
+  }
+  #sizeChartModal .size-chart-close { top: 7px !important; right: 7px !important; }
+}
+
 </style>
 
 <style>
@@ -190,15 +268,6 @@ body > #sizeChartModal.active{display:flex!important}
 @media(max-width:390px){.catalogue-category-cards{grid-template-columns:1fr!important}.catalogue-category-cards .category-gateway{height:330px!important}}
 </style>
 
-<style id="size-chart-clean-final">
-/* Size chart: single clean, viewport-fitted overlay */
-body > #sizeChartModal{box-sizing:border-box;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:2147483647!important;display:none;align-items:center;justify-content:center;padding:18px!important;background:rgba(18,15,12,.92)!important;overflow:auto!important}
-body > #sizeChartModal.active{display:flex!important}
-#sizeChartModal .size-chart-dialog{box-sizing:border-box;position:relative;width:min(960px,94vw)!important;max-height:94vh!important;overflow:auto!important;padding:12px!important;background:#f7f3ec!important;border:1px solid rgba(193,158,103,.65);border-radius:14px!important;box-shadow:0 24px 80px rgba(0,0,0,.45)!important}
-#sizeChartModal .size-chart-dialog img{display:block!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:88vh!important;object-fit:contain!important;margin:0 auto!important}
-#sizeChartModal .size-chart-close{position:absolute!important;top:10px!important;right:10px!important;float:none!important;z-index:5!important;width:38px!important;height:38px!important;background:#30241e!important;color:#fff!important;border:1px solid rgba(255,255,255,.35)!important}
-@media(max-width:600px){body > #sizeChartModal{padding:8px!important}#sizeChartModal .size-chart-dialog{width:98vw!important;max-height:96vh!important;padding:8px!important}#sizeChartModal .size-chart-dialog img{max-height:92vh!important}}
-</style>
 </head>
 <body>
   <div class="announcement">DISCOVER ELEGANCE <span>✦</span> WORLDWIDE ENQUIRIES AVAILABLE</div>
@@ -273,19 +342,19 @@ body > #sizeChartModal.active{display:flex!important}
       </div>
       <div class="collection-cards catalogue-category-cards">
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="bridal">
-          <img data-category-image="bridal" src="" alt="Bridal collection design" loading="lazy"><span class="category-number">01 / CEREMONIAL</span><strong>The Bridal Atelier</strong><b>Discover collection ↗</b>
+          <img src="assets/look-31-ivory-bridal-rose.jpg" alt="Ivory bridal abaya" loading="lazy"><span class="category-number">01 / CEREMONIAL</span><strong>The Bridal Atelier</strong><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="ivory">
-          <img data-category-image="ivory" src="" alt="Ivory collection design" loading="lazy"><span class="category-number">02 / TIMELESS</span><strong>The Ivory Collection</strong><b>Discover collection ↗</b>
+          <img src="assets/look-05-ivory-cape.jpg" alt="Ivory cape abaya" loading="lazy"><span class="category-number">02 / TIMELESS</span><strong>The Ivory Collection</strong><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="neutral">
-          <img data-category-image="neutral" src="" alt="Earth and neutral collection design" loading="lazy"><span class="category-number">03 / NATURAL PALETTE</span><strong>Earth &amp; Elegance</strong><b>Discover collection ↗</b>
+          <img src="assets/look-26-taupe-crystal-kaftan.jpg" alt="Taupe embellished abaya" loading="lazy"><span class="category-number">03 / NATURAL PALETTE</span><strong>Earth &amp; Elegance</strong><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="occasion">
-          <img data-category-image="occasion" src="" alt="Occasion collection design" loading="lazy"><span class="category-number">04 / DRESSING UP</span><strong>The Occasion Atelier</strong><b>Discover collection ↗</b>
+          <img src="assets/look-12-navy-cape.jpg" alt="Navy occasion abaya" loading="lazy"><span class="category-number">04 / DRESSING UP</span><strong>The Occasion Atelier</strong><b>Discover collection ↗</b>
         </a>
         <a href="#new-arrivals" class="collection-card category-gateway" data-jump-filter="statement">
-          <img data-category-image="statement" src="" alt="Statement collection design" loading="lazy"><span class="category-number">05 / DISTINCTIVE</span><strong>The Statement Collection</strong><b>Discover collection ↗</b>
+          <img src="assets/look-29-aqua-jewel-cape.jpg" alt="Aqua embellished cape abaya" loading="lazy"><span class="category-number">05 / DISTINCTIVE</span><strong>The Statement Collection</strong><b>Discover collection ↗</b>
         </a>
       </div>
     </section>
@@ -421,6 +490,7 @@ body > #sizeChartModal.active{display:flex!important}
       <button class="size-chart-close" type="button" id="closeSizeChart" aria-label="Close size chart">&times;</button>
       <img id="abayaSizeChartImage" src="assets/abaya-majesty-size-chart.png" alt="Abaya Majesty size chart with bust, waist, hip measurements and international size conversion">
       <p class="am-small-note" id="sizeChartImageNotice" hidden>The size chart image could not be loaded. Please contact our team on WhatsApp for the measurement guide.</p>
+      <p class="am-small-note">Measurements are a general guide. For a more accurate fit, please confirm your measurements with our team before ordering.</p>
     </div>
   </div>
 
@@ -492,30 +562,6 @@ body > #sizeChartModal.active{display:flex!important}
       {name:"The Cocoa Nocturne",img:"new-2026-11-14-16.jpg",description:"A rich chocolate satin abaya with intricate embellishment, sculpted draping and a graceful extended silhouette.",tags:"neutral occasion statement",short:"Embellished chocolate satin with dramatic draping."},
       {name:"The Slate Serenity",img:"new-2026-11-14-17.jpg",description:"A deep slate-grey abaya with a fluid cape overlay and understated, contemporary elegance.",tags:"neutral occasion statement",short:"Slate grey with a flowing cape overlay."}
     ];
-
-    // Use only images that belong to products in the live catalogue.
-    // Each collection gateway automatically selects a matching catalogue item.
-    const collectionImageChoices = {
-      bridal: "The Ivory Bridal Rose",
-      ivory: "The Ivory Serene",
-      neutral: "The Taupe Empress",
-      occasion: "The Midnight Cape",
-      statement: "The Emerald Empress"
-    };
-    document.querySelectorAll("[data-category-image]").forEach(image => {
-      const category = image.dataset.categoryImage;
-      const preferredName = collectionImageChoices[category];
-      const product = products.find(item => item.name === preferredName && item.tags.split(/\s+/).includes(category))
-        || products.find(item => item.tags.split(/\s+/).includes(category));
-      if (product) {
-        image.src = `assets/${product.img}`;
-        image.alt = `${product.name} — ${category} collection`;
-        image.onerror = () => {
-          const fallback = products.find(item => item.tags.split(/\s+/).includes(category) && item.img !== product.img);
-          if (fallback) { image.onerror = null; image.src = `assets/${fallback.img}`; image.alt = `${fallback.name} — ${category} collection`; }
-        };
-      }
-    });
 
     const productGrid = document.getElementById("productGrid");
     const modal = document.getElementById("productModal");
@@ -609,12 +655,14 @@ body > #sizeChartModal.active{display:flex!important}
     function openSizeChart() {
       sizeChartOpener = openSizeChartButton;
       sizeChartModal.classList.add("active");
+      document.body.classList.add("size-chart-open");
       sizeChartModal.setAttribute("aria-hidden", "false");
       sizeChartModal.style.display = "flex";
       closeSizeChartButton.focus();
     }
     function closeSizeChart() {
       sizeChartModal.classList.remove("active");
+      document.body.classList.remove("size-chart-open");
       sizeChartModal.setAttribute("aria-hidden", "true");
       sizeChartModal.style.display = "none";
       if (sizeChartOpener && document.contains(sizeChartOpener)) sizeChartOpener.focus();
