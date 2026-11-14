@@ -92,6 +92,26 @@
     .am-proof-strip strong{font:400 clamp(25px,3vw,36px) 'Playfair Display',serif;color:#d0b17b}
     .am-proof-strip span{font-size:9px;letter-spacing:.18em;color:#e8dfd2}
     @media(max-width:800px){.am-business-grid{grid-template-columns:1fr}.am-business-card{min-height:0}.am-proof-strip{gap:22px;flex-wrap:wrap}.nav-links{max-height:80vh;overflow:auto}}
+
+/* Reliable size-chart overlay */
+body > #sizeChartModal{position:fixed!important;inset:0!important;z-index:2147483000!important;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,18,16,.84);visibility:visible;opacity:1}
+body > #sizeChartModal.active{display:flex!important}
+#sizeChartModal .size-chart-dialog{position:relative;width:min(960px,96vw);max-height:92vh;overflow:auto;background:#fbf9f4;border-radius:16px;padding:22px;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+#sizeChartModal .size-chart-dialog img{display:block;max-width:100%;max-height:76vh;width:auto;height:auto;object-fit:contain;margin:0 auto}
+#sizeChartModal .size-chart-close{position:sticky;top:0;float:right;z-index:3;width:42px;height:42px;border:0;border-radius:50%;background:#29251f;color:#fff;font-size:27px;cursor:pointer}
+/* Product image zoom viewer */
+#abayaZoomViewer{position:fixed;inset:0;z-index:2147482000;display:none;align-items:center;justify-content:center;background:rgba(16,14,12,.96);padding:64px 18px 24px;touch-action:none}
+#abayaZoomViewer.active{display:flex}
+#abayaZoomViewer .zoom-stage{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:grab;touch-action:none}
+#abayaZoomViewer .zoom-stage.dragging{cursor:grabbing}
+#abayaZoomViewer img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;transform-origin:center center;user-select:none;-webkit-user-drag:none;pointer-events:none}
+#abayaZoomViewer .zoom-toolbar{position:absolute;top:14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid rgba(255,255,255,.2);border-radius:30px;background:rgba(35,31,27,.92)}
+#abayaZoomViewer button{min-width:38px;height:38px;border:1px solid rgba(255,255,255,.25);border-radius:22px;background:transparent;color:#fff;font-size:17px;cursor:pointer;padding:0 12px}
+#abayaZoomViewer .zoom-close{position:absolute;top:14px;right:14px;font-size:25px}
+#abayaZoomViewer .zoom-label{color:#fff;font:12px 'DM Sans',sans-serif;min-width:48px;text-align:center}
+#modalImage{cursor:zoom-in}
+@media(max-width:600px){#abayaZoomViewer{padding:70px 8px 12px}#abayaZoomViewer .zoom-toolbar{left:8px;transform:none;gap:5px}#abayaZoomViewer .zoom-toolbar button{min-width:34px;padding:0 9px}}
+
 </style>
 
 </head>
@@ -143,7 +163,7 @@
     </section>
 
     <section class="am-proof-strip" aria-label="Abaya Majesty business highlights">
-      <div><strong>10,500+</strong><span>ABAYAS SOLD</span></div>
+      <div><strong>1,500+</strong><span>ABAYAS SOLD</span></div>
       <div><strong>In-house</strong><span>ABAYA MANUFACTURING</span></div>
       <div><strong>Worldwide</strong><span>ORDER ENQUIRIES</span></div>
     </section>
@@ -304,6 +324,18 @@
     </div>
   </div>
 
+
+  <div id="abayaZoomViewer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Product image zoom viewer">
+    <button class="zoom-close" type="button" aria-label="Close image viewer">×</button>
+    <div class="zoom-toolbar" aria-label="Image zoom controls">
+      <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+      <span class="zoom-label">100%</span>
+      <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+      <button type="button" data-zoom="reset">Reset</button>
+    </div>
+    <div class="zoom-stage"><img alt="" draggable="false"></div>
+  </div>
+
   <script>
     "use strict";
     const WHATSAPP_NUMBER = "971505540491";
@@ -416,59 +448,47 @@
     }
 
     const sizeChartModal = document.getElementById("sizeChartModal");
+    const openSizeChartButton = document.getElementById("openSizeChart");
     const closeSizeChartButton = document.getElementById("closeSizeChart");
     const sizeChartImage = document.getElementById("abayaSizeChartImage");
     const sizeChartImageNotice = document.getElementById("sizeChartImageNotice");
+    let sizeChartOpener = null;
+
+    // Keep the chart as a direct child of body so it is never hidden behind the product dialog.
+    document.body.appendChild(sizeChartModal);
     sizeChartImage.addEventListener("error", () => {
       sizeChartImage.hidden = true;
       sizeChartImageNotice.hidden = false;
     });
-    let sizeChartOpener = null;
+    sizeChartImage.addEventListener("load", () => {
+      sizeChartImage.hidden = false;
+      sizeChartImageNotice.hidden = true;
+    });
 
-    function openSizeChart(event) {
-      if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        sizeChartOpener = event.currentTarget;
-      }
-      // Keep the chart outside any transformed/stacked popup containers.
-      if (sizeChartModal.parentElement !== document.body) {
-        document.body.appendChild(sizeChartModal);
-      }
+    function openSizeChart() {
+      sizeChartOpener = openSizeChartButton;
       sizeChartModal.classList.add("active");
       sizeChartModal.setAttribute("aria-hidden", "false");
-      sizeChartModal.style.setProperty("display", "flex", "important");
-      sizeChartModal.style.setProperty("visibility", "visible", "important");
-      sizeChartModal.style.setProperty("opacity", "1", "important");
+      sizeChartModal.style.display = "flex";
       closeSizeChartButton.focus();
     }
-
     function closeSizeChart() {
       sizeChartModal.classList.remove("active");
       sizeChartModal.setAttribute("aria-hidden", "true");
-      sizeChartModal.style.removeProperty("display");
-      sizeChartModal.style.removeProperty("visibility");
-      sizeChartModal.style.removeProperty("opacity");
-      if (sizeChartOpener && document.contains(sizeChartOpener)) {
-        sizeChartOpener.focus();
-      }
+      sizeChartModal.style.display = "none";
+      if (sizeChartOpener && document.contains(sizeChartOpener)) sizeChartOpener.focus();
     }
-
-    // Delegated handling remains reliable if the product dialog is rebuilt.
-    document.addEventListener("click", event => {
-      const openButton = event.target.closest("#openSizeChart");
-      if (openButton) {
-        openSizeChart(event);
-        return;
-      }
-      if (event.target.closest("#closeSizeChart")) {
-        event.preventDefault();
-        closeSizeChart();
-        return;
-      }
-      if (event.target === sizeChartModal) {
-        closeSizeChart();
-      }
+    openSizeChartButton.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      openSizeChart();
+    });
+    closeSizeChartButton.addEventListener("click", event => {
+      event.preventDefault();
+      closeSizeChart();
+    });
+    sizeChartModal.addEventListener("click", event => {
+      if (event.target === sizeChartModal) closeSizeChart();
     });
 
     renderProducts();
@@ -603,5 +623,36 @@
       window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     });
   </script>
+
+<script>
+(() => {
+  const sourceImage = document.getElementById('modalImage');
+  const viewer = document.getElementById('abayaZoomViewer');
+  const stage = viewer.querySelector('.zoom-stage');
+  const zoomImage = viewer.querySelector('img');
+  const label = viewer.querySelector('.zoom-label');
+  let scale = 1, x = 0, y = 0, dragging = false, startX = 0, startY = 0, baseX = 0, baseY = 0;
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  function paint(){ zoomImage.style.transform = `translate(${x}px, ${y}px) scale(${scale})`; label.textContent = `${Math.round(scale*100)}%`; }
+  function reset(){ scale=1; x=0; y=0; paint(); }
+  function open(){ if(!sourceImage || !sourceImage.src) return; zoomImage.src=sourceImage.src; zoomImage.alt=sourceImage.alt || 'Abaya product image'; reset(); viewer.classList.add('active'); viewer.setAttribute('aria-hidden','false'); viewer.querySelector('.zoom-close').focus(); }
+  function close(){ viewer.classList.remove('active'); viewer.setAttribute('aria-hidden','true'); }
+  sourceImage.addEventListener('click', open);
+  viewer.querySelector('.zoom-close').addEventListener('click', close);
+  viewer.querySelectorAll('[data-zoom]').forEach(btn => btn.addEventListener('click', () => {
+    const action=btn.dataset.zoom;
+    if(action==='reset') reset();
+    else { const old=scale; scale=clamp(scale+(action==='in'?.25:-.25),1,4); if(scale===1){x=0;y=0;} else {x*=scale/old;y*=scale/old;} paint(); }
+  }));
+  stage.addEventListener('wheel', e => { e.preventDefault(); const old=scale; scale=clamp(scale+(e.deltaY<0?.15:-.15),1,4); if(scale===1){x=0;y=0;} else {x*=scale/old;y*=scale/old;} paint(); }, {passive:false});
+  stage.addEventListener('pointerdown', e => { if(scale<=1) return; dragging=true; startX=e.clientX; startY=e.clientY; baseX=x; baseY=y; stage.classList.add('dragging'); stage.setPointerCapture(e.pointerId); });
+  stage.addEventListener('pointermove', e => { if(!dragging) return; x=baseX+(e.clientX-startX); y=baseY+(e.clientY-startY); paint(); });
+  function stopDrag(){dragging=false;stage.classList.remove('dragging');}
+  stage.addEventListener('pointerup',stopDrag); stage.addEventListener('pointercancel',stopDrag);
+  viewer.addEventListener('click', e => { if(e.target===viewer) close(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && viewer.classList.contains('active')) close(); });
+})();
+</script>
+
 </body>
 </html>
