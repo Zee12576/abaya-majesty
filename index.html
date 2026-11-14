@@ -142,81 +142,93 @@ body > #sizeChartModal.active{display:flex!important}
 .catalogue-category-cards .category-gateway:hover img{transform:scale(1.045)}
 
 
-/* FINAL SIZE CHART FIT FIX — keep the complete chart inside the viewport */
-body.size-chart-open { overflow: hidden !important; }
-body > #sizeChartModal {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 2147483647 !important;
-  display: none;
-  align-items: center !important;
-  justify-content: center !important;
-  box-sizing: border-box !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  padding: 12px !important;
-  overflow: hidden !important;
-  background: rgba(20,18,16,.84) !important;
-}
-body > #sizeChartModal.active { display: flex !important; }
-#sizeChartModal .size-chart-dialog {
-  position: relative !important;
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: auto !important;
-  max-width: min(96vw, 980px) !important;
-  height: auto !important;
-  max-height: 94vh !important;
-  max-height: 94dvh !important;
-  margin: 0 !important;
-  padding: 54px 16px 14px !important;
-  overflow: hidden !important;
-  border-radius: 16px !important;
-  background: #fbf9f4 !important;
-}
-#sizeChartModal .size-chart-dialog img {
-  display: block !important;
-  flex: 0 1 auto !important;
-  width: auto !important;
-  height: auto !important;
-  max-width: 100% !important;
-  max-height: calc(94vh - 82px) !important;
-  max-height: calc(94dvh - 82px) !important;
-  object-fit: contain !important;
-  margin: 0 auto !important;
-}
-#sizeChartModal .size-chart-close {
-  position: absolute !important;
-  top: 10px !important;
-  right: 10px !important;
-  float: none !important;
-  z-index: 5 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 38px !important;
-  height: 38px !important;
-  margin: 0 !important;
-}
-#sizeChartModal .am-small-note { max-width: 100%; text-align: center; }
+/* Mobile product-image zoom: compact controls and more image space */
 @media (max-width: 600px) {
-  body > #sizeChartModal { padding: 8px !important; }
-  #sizeChartModal .size-chart-dialog {
-    width: 96vw !important;
-    max-width: 96vw !important;
-    max-height: 94dvh !important;
-    padding: 48px 8px 8px !important;
-    border-radius: 12px !important;
+  #abayaZoomViewer {
+    padding: max(54px, env(safe-area-inset-top)) 8px max(12px, env(safe-area-inset-bottom)) !important;
   }
-  #sizeChartModal .size-chart-dialog img {
-    max-width: 100% !important;
-    max-height: calc(94dvh - 66px) !important;
+  #abayaZoomViewer .zoom-stage {
+    height: 100%;
+    max-height: calc(100dvh - 82px);
   }
-  #sizeChartModal .size-chart-close { top: 7px !important; right: 7px !important; }
+  #abayaZoomViewer .zoom-toolbar {
+    top: auto !important;
+    bottom: max(12px, env(safe-area-inset-bottom)) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    gap: 5px !important;
+    padding: 5px 7px !important;
+    max-width: calc(100vw - 24px);
+    border-radius: 24px;
+  }
+  #abayaZoomViewer .zoom-toolbar button {
+    min-width: 30px !important;
+    width: 30px;
+    height: 30px !important;
+    padding: 0 !important;
+    font-size: 15px !important;
+    line-height: 1;
+  }
+  #abayaZoomViewer .zoom-label {
+    min-width: 40px;
+    font-size: 10px !important;
+  }
+  #abayaZoomViewer .zoom-close {
+    top: max(9px, env(safe-area-inset-top)) !important;
+    right: 10px !important;
+    width: 34px;
+    height: 34px;
+    min-width: 34px !important;
+    padding: 0 !important;
+    font-size: 21px !important;
+  }
+
+  .image-zoom-viewer .zoom-toolbar {
+    top: auto !important;
+    bottom: max(12px, env(safe-area-inset-bottom)) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    gap: 5px !important;
+    padding: 5px 7px !important;
+    max-width: calc(100vw - 24px);
+    border-radius: 24px;
+  }
+  .image-zoom-viewer .zoom-toolbar button {
+    min-width: 30px !important;
+    width: 30px;
+    height: 30px !important;
+    padding: 0 !important;
+    font-size: 15px !important;
+    line-height: 1;
+  }
+  .image-zoom-viewer .zoom-toolbar #zoomReset {
+    width: auto;
+    min-width: 42px !important;
+    padding: 0 7px !important;
+    font-size: 10px !important;
+  }
+  .image-zoom-viewer #zoomLevel {
+    min-width: 38px;
+    font-size: 10px !important;
+  }
+  .image-zoom-viewer .zoom-stage {
+    inset: max(52px, env(safe-area-inset-top)) 0 62px !important;
+  }
+  .image-zoom-viewer .zoom-stage img {
+    max-width: 94vw !important;
+    max-height: calc(100dvh - 132px) !important;
+  }
+  .image-zoom-viewer .zoom-close {
+    top: max(9px, env(safe-area-inset-top)) !important;
+    right: 10px !important;
+    width: 36px;
+    height: 36px;
+    font-size: 23px !important;
+  }
+  .image-zoom-viewer .zoom-hint {
+    bottom: 52px !important;
+    font-size: 10px !important;
+  }
 }
 
 </style>
@@ -317,7 +329,7 @@ body > #sizeChartModal.active { display: flex !important; }
     </section>
 
     <section class="am-proof-strip" aria-label="Abaya Majesty business highlights">
-      <div><strong>10,500+</strong><span>ABAYAS SOLD</span></div>
+      <div><strong>1,500+</strong><span>ABAYAS SOLD</span></div>
       <div><strong>In-house</strong><span>ABAYA MANUFACTURING</span></div>
       <div><strong>Worldwide</strong><span>ORDER ENQUIRIES</span></div>
     </section>
@@ -655,14 +667,12 @@ body > #sizeChartModal.active { display: flex !important; }
     function openSizeChart() {
       sizeChartOpener = openSizeChartButton;
       sizeChartModal.classList.add("active");
-      document.body.classList.add("size-chart-open");
       sizeChartModal.setAttribute("aria-hidden", "false");
       sizeChartModal.style.display = "flex";
       closeSizeChartButton.focus();
     }
     function closeSizeChart() {
       sizeChartModal.classList.remove("active");
-      document.body.classList.remove("size-chart-open");
       sizeChartModal.setAttribute("aria-hidden", "true");
       sizeChartModal.style.display = "none";
       if (sizeChartOpener && document.contains(sizeChartOpener)) sizeChartOpener.focus();
